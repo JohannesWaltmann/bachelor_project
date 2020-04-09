@@ -1,0 +1,18 @@
+\begin{thebibliography}{1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\providecommand{\doi}[1]{https://doi.org/#1}
+
+\bibitem{jain2007handbook}
+Jain, A.K., Flynn, P., Ross, A.A.: Handbook of biometrics. Springer Science \&
+  Business Media (2007)
+
+\bibitem{SkullConduct}
+Schneegass, S., Oualil, Y., Bulling, A.: Skullconduct: Biometric user
+  identification on eyewear computers using bone conduction through the skull.
+  In: Proceedings of the 2016 CHI Conference on Human Factors in Computing
+  Systems. p. 1379–1384. CHI ’16, Association for Computing Machinery, New
+  York, NY, USA (2016). \doi{10.1145/2858036.2858152},
+  \url{https://doi.org/10.1145/2858036.2858152}
+
+\end{thebibliography}
