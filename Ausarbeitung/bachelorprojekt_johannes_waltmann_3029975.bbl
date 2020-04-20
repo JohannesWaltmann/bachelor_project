@@ -3,16 +3,40 @@
 \providecommand{\urlprefix}{URL }
 \providecommand{\doi}[1]{https://doi.org/#1}
 
+\bibitem{tenzer}
+Themenseite: Wearables, \url{https://de.statista.com/themen/3471/wearables/}
+
+\bibitem{alsaadi2015physiological}
+Alsaadi, I.M.: Physiological biometric authentication systems, advantages,
+  disadvantages and future development: a review. international journal of
+  scientific \& technology research  \textbf{4}(12),  285--289 (2015)
+
+\bibitem{delac2004survey}
+Delac, K., Grgic, M.: A survey of biometric recognition methods. In:
+  Proceedings. Elmar-2004. 46th International Symposium on Electronics in
+  Marine. pp. 184--193. IEEE (2004)
+
+\bibitem{faltaous2019vpid}
+Faltaous, S., Liebers, J., Abdelrahman, Y., Alt, F., Schneegass, S.: Vpid:
+  Towards vein pattern identification using thermal imaging. i-com
+  \textbf{18}(3),  259--270 (2019)
+
 \bibitem{jain2007handbook}
 Jain, A.K., Flynn, P., Ross, A.A.: Handbook of biometrics. Springer Science \&
   Business Media (2007)
 
-\bibitem{SkullConduct}
-Schneegass, S., Oualil, Y., Bulling, A.: Skullconduct: Biometric user
-  identification on eyewear computers using bone conduction through the skull.
-  In: Proceedings of the 2016 CHI Conference on Human Factors in Computing
-  Systems. p. 1379–1384. CHI ’16, Association for Computing Machinery, New
-  York, NY, USA (2016). \doi{10.1145/2858036.2858152},
-  \url{https://doi.org/10.1145/2858036.2858152}
+\bibitem{koong2014user}
+Koong, C.S., Yang, T.I., Tseng, C.C.: A user authentication scheme using
+  physiological and behavioral biometrics for multitouch devices. The
+  Scientific World Journal  \textbf{2014} (2014)
+
+\bibitem{wayman2005introduction}
+Wayman, J., Jain, A., Maltoni, D., Maio, D.: An introduction to biometric
+  authentication systems. In: Biometric Systems, pp. 1--20. Springer (2005)
+
+\bibitem{yampolskiy2008behavioural}
+Yampolskiy, R.V., Govindaraju, V.: Behavioural biometrics: a survey and
+  classification. International Journal of Biometrics  \textbf{1}(1),  81--113
+  (2008)
 
 \end{thebibliography}

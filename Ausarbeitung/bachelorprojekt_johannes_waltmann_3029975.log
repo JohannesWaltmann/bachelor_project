@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7200 64-bit) (preloaded format=pdflatex 2019.11.1)  8 APR 2020 16:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7200 64-bit) (preloaded format=pdflatex 2019.11.1)  20 APR 2020 14:59
 entering extended mode
 **./bachelorprojekt_johannes_waltmann_3029975.tex
 (bachelorprojekt_johannes_waltmann_3029975.tex
@@ -261,11 +261,16 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 Title too long for running head. Please supply
 a shorter form with \titlerunning prior to \maketitle
-(content.tex
+(content.tex [1
+
+{C:/Users/Waltmann/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [2]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 21.
+(Font)              <9> on input line 39.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 21.
+(Font)              <6> on input line 39.
 Package epstopdf Info: Source file: <fig1.eps>
 (epstopdf)                    date: 2020-04-02 17:58:46
 (epstopdf)                    size: 194255 bytes
@@ -274,62 +279,37 @@ Package epstopdf Info: Source file: <fig1.eps>
 (epstopdf)                    size: 26671 bytes
 (epstopdf)             Command: <epstopdf --outfile=fig1-eps-converted-to.pdf f
 ig1.eps>
-(epstopdf)             \includegraphics on input line 42.
+(epstopdf)             \includegraphics on input line 60.
 Package epstopdf Info: Output file is already uptodate.
-<fig1-eps-converted-to.pdf, id=1, 345.29pt x 142.5325pt>
+<fig1-eps-converted-to.pdf, id=15, 345.29pt x 142.5325pt>
 File: fig1-eps-converted-to.pdf Graphic file (type pdf)
 <use fig1-eps-converted-to.pdf>
-Package pdftex.def Info: fig1-eps-converted-to.pdf  used on input line 42.
+Package pdftex.def Info: fig1-eps-converted-to.pdf  used on input line 60.
 (pdftex.def)             Requested size: 347.12354pt x 143.29115pt.
- [1
-
-{C:/Users/Waltmann/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]) (bachel
-orprojekt_johannes_waltmann_3029975.bbl
-Underfull \hbox (badness 1803) in paragraph at lines 11--17
-[]\OT1/cmr/m/n/9 Schneegass, S., Oualil, Y., Bulling, A.: Skull-con-duct: Bio-m
-et-ric user iden-
- []
-
-
-Underfull \hbox (badness 1953) in paragraph at lines 11--17
-\OT1/cmr/m/n/9 ti-fi-ca-tion on eye-wear com-put-ers us-ing bone con-duc-tion t
-hrough the skull.
- []
-
-
-Underfull \hbox (badness 1609) in paragraph at lines 11--17
-\OT1/cmr/m/n/9 In: Pro-ceed-ings of the 2016 CHI Con-fer-ence on Hu-man Fac-tor
-s in Com-
- []
-
-
-Underfull \hbox (badness 3009) in paragraph at lines 11--17
-\OT1/cmr/m/n/9 ery, New York, NY, USA (2016). https://doi.org/10.1145/2858036.2
-858152,
- []
-
-) [2 <./fig1-eps-converted-to.pdf>]
-(bachelorprojekt_johannes_waltmann_3029975.aux) ) 
+)
+(bachelorprojekt_johannes_waltmann_3029975.bbl [3]) [4 <./fig1-eps-converted-to
+.pdf>] (bachelorprojekt_johannes_waltmann_3029975.aux) ) 
 Here is how much of TeX's memory you used:
- 2793 strings out of 492453
- 40011 string characters out of 3129811
- 125562 words of memory out of 3000000
- 7132 multiletter control sequences out of 15000+200000
- 7801 words of font info for 28 fonts, out of 3000000 for 9000
+ 2802 strings out of 492453
+ 40140 string characters out of 3129811
+ 126580 words of memory out of 3000000
+ 7140 multiletter control sequences out of 15000+200000
+ 8147 words of font info for 29 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 46i,8n,30p,832b,231s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
-e1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/cm/cmbx9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
-s/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
-10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:
-/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program 
-Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on bachelorprojekt_johannes_waltmann_3029975.pdf (2 pages, 13344
-9 bytes).
+ 46i,8n,30p,867b,296s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
+/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.
+pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/
+Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program F
+iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on bachelorprojekt_johannes_waltmann_3029975.pdf (4 pages, 16255
+3 bytes).
 PDF statistics:
- 54 PDF objects out of 1000 (max. 8388607)
+ 64 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
