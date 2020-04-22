@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\urlprefix}{URL }
 \providecommand{\doi}[1]{https://doi.org/#1}
@@ -29,6 +29,23 @@ Jain, A.K., Flynn, P., Ross, A.A.: Handbook of biometrics. Springer Science \&
 Koong, C.S., Yang, T.I., Tseng, C.C.: A user authentication scheme using
   physiological and behavioral biometrics for multitouch devices. The
   Scientific World Journal  \textbf{2014} (2014)
+
+\bibitem{schneegass2020functbiometric}
+Schneegass, S., Liebers, J.: Introducing functional biometrics: Using
+  body-reflections as a novel class of biometric authentication systems. In:
+  Proceedings of the 2020 CHI Confernce (2020)
+
+\bibitem{SkullConduct}
+Schneegass, S., Oualil, Y., Bulling, A.: Skullconduct: Biometric user
+  identification on eyewear computers using bone conduction through the skull.
+  In: Proceedings of the 2016 CHI Conference on Human Factors in Computing
+  Systems. p. 1379–1384. CHI ’16, Association for Computing Machinery, New
+  York, NY, USA (2016). \doi{10.1145/2858036.2858152}
+
+\bibitem{shi2010implicit}
+Shi, E., Niu, Y., Jakobsson, M., Chow, R.: Implicit authentication through
+  learning user behavior. In: International Conference on Information Security.
+  pp. 99--113. Springer (2010)
 
 \bibitem{wayman2005introduction}
 Wayman, J., Jain, A., Maltoni, D., Maio, D.: An introduction to biometric

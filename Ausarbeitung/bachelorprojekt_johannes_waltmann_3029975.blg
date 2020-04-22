@@ -1,5 +1,15 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: bachelorprojekt_johannes_waltmann_3029975.aux
 The style file: splncs04.bst
 Database file #1: references.bib
+I was expecting a `,' or a `}'---line 25 of file references.bib
+ : 
+ : numpages = {7}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 76 of file references.bib
+ :  
+ :  doi = {10.1515/icom-2019-0009}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
 Warning--to sort, need author or key in tenzer
-(There was 1 warning)
+(There were 2 error messages)
