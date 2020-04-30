@@ -25,10 +25,20 @@ Faltaous, S., Liebers, J., Abdelrahman, Y., Alt, F., Schneegass, S.: Vpid:
 Jain, A.K., Flynn, P., Ross, A.A.: Handbook of biometrics. Springer Science \&
   Business Media (2007)
 
+\bibitem{johnston2015smartwatch}
+Johnston, A.H., Weiss, G.M.: Smartwatch-based biometric gait recognition. In:
+  2015 IEEE 7th International Conference on Biometrics Theory, Applications and
+  Systems (BTAS). pp.~1--6. IEEE (2015)
+
 \bibitem{koong2014user}
 Koong, C.S., Yang, T.I., Tseng, C.C.: A user authentication scheme using
   physiological and behavioral biometrics for multitouch devices. The
   Scientific World Journal  \textbf{2014} (2014)
+
+\bibitem{kwapisz2010cell}
+Kwapisz, J.R., Weiss, G.M., Moore, S.A.: Cell phone-based biometric
+  identification. In: 2010 Fourth IEEE International Conference on Biometrics:
+  Theory, Applications and Systems (BTAS). pp.~1--7. IEEE (2010)
 
 \bibitem{schneegass2020functbiometric}
 Schneegass, S., Liebers, J.: Introducing functional biometrics: Using
@@ -55,5 +65,11 @@ Wayman, J., Jain, A., Maltoni, D., Maio, D.: An introduction to biometric
 Yampolskiy, R.V., Govindaraju, V.: Behavioural biometrics: a survey and
   classification. International Journal of Biometrics  \textbf{1}(1),  81--113
   (2008)
+
+\bibitem{yang2015motionauth}
+Yang, J., Li, Y., Xie, M.: Motionauth: Motion-based authentication for wrist
+  worn smart devices. In: 2015 IEEE International Conference on Pervasive
+  Computing and Communication Workshops (PerCom Workshops). pp. 550--555. IEEE
+  (2015)
 
 \end{thebibliography}

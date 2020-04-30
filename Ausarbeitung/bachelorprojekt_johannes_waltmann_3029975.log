@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7200 64-bit) (preloaded format=pdflatex 2019.11.1)  22 APR 2020 14:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7200 64-bit) (preloaded format=pdflatex 2019.11.1)  30 APR 2020 11:22
 entering extended mode
 **./bachelorprojekt_johannes_waltmann_3029975.tex
 (bachelorprojekt_johannes_waltmann_3029975.tex
@@ -174,38 +174,68 @@ Package csquotes Info: ... configuration file loaded successfully.
 
 (C:\Users\Waltmann\AppData\Roaming\MiKTeX\2.9\tex/latex/csquotes\csquotes.cfg
 File: csquotes.cfg 
-))
+)) (C:\Users\Waltmann\AppData\Roaming\MiKTeX\2.9\tex/latex/subfig\subfig.sty
+Package: subfig 2005/06/28 ver: 1.3 subfig package
+
+(C:\Users\Waltmann\AppData\Roaming\MiKTeX\2.9\tex/latex/caption\caption3.sty
+Package: caption3 2019/09/01 v1.8d caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 64.
+\captionmargin=\dimen127
+\captionmargin@=\dimen128
+\captionwidth=\dimen129
+\caption@tempdima=\dimen130
+\caption@indent=\dimen131
+\caption@parindent=\dimen132
+\caption@hangindent=\dimen133
+Package caption Info: Unknown document class (or package),
+(caption)             standard defaults will be used.
+)
+\c@KVtest=\count125
+\sf@farskip=\skip45
+\sf@captopadj=\dimen134
+\sf@capskip=\skip46
+\sf@nearskip=\skip47
+\c@subfigure=\count126
+\c@subfigure@save=\count127
+\c@lofdepth=\count128
+\c@subtable=\count129
+\c@subtable@save=\count130
+\c@lotdepth=\count131
+\sf@top=\skip48
+\sf@bottom=\skip49
+)
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... none found.
+
 (bachelorprojekt_johannes_waltmann_3029975.aux)
 \openout1 = `bachelorprojekt_johannes_waltmann_3029975.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
 
 (C:\Users\Waltmann\AppData\Roaming\MiKTeX\2.9\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count125
-\scratchdimen=\dimen127
+\scratchcounter=\count132
+\scratchdimen=\dimen135
 \scratchbox=\box55
-\nofMPsegments=\count126
-\nofMParguments=\count127
+\nofMPsegments=\count133
+\nofMParguments=\count134
 \everyMPshowfont=\toks20
-\MPscratchCnt=\count128
-\MPscratchDim=\dimen128
-\MPnumerator=\count129
-\makeMPintoPDFobject=\count130
+\MPscratchCnt=\count135
+\MPscratchDim=\dimen136
+\MPnumerator=\count136
+\makeMPintoPDFobject=\count137
 \everyMPtoPDFconversion=\toks21
 ) ("C:\Program Files\MiKTeX 2.9\tex/latex/oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -254,87 +284,88 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: subfig package v1.3 is loaded.
+Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 36.
+(Font)              <7> on input line 37.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 36.
+(Font)              <5> on input line 37.
  (content.tex
+Underfull \hbox (badness 10000) in paragraph at lines 2--11
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2--11
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 16--20
+
+ []
+
 [1
 
 {C:/Users/Waltmann/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 16--21
-
- []
-
-[2]
-<biometric_trad.png, id=15, 855.195pt x 702.2235pt>
+<biometric_trad.png, id=11, 855.195pt x 702.2235pt>
 File: biometric_trad.png Graphic file (type png)
 <use biometric_trad.png>
-Package pdftex.def Info: biometric_trad.png  used on input line 29.
-(pdftex.def)             Requested size: 156.20453pt x 128.25919pt.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 32.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 32.
-<biometric_funct.png, id=17, 855.195pt x 702.2235pt>
+Package pdftex.def Info: biometric_trad.png  used on input line 25.
+(pdftex.def)             Requested size: 138.84729pt x 114.00816pt.
+<biometric_funct.png, id=13, 855.195pt x 702.2235pt>
 File: biometric_funct.png Graphic file (type png)
 <use biometric_funct.png>
-Package pdftex.def Info: biometric_funct.png  used on input line 36.
-(pdftex.def)             Requested size: 156.20453pt x 128.25919pt.
+Package pdftex.def Info: biometric_funct.png  used on input line 27.
+(pdftex.def)             Requested size: 138.84729pt x 114.00816pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 37--37
-[]\OT1/cmr/bx/n/9 Figure2. \OT1/cmr/m/n/9 Au-then-ti-ca-tion re-quest
- []
-
-[3 <./biometric_trad.png> <./biometric_funct.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 44--48
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 38--54
 
  []
 
-Package epstopdf Info: Source file: <fig1.eps>
-(epstopdf)                    date: 2020-04-02 17:58:46
-(epstopdf)                    size: 194255 bytes
-(epstopdf)             Output file: <fig1-eps-converted-to.pdf>
-(epstopdf)                    date: 2020-04-02 17:58:46
-(epstopdf)                    size: 26671 bytes
-(epstopdf)             Command: <epstopdf --outfile=fig1-eps-converted-to.pdf f
-ig1.eps>
-(epstopdf)             \includegraphics on input line 85.
-Package epstopdf Info: Output file is already uptodate.
-<fig1-eps-converted-to.pdf, id=23, 345.29pt x 142.5325pt>
-File: fig1-eps-converted-to.pdf Graphic file (type pdf)
-<use fig1-eps-converted-to.pdf>
-Package pdftex.def Info: fig1-eps-converted-to.pdf  used on input line 85.
-(pdftex.def)             Requested size: 347.12354pt x 143.29115pt.
-) (bachelorprojekt_johannes_waltmann_3029975.bbl [4]
-Underfull \hbox (badness 1308) in paragraph at lines 34--37
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--54
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--54
+
+ []
+
+[3 <./biometric_trad.png> <./biometric_funct.png>])
+(bachelorprojekt_johannes_waltmann_3029975.bbl
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [4]
+Underfull \hbox (badness 1308) in paragraph at lines 44--47
 []\OT1/cmr/m/n/9 Schneegass, S., Liebers, J.: In-tro-duc-ing func-tional bio-me
 t-rics: Us-ing body-
  []
 
-) [5 <./fig1-eps-converted-to.pdf>]
-(bachelorprojekt_johannes_waltmann_3029975.aux) ) 
+) [5] (bachelorprojekt_johannes_waltmann_3029975.aux) ) 
 Here is how much of TeX's memory you used:
- 2821 strings out of 492453
- 40531 string characters out of 3129811
- 126607 words of memory out of 3000000
- 7156 multiletter control sequences out of 15000+200000
- 8147 words of font info for 29 fonts, out of 3000000 for 9000
+ 3577 strings out of 492453
+ 54462 string characters out of 3129811
+ 144493 words of memory out of 3000000
+ 7912 multiletter control sequences out of 15000+200000
+ 6278 words of font info for 23 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 46i,8n,30p,876b,299s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
-e1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/cm/cmbx9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
-s/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
-10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:
-/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program
- Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on bachelorprojekt_johannes_waltmann_3029975.pdf (5 pages, 44885
-5 bytes).
+ 46i,10n,51p,876b,387s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmbx9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
+cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.p
+fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/P
+rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on bachelorprojekt_johannes_waltmann_3029975.pdf (5 pages, 41003
+0 bytes).
 PDF statistics:
- 72 PDF objects out of 1000 (max. 8388607)
+ 55 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
