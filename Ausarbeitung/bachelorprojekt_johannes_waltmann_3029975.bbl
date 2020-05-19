@@ -4,12 +4,18 @@
 \providecommand{\doi}[1]{https://doi.org/#1}
 
 \bibitem{tenzer}
-Themenseite: Wearables, \url{https://de.statista.com/themen/3471/wearables/}
+Themenseite: Wearables (Mar 2020),
+  \url{https://de.statista.com/themen/3471/wearables/}, retrieved on 07.05.2020
 
 \bibitem{alsaadi2015physiological}
 Alsaadi, I.M.: Physiological biometric authentication systems, advantages,
   disadvantages and future development: a review. international journal of
   scientific \& technology research  \textbf{4}(12),  285--289 (2015)
+
+\bibitem{bhattacharyya2009biometric}
+Bhattacharyya, D., Ranjan, R., Alisherov, F., Choi, M., et~al.: Biometric
+  authentication: A review. International Journal of u-and e-Service, Science
+  and Technology  \textbf{2}(3),  13--28 (2009)
 
 \bibitem{delac2004survey}
 Delac, K., Grgic, M.: A survey of biometric recognition methods. In:
@@ -24,6 +30,11 @@ Faltaous, S., Liebers, J., Abdelrahman, Y., Alt, F., Schneegass, S.: Vpid:
 \bibitem{jain2007handbook}
 Jain, A.K., Flynn, P., Ross, A.A.: Handbook of biometrics. Springer Science \&
   Business Media (2007)
+
+\bibitem{jakobsson2009implicit}
+Jakobsson, M., Shi, E., Golle, P., Chow, R.: Implicit authentication for mobile
+  devices. In: Proceedings of the 4th USENIX conference on Hot topics in
+  security. pp.~9--9 (2009)
 
 \bibitem{johnston2015smartwatch}
 Johnston, A.H., Weiss, G.M.: Smartwatch-based biometric gait recognition. In:
@@ -46,6 +57,12 @@ Liebers, J., Schneegass, S.: Introducing functional biometrics: Using
   Extended Abstracts of the 2020 CHI Conference on Human Factors in Computing
   Systems Extended Abstracts. pp.~1--7 (2020)
 
+\bibitem{ranjan2016automatic}
+Ranjan, J., Whitehouse, K.: Automatic authentication of smartphone touch
+  interactions using smartwatch. In: Proceedings of the 2016 ACM International
+  Joint Conference on Pervasive and Ubiquitous Computing: Adjunct. pp. 361--364
+  (2016)
+
 \bibitem{SkullConduct}
 Schneegass, S., Oualil, Y., Bulling, A.: Skullconduct: Biometric user
   identification on eyewear computers using bone conduction through the skull.
@@ -61,6 +78,12 @@ Shi, E., Niu, Y., Jakobsson, M., Chow, R.: Implicit authentication through
 \bibitem{wayman2005introduction}
 Wayman, J., Jain, A., Maltoni, D., Maio, D.: An introduction to biometric
   authentication systems. In: Biometric Systems, pp. 1--20. Springer (2005)
+
+\bibitem{xu2017gait}
+Xu, W., Shen, Y., Zhang, Y., Bergmann, N., Hu, W.: Gait-watch: A context-aware
+  authentication system for smart watch based on gait recognition. In:
+  Proceedings of the Second International Conference on Internet-of-Things
+  Design and Implementation. pp. 59--70 (2017)
 
 \bibitem{yampolskiy2008behavioural}
 Yampolskiy, R.V., Govindaraju, V.: Behavioural biometrics: a survey and

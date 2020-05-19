@@ -1,10 +1,16 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: bachelorprojekt_johannes_waltmann_3029975.aux
 The style file: splncs04.bst
 Database file #1: references.bib
-I was expecting a `,' or a `}'---line 103 of file references.bib
+Warning--entry type for "tenzer" isn't style-file defined
+--line 26 of file references.bib
+Repeated entry---line 120 of file references.bib
+ : @inproceedings{ranjan2016automatic
+ :                                   ,
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 137 of file references.bib
  :  
  :  doi = {10.1515/icom-2019-0009}
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
 Warning--to sort, need author or key in tenzer
-(There was 1 error message)
+(There were 2 error messages)

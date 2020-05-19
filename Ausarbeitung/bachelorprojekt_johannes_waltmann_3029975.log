@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7200 64-bit) (preloaded format=pdflatex 2019.11.1)  1 MAY 2020 14:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7200 64-bit) (preloaded format=pdflatex 2019.11.1)  12 MAY 2020 17:22
 entering extended mode
 **./bachelorprojekt_johannes_waltmann_3029975.tex
 (bachelorprojekt_johannes_waltmann_3029975.tex
@@ -295,52 +295,62 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 [1
 
 {C:/Users/Waltmann/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-<biometric_trad.png, id=11, 855.195pt x 702.2235pt>
+Underfull \hbox (badness 10000) in paragraph at lines 23--30
+
+ []
+
+[2]
+<biometric_trad.png, id=15, 855.195pt x 702.2235pt>
 File: biometric_trad.png Graphic file (type png)
 <use biometric_trad.png>
-Package pdftex.def Info: biometric_trad.png  used on input line 32.
+Package pdftex.def Info: biometric_trad.png  used on input line 62.
 (pdftex.def)             Requested size: 138.84729pt x 114.00816pt.
-<biometric_funct.png, id=13, 855.195pt x 702.2235pt>
+<biometric_funct.png, id=17, 855.195pt x 702.2235pt>
 File: biometric_funct.png Graphic file (type png)
 <use biometric_funct.png>
-Package pdftex.def Info: biometric_funct.png  used on input line 34.
+Package pdftex.def Info: biometric_funct.png  used on input line 64.
 (pdftex.def)             Requested size: 138.84729pt x 114.00816pt.
-
-[2] [3 <./biometric_trad.png> <./biometric_funct.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 57--73
+ [3 <./biometric_trad.png> <./biometric_funct.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 82--98
 
  []
 
 ) (bachelorprojekt_johannes_waltmann_3029975.bbl
+Overfull \hbox (19.28716pt too wide) in paragraph at lines 7--9
+[]\OT1/cmr/m/n/9 Themenseite: Wear-ables (Mar 2020), https://de.statista.com/th
+emen/3471/wearables/,
+ []
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [4]
-Underfull \hbox (badness 1308) in paragraph at lines 44--48
+Underfull \hbox (badness 1308) in paragraph at lines 55--59
 []\OT1/cmr/m/n/9 Liebers, J., Schnee-gass, S.: In-tro-duc-ing func-tional bio-m
 et-rics: Us-ing body-
  []
 
-) [5] (bachelorprojekt_johannes_waltmann_3029975.aux) ) 
+[5]) [6] (bachelorprojekt_johannes_waltmann_3029975.aux) ) 
 Here is how much of TeX's memory you used:
- 3575 strings out of 492453
- 54450 string characters out of 3129811
- 143477 words of memory out of 3000000
- 7910 multiletter control sequences out of 15000+200000
+ 3579 strings out of 492453
+ 54534 string characters out of 3129811
+ 141493 words of memory out of 3000000
+ 7914 multiletter control sequences out of 15000+200000
  6278 words of font info for 23 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  46i,10n,51p,866b,387s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fon
-ts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmbx9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
-msfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.p
-fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/P
-rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on bachelorprojekt_johannes_waltmann_3029975.pdf (5 pages, 41053
-2 bytes).
+<C:/Program Files/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
+9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C
+:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on bachelorprojekt_johannes_waltmann_3029975.pdf (6 pages, 41377
+7 bytes).
 PDF statistics:
- 55 PDF objects out of 1000 (max. 8388607)
+ 58 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
