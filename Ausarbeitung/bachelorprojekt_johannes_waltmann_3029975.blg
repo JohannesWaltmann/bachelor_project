@@ -3,11 +3,11 @@ The style file: splncs04.bst
 Database file #1: references.bib
 Warning--entry type for "tenzer" isn't style-file defined
 --line 26 of file references.bib
-Repeated entry---line 120 of file references.bib
+Repeated entry---line 144 of file references.bib
  : @inproceedings{ranjan2016automatic
  :                                   ,
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 137 of file references.bib
+I was expecting a `,' or a `}'---line 161 of file references.bib
  :  
  :  doi = {10.1515/icom-2019-0009}
 (Error may have been on previous line)

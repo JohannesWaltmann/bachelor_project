@@ -5,7 +5,7 @@ void I2S_Init(i2s_mode_t MODE, i2s_bits_per_sample_t BPS) {
     .mode = (i2s_mode_t) (I2S_MODE_MASTER | I2S_MODE_RX | I2S_MODE_ADC_BUILT_IN | I2S_MODE_TX | I2S_MODE_DAC_BUILT_IN),
     .sample_rate = SAMPLE_RATE,
     .bits_per_sample = BPS,
-    .channel_format = I2S_CHANNEL_FORMAT_RIGHT_LEFT,
+    .channel_format = I2S_CHANNEL_FMT_RIGHT_LEFT,
     .communication_format = (i2s_comm_format_t)(I2S_COMM_FORMAT_I2S | I2S_COMM_FORMAT_I2S_MSB),
       .intr_alloc_flags = 0,
       .dma_buf_count = 16,
@@ -35,7 +35,6 @@ void I2S_Init(i2s_mode_t MODE, i2s_bits_per_sample_t BPS) {
     // GPIO36, VP
     i2s_set_adc_mode(ADC_UNIT_1, ADC1_CHANNEL_0);  
   }
-   }
 }
 
 int I2S_Read(char *data, int numData) {

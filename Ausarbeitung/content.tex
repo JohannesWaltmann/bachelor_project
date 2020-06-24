@@ -3,12 +3,12 @@ During the last years the usage of smart-wearables (particularly smartwatches) h
 With that also comes a natural demand in data protection caused by the many sensors built in these devices and their ability to capture sensible personal information (e.g. health informations).
 Additionally smart devices can now also be used for many kinds of financial actions.
 Since most wearables are connected to either the distributors or the respective mobile phones virtual assistant they should contain sensors for on one hand sound conduction and on the other hand audio recording.
-In the current general design neither of these sensors is oriented towards the wearers arm.
+In the current general smart-wearable design neither of these sensors is oriented towards the wearers arm.
 With a change in position of these sensors smartwatches become eligible for functional biometric authentication.
 Further motivation for this new authentication method comes from the fact that the previous classical methods (PIN, password...) are not suited for usage on smartwatches \cite{xu2017gait}.   
 Nevertheless it is shown by Johnston \cite{johnston2015smartwatch} and Yang \cite{yang2015motionauth} in their respective works that there already are potential biometric authentication methods for smartwatches based on distinct hand or arm movements. 
 
-From these preconditions a prototype is defined. This prototype uses a soundbased functional biometric which gets applied to its wearers arm. 
+From these preconditions a prototype is defined. This prototype uses a sound based functional biometric which gets applied to its wearers arm. 
 
 \section{Related Work}
 This section will give an overview on the terms of biometrics and its variations, authentication and also what defines an authentication system.
@@ -18,26 +18,22 @@ Additionally an insight into other works on biometric or smartwatch based authen
 The term in general describes the process based on which a security systems tries to approve someone's claim of identity \cite{bhattacharyya2009biometric}.
 Based on the input type of this claim the term authentication can be further subdivided into explicit and implicit authentication.
 \textit{Explicit} authentication is more often also known as traditional authentication \cite{ranjan2016automatic}.
-(Mehr input, QUELLEN!!!!)
+This includes providing knowledge like PIN or password, using a token but also performing gestures, fingerprints etc. from the biometrical field.
 
-\textit{Implicit} authentication on the other hand describes mechanisms where a user does not provide a password, etc directly.
+\textit{Implicit} authentication on the other hand describes mechanisms where a user does not provide a password, etc. directly.
 Instead users are authenticated based on observations of their behavioural patterns\cite{jakobsson2009implicit}.
 These observations are qualified for the use in e.g. biometrics since every individual has its own distinct habits which could be captured and analysed using different sensors \cite{shi2010implicit}.
 Furthermore Shi, Jakobsson et al. state in their 2009 and 2010 works that implicit authentication is well suited for usage in combination with mobile smart-devices \cite{shi2010implicit} or portable computers \cite{jakobsson2009implicit}.
 Based on this they propose three different application scenarios.
 First as a second factor in combination with passwords, second as the main authenticator and thus replacing the usage of a password and last as additional assurance or an extra trust factor when performing e.g. financial actions on a mobile device.
-\newline 
-
-By \textit{explicit} authentication one understands interactions with a security system which are performed actively.
-This includes providing knowledge like PIN or password, using a token but also performing gestures, fingerprints etc. from the biometrical field. 
 
 \subsection{Biometrics}
-\textit{Biometrics} (as in the greek terms \textit{bios} and \textit{metrikos}) describes the utilization of an individuals physical traits or behaviour to clearly identify one from others. Contrary to the more known verification methods of PINs, passwords or ID-cards biometric identification does not rely on tokens or knowledge which could easily be forgotten or stolen, rather than unique personal traits like fingerprints, face geometry or the specific way someone interacts \cite[chpt. 1.1]{jain2007handbook}\cite{delac2004survey}.
+\textit{Biometrics} (as in the Greek terms \textit{bios} and \textit{metrikos}) describes the utilization of an individuals physical traits or behaviour to clearly identify one from others. Contrary to the more known verification methods of PINs, passwords or ID-cards biometric identification does not rely on tokens or knowledge which could easily be forgotten or stolen, rather than unique personal traits like fingerprints, face geometry or the specific way someone interacts \cite[chpt. 1.1]{jain2007handbook}\cite{delac2004survey}.
 Depending on the concept of usage a biometric system can be used in either verification or identification mode \cite[chpt. 1.3]{jain2007handbook}.
 These two modes can also be differed by the use of \textit{positive} or \textit{negative identification} techniques \cite{wayman2005introduction}.
 
 As already stated above biometric authentication uses an individuals personal traits as authentication tokens. Based on the kind of trait and the methods how they are provided the general term of biometrics can be further divided into behavioural and physiological biometrics.
-Also a third kind of biometrics called functional biometrics was introduced by Liebers and Schneegass in 2020 \cite{schneegass2020functbiometric}.
+Also a new kind of biometrics called functional biometrics was introduced by Liebers and Schneegass in 2020 \cite{schneegass2020functbiometric}.
 
 \subsubsection{Behavioural Biometrics}
 Behavioural biometrics refers to authentication systems in which the process of authentication is related to the behaviour of an individual \cite{bhattacharyya2009biometric}.
@@ -50,12 +46,9 @@ Also there is no definite need for special hardware since the sensors needed are
 Apart from behavioural biometrics the classification of physiological biometrics is also existent. 
 This form of biometric authentication uses the more "static" traits of a users body as token such as e.g. fingerprints, hand geometry \cite{alsaadi2015physiological} or vein patterns \cite{faltaous2019vpid}.
 
-
-
-
 A physiological system should also have a little higher accuracy than a behavioural one and it should be harder to use as an imposter since it is nearly impossible to identically copy a finger print, iris pattern, etc. \cite{koong2014user}, \cite{delac2004survey}.
 
-\subsubsection{Functional Biometrics} With functional biometrics another novel kind of biometric authentication was introduced lately by Schneegass et al. \cite{schneegass2020functbiometric}.
+\subsubsection{Functional Biometrics} With functional biometrics another novel kind of biometric authentication was introduced lately by Liebers and Schneegass \cite{schneegass2020functbiometric}.
 This new concept stands as a major influence to this work notably with its first implementation in SkullConduct\cite{SkullConduct}. 
 \begin{figure}
 	\begin{center}
@@ -63,8 +56,8 @@ This new concept stands as a major influence to this work notably with its first
 		\hspace{0.5cm}
 		\subfloat[Functional Biometrics]{\includegraphics[width=0.4\textwidth]{biometric_funct.png}\label{fig:functBiom}}
 	\end{center}
-	\caption{(a) shows the authentication process of a traditional biometric system.
-	(b) shows the order of steps for functional biometrics when a stimulus is added \cite{schneegass2020functbiometric}.}
+	\caption{(a) shows the authentication process of a traditional biometric system where a characteristic response is created based on someone's unique trait.
+	(b) shows the order of steps for functional biometrics when a stimulus is added to create the characteristic based on body reflections \cite{schneegass2020functbiometric}.}
 	\label{fig:biometricsVersions}
 \end{figure}
 
@@ -86,8 +79,7 @@ Therefore they used the concept of bone conduction which is already frequently u
 The sample which gets transformed due to the unique nature of each individuals head is captured by the glasses integrated microphone.
 Results of this study  indicate that with all tested users SkullConduct had a probability of around 97\% when it comes just to identify a correct user.
 Test of the system as an authentication tool showed an Equal Error Rate (EER) of around 6.9\% in average but with significant drops the shorter the used sample gets (less than 1 second).
-\newline
-\newline
+
 Other work on authentication via smart devices includes e.g. the works from A. Johnston et al. who implemented a smartwatch based authentication module that used gait recognition \cite{johnston2015smartwatch}.
 They adapted from previous work of theirs where gyro- and acceleration-sensors of smart phones were used to develop authentication methods \cite{kwapisz2010cell}.
 The main thought behind the proposed use of gait authentication on smartwatches is that their place of wearing/usage is more consistent than the one of a smart phone and therefore more advantageous.
@@ -97,9 +89,26 @@ Additionally the overall performances of the acceleration-sensor was higher than
 Conclusions Johnston et al. drew from their results were that it is possible to authenticate someone sufficient enough using a smartwatch but they propose not to use the system for something other than a multi-modal biometric system at its current level. 
 
 \section{Concept}
-%In this work a prototype for a smartwatch based authentication tool will be implemented.
+Even though the technology of smart devices has become more popular over the last recent years it still does take some effort to protect them sufficiently in comparison to e.g. smartphones.
+These smart devices need personal authentication because they can collect sensible data while in usage, could be used to display instant messages or can be used as a payment method with integrations of applications such as paypal or apple pay.
+Possible solutions to solve this could be traditional authentication methods even though it can be tricky executing them since smart watches normally have very little displays whereas other smart devices could not even have a display on which a pin or security pattern could be entered.
 
-%Motivations are that there is a demand in security measures for mobile smart devices (like smartwatches)  
+An early example of using (smart)devices as an extra medium for authentication comes form Corner and Noble in their 2002 work "Zero-Interaction Authentication"\cite{corner2002zeroInt}.
+There they provided an implicit decryption system for laptops which relies on a wearable token generator to implicitly generate and send the decryption keys when they are needed.
+One example they proposed for the use as the token generator was an IBM Linux watch, an early 2000s predecessor from the nowadays smartwatch.
+
+The introduction of behavioural biometrics showed alternatives to these previously describes methods.
+Analysing e.g. the uniqueness of an individuals movements or other behaviour these biometric mechanisms do not rely on the use of knowledge based authenticators like the traditional methods.
+
+Another alternative to these two types of authentication would be the use of the new approach on functional biometrics.
+For example, a smartwatch based authentication system which uses functional biometrics could send a stimulus on an interval base whose alteration is compared to a previously stored default value.
+The advantage of this functional approach against the behavioural one is that, even though both are implicit, movements or behaviours could still be mimicked whereas the transformation of the functional system is based on  someone's body structure e.g. the done density.
+
+Possible stimuli could be sound patters which use either white noise, frequency changes or little melodies.
+The stimulus can then be applied to the wearer on a regular base over the time the device is worn to ensure it is used by the correct user.
+Also if the stimulus used gets leaked or corrupted otherwise a functional biometric system does not need to be recalibrated completely.
+Since even the system itself does not really know the nature of the transformation function only a new stimulus and new sample data are needed.
+\newpage
 \section{Implementation}
 \section{Evaluation}
 \section{Conclusion}
