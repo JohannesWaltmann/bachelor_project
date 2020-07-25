@@ -1,0 +1,14 @@
+Even though the technology of smart devices has become more popular over the last recent years it still does take some effort to protect them sufficiently in comparison to e.g. smartphones.
+These smart devices need personal authentication because they can collect sensible data while in usage, could be used to display instant messages or can be used as a payment method with integrations of applications such as paypal or apple pay.
+Possible solutions to solve this could be traditional authentication methods even though it can be tricky executing them since smart watches normally have very little displays whereas other smart devices could not even have a display on which a pin or security pattern could be entered.
+
+An early example of using (smart)devices as an extra medium for authentication comes form Corner and Noble in their 2002 work "Zero-Interaction Authentication"\cite{corner2002zeroInt}.
+There they provided an implicit decryption system for laptops which relies on a wearable token generator to implicitly generate and send the decryption keys when they are needed.
+One example they proposed for the use as the token generator was an IBM Linux watch, an early 2000s predecessor from the nowadays smartwatch.
+
+The introduction of behavioural biometrics showed alternatives to these previously describes methods.
+Analysing e.g. the uniqueness of an individuals movements or other behaviour these biometric mechanisms do not rely on the use of knowledge based authenticators like the traditional methods.
+
+Another alternative to these two types of authentication would be the use of the new approach on functional biometrics.
+For example, a smartwatch based authentication system which uses functional biometrics could send a stimulus on an interval base whose alteration is compared to a previously stored default value.
+The advantage of this functional approach against the behavioural one is that, even though both are implicit, movements or behaviours could still be mimicked whereas the transformation of the functional system is based on  someone's body structure e.g. the done density.

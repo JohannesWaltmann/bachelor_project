@@ -10,17 +10,19 @@ void I2S_Init(i2s_mode_t MODE, i2s_bits_per_sample_t BPS) {
       .intr_alloc_flags = 0,
       .dma_buf_count = 16,
       .dma_buf_len = 60
-    };
+   };
   if (MODE == I2S_MODE_RX || MODE == I2S_MODE_TX) {
-    Serial.println("using I2S_MODE");
+    
     i2s_pin_config_t pin_config;
     pin_config.bck_io_num = PIN_I2S_BCLK;
     pin_config.ws_io_num = PIN_I2S_LRC;
     if (MODE == I2S_MODE_RX) {
+      Serial.println("using I2S_MODE_RX");
       pin_config.data_out_num = I2S_PIN_NO_CHANGE;
       pin_config.data_in_num = PIN_I2S_DIN;
     } 
     else if (MODE == I2S_MODE_TX) {
+      Serial.println("using I2S_MODE_TX");
       pin_config.data_out_num = PIN_I2S_DOUT;
       pin_config.data_in_num = I2S_PIN_NO_CHANGE;
     }
