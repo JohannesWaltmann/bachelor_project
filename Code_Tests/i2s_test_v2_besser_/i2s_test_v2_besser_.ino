@@ -5,8 +5,8 @@
 
 
 #define I2S_WS 15
-#define I2S_SD 13
-#define I2s_SCK 2
+#define I2S_SD 21
+#define I2s_SCK 13
 #define I2S_PORT I2S_NUM_0
 #define I2S_SAMPLE_RATE   (16000)
 #define I2S_SAMPLE_BITS   (16)
@@ -23,7 +23,7 @@ void setup() {
   Serial.begin(115200);
   SDInit();
   i2sInit();
-  xTaskCreate(i2s_adc, "i2s_adc", 1024 * 2, NULL, 5, NULL);
+  xTaskCreate(i2s_adc, "i2s_adc", 2 * 1024, NULL, 5, NULL);
 }
 
 void loop() {}
@@ -100,7 +100,7 @@ void i2s_adc(void *arg) {
   size_t bytes_read;
 
   char* i2s_read_buff = (char*)calloc(i2s_read_len, sizeof(char));
-  uint8_t* flash_write_buff = (uint8_t*)calloc(i2s_read_len, sizeof(char));
+ // uint8_t* flash_write_buff = (uint8_t*)calloc(i2s_read_len, sizeof(char));
 
   i2s_read(I2S_PORT, (void*) i2s_read_buff, i2s_read_len, &bytes_read, portMAX_DELAY);
   i2s_read(I2S_PORT, (void*) i2s_read_buff, i2s_read_len, &bytes_read, portMAX_DELAY);
@@ -108,10 +108,10 @@ void i2s_adc(void *arg) {
   Serial.println(" *** Start recording ***");
   while (flash_wr_size < FLASH_RECORD_SIZE){
     i2s_read(I2S_PORT, (void*) i2s_read_buff, i2s_read_len, &bytes_read, portMAX_DELAY);
-    example_disp_buf((uint8_t*) i2s_read_buff, 64);
+//    example_disp_buf((uint8_t*) i2s_read_buff, 64);
 
-    i2s_adc_data_scale(flash_write_buff, (uint8_t*)i2s_read_buff, i2s_read_len);
-    file.write((const byte*) flash_write_buff, i2s_read_len);
+//    i2s_adc_data_scale(flash_write_buff, (uint8_t*)i2s_read_buff, i2s_read_len);
+    file.write((const byte*) i2s_read_buff, i2s_read_len);
     flash_wr_size += i2s_read_len;
     ets_printf("Sound recording %u%%\n", flash_wr_size * 100 / FLASH_RECORD_SIZE);
     ets_printf("Never used Stack size: %u\n", uxTaskGetStackHighWaterMark(NULL));
@@ -120,8 +120,8 @@ void i2s_adc(void *arg) {
   
   free(i2s_read_buff);
   i2s_read_buff = NULL;
-  free(flash_write_buff);
-  flash_write_buff = NULL;
+//  free(flash_write_buff);
+//  flash_write_buff = NULL;
   listSD();
   vTaskDelete(NULL);
 }

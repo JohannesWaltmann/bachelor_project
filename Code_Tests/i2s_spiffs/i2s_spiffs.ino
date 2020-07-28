@@ -2,8 +2,8 @@
 #include <SPIFFS.h>
 
 #define I2S_WS 15
-#define I2S_SD 13
-#define I2s_SCK 2
+#define I2S_SD 21 
+#define I2s_SCK 13
 #define I2S_PORT I2S_NUM_0
 #define I2S_SAMPLE_RATE   (16000)
 #define I2S_SAMPLE_BITS   (16)
@@ -15,10 +15,12 @@
 File file;
 const char filename[] = "/recording.wav";
 
+static const int i2s_num = 0;
+
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
-  SPIFFSInit();
+  //SPIFFSInit();
   i2sInit();
   xTaskCreate(i2s_adc, "i2s_adc", 1024 * 2, NULL, 5, NULL);
 }

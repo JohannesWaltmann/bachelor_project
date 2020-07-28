@@ -87,29 +87,26 @@ Each participants dataset includes both data from gyro- and acceleration-sensor.
 Tests in regard of both design types showed that the general performance of authentication is way higher in average than the one of identification (e.g. 97.2\% compared to 79.2\%).
 Additionally the overall performances of the acceleration-sensor was higher than the gyro-sensor.
 Conclusions Johnston et al. drew from their results were that it is possible to authenticate someone sufficient enough using a smartwatch but they propose not to use the system for something other than a multi-modal biometric system at its current level. 
+\newpage
+\section{Concept v1}
+The main motivation for this work lays in the concept of \textit{functional biometrics} \cite{schneegass2020functbiometric}.
+One already proposed implementation for this concept is the head mounted SkullConduct device \cite{SkullConduct}.
+There the HMD would emit a white noise sound sample against the wearers head whichs captured alteration is then used for the authentication.
+Limitations of SkullConduct are, amongst others, that it can only be applied on a fixed position whereas the concept provided here could be used on different body parts like arms or legs.
+This is relevant as it is more likely that the majority of people would use small smart devices rather than HMDs.
 
-\section{Concept}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Possible stimuli could be sound patters which use either white noise, frequency changes or little melodies.
+Possible stimuli for the bracelet could be sound patters which use either white noise, frequency changes or little melodies.
 The stimulus can then be applied to the wearer on a regular base over the time the device is worn to ensure it is used by the correct user.
 Also if the stimulus used gets leaked or corrupted otherwise a functional biometric system does not need to be recalibrated completely.
 Since even the system itself does not really know the nature of the transformation function only a new stimulus and new sample data are needed.
-\newpage
+
+For the realisation of the described prototype a microcontroller will be used in combination with a microphone capsule and a little buzzer or speaker to capture and generate the stimuli described above.
+
+\section{Concept v2}
+With the introduction of functional biometrics space was created for the development of new mechanisms and variations in biometric authentication.
+Contrary to other biometric systems which rely on e.g. fingerprints the body function used in functional biometrics can not be leaked or reproduced that easily.
+
+
 \section{Implementation}
 \section{Evaluation}
 \section{Conclusion}
