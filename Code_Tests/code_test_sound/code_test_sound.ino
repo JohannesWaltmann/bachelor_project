@@ -32,7 +32,7 @@ void loop() {
   imperial_march();
 }
 
-void beep(int channel, int frequencyHZ, long durance) {
+void tone(int channel, int frequencyHZ, long durance) {
 
   long delayAmount = (long)(1000000 / frequencyHZ);
   long loopTime = (long)((durance * 1000) / (delayAmount * 2));
@@ -48,90 +48,89 @@ void beep(int channel, int frequencyHZ, long durance) {
 }
 
 void imperial_march() {
-  beep(channel, a, 500);
-  beep(channel, a, 500);
-  beep(channel, a, 500);
-  beep(channel, f, 350);
-  beep(channel, cH, 150);
+  tone(channel, a, 500);
+  tone(channel, a, 500);
+  tone(channel, a, 500);
+  tone(channel, f, 350);
+  tone(channel, cH, 150);
 
-  beep(channel, a, 500);
-  beep(channel, f, 350);
-  beep(channel, cH, 150);
-  beep(channel, a, 1000);
+  tone(channel, a, 500);
+  tone(channel, f, 350);
+  tone(channel, a, 1000);
   //first bit
 
-  beep(channel, eH, 500);
-  beep(channel, eH, 500);
-  beep(channel, eH, 500);
-  beep(channel, fH, 350);
-  beep(channel, cH, 150);
+  tone(channel, eH, 500);
+  tone(channel, eH, 500);
+  tone(channel, eH, 500);
+  tone(channel, fH, 350);
+  tone(channel, cH, 150);
 
-  beep(channel, gS, 500);
-  beep(channel, f, 350);
-  beep(channel, cH, 150);
-  beep(channel, a, 1000);
+  tone(channel, gS, 500);
+  tone(channel, f, 350);
+  tone(channel, cH, 150);
+  tone(channel, a, 1000);
   //second bit...
 
-  beep(channel, aH, 500);
-  beep(channel, a, 350);
-  beep(channel, a, 150);
-  beep(channel, aH, 500);
-  beep(channel, gSH, 250);
-  beep(channel, gH, 250);
+  tone(channel, aH, 500);
+  tone(channel, a, 350);
+  tone(channel, a, 150);
+  tone(channel, aH, 500);
+  tone(channel, gSH, 250);
+  tone(channel, gH, 250);
 
-  beep(channel, fSH, 125);
-  beep(channel, fH, 125);
-  beep(channel, fSH, 250);
+  tone(channel, fSH, 125);
+  tone(channel, fH, 125);
+  tone(channel, fSH, 250);
   delay(250);
-  beep(channel, aS, 250);
-  beep(channel, dSH, 500);
-  beep(channel, dH, 250);
-  beep(channel, cSH, 250);
+  tone(channel, aS, 250);
+  tone(channel, dSH, 500);
+  tone(channel, dH, 250);
+  tone(channel, cSH, 250);
   //start of the interesting bit
 
-  beep(channel, cH, 125);
-  beep(channel, b, 125);
-  beep(channel, cH, 250);
+  tone(channel, cH, 125);
+  tone(channel, b, 125);
+  tone(channel, cH, 250);
   delay(250);
-  beep(channel, f, 125);
-  beep(channel, gS, 500);
-  beep(channel, f, 375);
-  beep(channel, a, 125);
+  tone(channel, f, 125);
+  tone(channel, gS, 500);
+  tone(channel, f, 375);
+  tone(channel, a, 125);
 
-  beep(channel, cH, 500);
-  beep(channel, a, 375);
-  beep(channel, cH, 125);
-  beep(channel, eH, 1000);
+  tone(channel, cH, 500);
+  tone(channel, a, 375);
+  tone(channel, cH, 125);
+  tone(channel, eH, 1000);
   //more interesting stuff (this doesn't quite get it right somehow)
 
-  beep(channel, aH, 500);
-  beep(channel, a, 350);
-  beep(channel, a, 150);
-  beep(channel, aH, 500);
-  beep(channel, gSH, 250);
-  beep(channel, gH, 250);
+  tone(channel, aH, 500);
+  tone(channel, a, 350);
+  tone(channel, a, 150);
+  tone(channel, aH, 500);
+  tone(channel, gSH, 250);
+  tone(channel, gH, 250);
 
-  beep(channel, fSH, 125);
-  beep(channel, fH, 125);
-  beep(channel, fSH, 250);
+  tone(channel, fSH, 125);
+  tone(channel, fH, 125);
+  tone(channel, fSH, 250);
   delay(250);
-  beep(channel, aS, 250);
-  beep(channel, dSH, 500);
-  beep(channel, dH, 250);
-  beep(channel, cSH, 250);
+  tone(channel, aS, 250);
+  tone(channel, dSH, 500);
+  tone(channel, dH, 250);
+  tone(channel, cSH, 250);
   //repeat... repeat
 
-  beep(channel, cH, 125);
-  beep(channel, b, 125);
-  beep(channel, cH, 250);
+  tone(channel, cH, 125);
+  tone(channel, b, 125);
+  tone(channel, cH, 250);
   delay(250);
-  beep(channel, f, 250);
-  beep(channel, gS, 500);
-  beep(channel, f, 375);
-  beep(channel, cH, 125);
+  tone(channel, f, 250);
+  tone(channel, gS, 500);
+  tone(channel, f, 375);
+  tone(channel, cH, 125);
 
-  beep(channel, a, 500);
-  beep(channel, f, 375);
-  beep(channel, c, 125);
-  beep(channel, a, 1000);
+  tone(channel, a, 500);
+  tone(channel, f, 375);
+  tone(channel, c, 125);
+  tone(channel, a, 1000);
 }

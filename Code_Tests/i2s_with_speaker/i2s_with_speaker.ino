@@ -2,6 +2,7 @@
 #include <SPI.h>
 #include <SD.h>
 #include <FS.h>
+#include "sound.h"
 
 
 #define I2S_WS 15
@@ -15,19 +16,43 @@
 #define I2S_CHANNEL_NUM   (1)
 #define FLASH_RECORD_SIZE (I2S_CHANNEL_NUM * I2S_SAMPLE_RATE * I2S_SAMPLE_BITS / 8 * RECORD_TIME)
 
+#define SPEAKER_PIN 2
+
+//Parameters for the soundfile
 File file;
 const char filename[] = "/recording.wav";
 const int headerSize = 44;
+
+//Parameters for the speaker
+const int channel = 0;
+const int speaker_frequency = 4000;
+const int resolution  = 8;
 
 void setup() {
   Serial.begin(115200);
   SDInit();
   i2sInit();
+  SpeakerInit();
   xTaskCreate(i2s_adc, "i2s_adc", 2 * 1024, NULL, 1, NULL);
 }
 
-void loop() {}
+void loop() {
+  march();
+}
+/**
+ * Initialize and setup the Speaker
+ */
+void SpeakerInit() {
+  if (!ledcSetup(channel, speaker_frequency, resolution)) {
+    Serial.println("Setting speaker failed");
+  }
+  ledcAttachPin(SPEAKER_PIN, channel);
+}
 
+/**
+ * Check if the SD card is available and if so
+ * create a file for the soundrecording and add the .wav header to it
+ */
 void SDInit() {
   if(!SD.begin()) {
     Serial.println("SD initialization failed");
@@ -58,6 +83,9 @@ void SDInit() {
   listSD();
 }
 
+/**
+ * Initialize the parameters for the i2s recordings
+ */
 void i2sInit() {
   i2s_config_t i2s_config = {
     .mode = (i2s_mode_t)(I2S_MODE_MASTER | I2S_MODE_RX),
@@ -83,6 +111,9 @@ void i2sInit() {
   i2s_set_pin(I2S_PORT, &pin_config);
 }
 
+/**
+ * Scale up the recorded sound data to increase its volume
+ */
 void i2s_adc_data_scale(uint8_t* d_buff, uint8_t* s_buff, uint32_t len) {
   uint32_t j = 0;
   uint32_t dac_value = 0;
@@ -94,6 +125,9 @@ void i2s_adc_data_scale(uint8_t* d_buff, uint8_t* s_buff, uint32_t len) {
   }
 }
 
+/**
+ * Record any soundinput captured by the microphone
+ */
 void i2s_adc(void *arg) {
   int i2s_read_len = I2S_READ_LEN;
   int flash_wr_size = 0;
@@ -138,6 +172,9 @@ void example_disp_buf(uint8_t* buf, int length) {
     Serial.printf("=====\n");    
 }
 
+/**
+ * The Data for the Headerfile of the .wav
+ */
 void wavHeader(byte* header, int wavSize) {
   header[0] = 'R';
   header[1] = 'I';
@@ -186,6 +223,10 @@ void wavHeader(byte* header, int wavSize) {
   header[43] = (byte)((wavSize >> 24) & 0xFF);
 }
 
+/**
+ * Used to print the number of files on the SD card including their
+ * names and size
+ */
 void listSD(void) {
   Serial.println(F("\r\nListing SD files:"));
   static const char line[] PROGMEM =  "=================================================";
@@ -231,4 +272,113 @@ void listSD(void) {
   Serial.println(FPSTR(line));
   Serial.println();
   delay(1000);
+}
+
+/**
+ * Generates a buzzer? sound for a connected speaker 
+ * 
+ * @param frequency_in_HZ the pitch of each single generated note
+ * @param durance The length of each individual sound
+ */
+void tone(int channel, int frequency_in_HZ, long durance) {
+
+  long delayAmount = (long)(1000000 / frequency_in_HZ);
+  long loopTime = (long)((durance * 1000) / (delayAmount * 2));
+
+  for ( int x = 0; x < loopTime; x++) {
+    ledcWriteTone(channel, 3000);
+    delayMicroseconds(delayAmount);
+    ledcWriteTone(channel, 0);
+    delayMicroseconds(delayAmount);
+  }
+
+  delay(20);
+}
+
+/**
+ * Puts together a melody of different notes 
+ * in this case the 'imperial march'
+ */
+void march() {
+  tone(channel, a, 500);
+  tone(channel, a, 500);
+  tone(channel, a, 500);
+  tone(channel, f, 350);
+  tone(channel, cH, 150);
+
+  tone(channel, a, 500);
+  tone(channel, f, 350);
+  tone(channel, cH, 150);
+  tone(channel, a, 1000);
+
+  tone(channel, eH, 500);
+  tone(channel, eH, 500);
+  tone(channel, eH, 500);
+  tone(channel, fH, 350);
+  tone(channel, cH, 150);
+
+  tone(channel, gS, 500);
+  tone(channel, f, 350);
+  tone(channel, cH, 150);
+  tone(channel, a, 1000);
+
+  tone(channel, aH, 500);
+  tone(channel, a, 350);
+  tone(channel, a, 150);
+  tone(channel, aH, 500);
+  tone(channel, gSH, 250);
+  tone(channel, gH, 250);
+
+  tone(channel, fSH, 125);
+  tone(channel, fH, 125);
+  tone(channel, fSH, 250);
+  delay(250);
+  tone(channel, aS, 250);
+  tone(channel, dSH, 500);
+  tone(channel, dH, 250);
+  tone(channel, cSH, 250);
+
+  tone(channel, cH, 125);
+  tone(channel, b, 125);
+  tone(channel, cH, 250);
+  delay(250);
+  tone(channel, f, 125);
+  tone(channel, gS, 500);
+  tone(channel, f, 375);
+  tone(channel, a, 125);
+
+  tone(channel, cH, 500);
+  tone(channel, a, 375);
+  tone(channel, cH, 125);
+  tone(channel, eH, 1000);
+
+  tone(channel, aH, 500);
+  tone(channel, a, 350);
+  tone(channel, a, 150);
+  tone(channel, aH, 500);
+  tone(channel, gSH, 250);
+  tone(channel, gH, 250);
+
+  tone(channel, fSH, 125);
+  tone(channel, fH, 125);
+  tone(channel, fSH, 250);
+  delay(250);
+  tone(channel, aS, 250);
+  tone(channel, dSH, 500);
+  tone(channel, dH, 250);
+  tone(channel, cSH, 250);
+
+  tone(channel, cH, 125);
+  tone(channel, b, 125);
+  tone(channel, cH, 250);
+  delay(250);
+  tone(channel, f, 250);
+  tone(channel, gS, 500);
+  tone(channel, f, 375);
+  tone(channel, cH, 125);
+
+  tone(channel, a, 500);
+  tone(channel, f, 375);
+  tone(channel, c, 125);
+  tone(channel, a, 1000);
 }
