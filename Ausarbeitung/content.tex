@@ -108,19 +108,45 @@ Contrary to other biometric systems which rely on e.g. fingerprints the body fun
 This is due to the function being comprised of each individuals own body structure and bone density \cite{schneegass2020functbiometric}.
 
 An already existing implementation approach to functional biometrics is the SkullConduct head mounted device (HMD) introduced by Schneegass et al. \cite{SkullConduct}.
-There the HMD would emit a white noise sound sample against the wearers head whichs captured alteration is then used for the authentication.
+There the HMD would emit a white noise sound sample against the wearers head.
+The captured sound alteration is then used for the authentication.
 Limitations of SkullConduct are, amongst others, that it can only be applied on a fixed position whereas the concept provided here could be used on different body parts like arms or legs.
-This is relevant as it is more likely that the majority of possible users would prefer smaller smart devices such as smartwatches or other forms of bracelets, rather than HMDs on an everyday basis.
+This is relevant as it is more likely that the majority of possible users would prefer smaller smart devices such as smartwatches or other forms of bracelets, rather than HMDs on an everyday basis(cite?).
  
 The authentication provided by the bracelet could be either used to secure data saved on the smart device or as multiple factor authentication for other connected devices like smartphones.
 
 Possible stimuli for the bracelet could be sound patters which use either white noise, frequency changes or little melodies.
-The stimulus can then be applied to the wearer on a regular base over the time the device is worn to ensure it is used by the correct user.
+The stimulus can then be applied to the wearer on a regular basis over the time the device is worn to ensure it is used by the correct user.
 Also if the stimulus used gets leaked or corrupted otherwise a functional biometric system does not need to be recalibrated completely.
 Since even the system itself does not really know the nature of the transformation function only a new stimulus and new sample data are needed.
 
 The realisation of this prototype consists of a microcontroller to generate the stimulus and process its transformation.
-Additionally the controller is connected with a microphone capsule and a (piezo?-)speaker to emit and record the sound pattern. 
+Additionally the controller is connected with a microphone capsule and a (piezo?-)speaker to emit and record the sound pattern.
+ 
 \section{Implementation}
+\subsection{Hardware}
+The microcontroller used in this project is the LoRa 32 by Heltec Automation\footnote{\url{https://heltec.org/project/wifi-kit-32/}}.
+The controller uses an 32bit dual-core microprocessor by espressif (esp32).
+Other features of the controller include onboard Wi-Fi and Bluetooth and a 0.97 inch OLED display.
+The controller can be powered using a micro-USB connection to a computer or an attachable lithium battery.
+
+The implementation for the recordings is based around the use of an omnidirectional digital microphone\footnote{\href{https://www.amazon.de/Ambility-Omnidirektionales-Mikrofonmodul-I2S-Schnittstelle-Precision/dp/B07MW95PSS}{Ambility INMP441}}.
+This microphone uses a digital I$^{2}$S-Interface to process its input. 
+For the output of the generated stimuli a miniature speaker with a mylar-membrane\footnote{\href{https://www.conrad.de/de/p/lsf-15m-s-8-ohm-0-8w-miniatur-lautsprecher-geraeusch-entwicklung-85-db-0-500-w-1-st-710277.html}{LSF-15M/S}} is used which is able to conduct noise at up to 85 dB.
+
+
+Evtl Referenz auf SD Modul.
+Pinout einfügen und Zusammenhang der Komponenten beschreiben
+\subsection{Software}
+\subsubsection{Development Environments}
+The majority of code in this project was written in the Arduino IDE. 
+This open-source IDE is designed and optimized for the use with microcontrollers from the arduino family.
+It is also possible to add plugins for the support of other microcontroller chips like esp8266 or esp32.
+The IDE supports C and C++ as additional programming languages which can be processed by the microcontrollers.
+
+\subsubsection{Code}
+The code used can be split into two distinct functionalities both implemented in the same file.
+\paragraph{Audio Recording}
+
 \section{Evaluation}
 \section{Conclusion}
