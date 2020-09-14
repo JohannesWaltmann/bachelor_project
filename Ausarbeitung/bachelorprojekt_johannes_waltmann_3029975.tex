@@ -11,8 +11,35 @@
 			urlcolor=blue,
 			linkcolor=black,
 			citecolor=black]{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{back}{rgb}{0.95, 0.95, 0.92}
+\definecolor{orange}{rgb}{240.0, 128.0, 128.0}
+\definecolor{turq}{rgb}{0.0, 255.0, 255.0}
+\definecolor{grn}{rgb}{0.0, 0.6, 0.0}
+
+\lstdefinestyle{style}{
+	backgroundcolor=\color{back},
+	keywordstyle=\color{turq},
+	stringstyle=\color{orange},
+	commentstyle=\color{grn},
+	numberstyle=\tiny,
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	keepspaces=true,
+	numbers=left,
+	numbersep=5pt,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=2
+}
 
 
+\lstset{style=style}
 
 % Used for displaying a sample figure. If possible, figure files should
 % be included in EPS format.

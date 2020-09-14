@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7200 64-bit) (preloaded format=pdflatex 2019.11.1)  8 SEP 2020 10:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7200 64-bit) (preloaded format=pdflatex 2019.11.1)  14 SEP 2020 12:39
 entering extended mode
 **./bachelorprojekt_johannes_waltmann_3029975.tex
 (bachelorprojekt_johannes_waltmann_3029975.tex
@@ -315,41 +315,82 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip50
 )
+(C:\Users\Waltmann\AppData\Roaming\MiKTeX\2.9\tex/latex/listings\listings.sty
+\lst@mode=\count142
+\lst@gtempboxa=\box55
+\lst@token=\toks20
+\lst@length=\count143
+\lst@currlwidth=\dimen139
+\lst@column=\count144
+\lst@pos=\count145
+\lst@lostspace=\dimen140
+\lst@width=\dimen141
+\lst@newlines=\count146
+\lst@lineno=\count147
+\lst@maxwidth=\dimen142
+
+(C:\Users\Waltmann\AppData\Roaming\MiKTeX\2.9\tex/latex/listings\lstmisc.sty
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+\c@lstnumber=\count148
+\lst@skipnumbers=\count149
+\lst@framebox=\box56
+)
+(C:\Users\Waltmann\AppData\Roaming\MiKTeX\2.9\tex/latex/listings\listings.cfg
+File: listings.cfg 2020/03/24 1.8d listings configuration
+))
+Package: listings 2020/03/24 1.8d (Carsten Heinz)
+(C:\Users\Waltmann\AppData\Roaming\MiKTeX\2.9\tex/latex/xcolor\xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics-cfg\color.cfg"
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+)
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... none found.
 
 (bachelorprojekt_johannes_waltmann_3029975.aux)
 \openout1 = `bachelorprojekt_johannes_waltmann_3029975.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
 
 (C:\Users\Waltmann\AppData\Roaming\MiKTeX\2.9\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count142
-\scratchdimen=\dimen139
-\scratchbox=\box55
-\nofMPsegments=\count143
-\nofMParguments=\count144
-\everyMPshowfont=\toks20
-\MPscratchCnt=\count145
-\MPscratchDim=\dimen140
-\MPnumerator=\count146
-\makeMPintoPDFobject=\count147
-\everyMPtoPDFconversion=\toks21
+\scratchcounter=\count150
+\scratchdimen=\dimen143
+\scratchbox=\box57
+\nofMPsegments=\count151
+\nofMParguments=\count152
+\everyMPshowfont=\toks21
+\MPscratchCnt=\count153
+\MPscratchDim=\dimen144
+\MPnumerator=\count154
+\makeMPintoPDFobject=\count155
+\everyMPtoPDFconversion=\toks22
 ) ("C:\Program Files\MiKTeX 2.9\tex/latex/oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -366,17 +407,8 @@ G,.JBIG2,.JB2,.eps]
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
-\AtBeginShipoutBox=\box56
-
-("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\color.sty"
-Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
-
-("C:\Program Files\MiKTeX 2.9\tex/latex/graphics-cfg\color.cfg"
-File: color.cfg 2016/01/02 v1.6 sample color configuration
-)
-Package color Info: Driver file: pdftex.def on input line 147.
-)
-Package hyperref Info: Link coloring ON on input line 24.
+\AtBeginShipoutBox=\box58
+Package hyperref Info: Link coloring ON on input line 51.
 
 ("C:\Program Files\MiKTeX 2.9\tex/latex/hyperref\nameref.sty"
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -384,87 +416,109 @@ Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 ("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\gettitlestring.sty"
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count148
+\c@section@level=\count156
 )
-LaTeX Info: Redefining \ref on input line 24.
-LaTeX Info: Redefining \pageref on input line 24.
-LaTeX Info: Redefining \nameref on input line 24.
+LaTeX Info: Redefining \ref on input line 51.
+LaTeX Info: Redefining \pageref on input line 51.
+LaTeX Info: Redefining \nameref on input line 51.
 
 (bachelorprojekt_johannes_waltmann_3029975.out)
 (bachelorprojekt_johannes_waltmann_3029975.out)
 \@outlinefile=\write3
 \openout3 = `bachelorprojekt_johannes_waltmann_3029975.out'.
 
+\c@lstlisting=\count157
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 45.
+(Font)              <7> on input line 72.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 45.
+(Font)              <5> on input line 72.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\\' on input line 45.
+(hyperref)                removing `\\' on input line 72.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\\' on input line 45.
+(hyperref)                removing `\\' on input line 72.
 
 (content.tex [1
 
 {C:/Users/Waltmann/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
-<biometric_trad.png, id=92, 855.195pt x 702.2235pt>
-File: biometric_trad.png Graphic file (type png)
-<use biometric_trad.png>
-Package pdftex.def Info: biometric_trad.png  used on input line 55.
+<Media/biometric_trad.png, id=92, 855.195pt x 702.2235pt>
+File: Media/biometric_trad.png Graphic file (type png)
+<use Media/biometric_trad.png>
+Package pdftex.def Info: Media/biometric_trad.png  used on input line 55.
 (pdftex.def)             Requested size: 138.84729pt x 114.00816pt.
-<biometric_funct.png, id=94, 855.195pt x 702.2235pt>
-File: biometric_funct.png Graphic file (type png)
-<use biometric_funct.png>
-Package pdftex.def Info: biometric_funct.png  used on input line 57.
+<Media/biometric_funct.png, id=94, 855.195pt x 702.2235pt>
+File: Media/biometric_funct.png Graphic file (type png)
+<use Media/biometric_funct.png>
+Package pdftex.def Info: Media/biometric_funct.png  used on input line 57.
 (pdftex.def)             Requested size: 138.84729pt x 114.00816pt.
- [3 <./biometric_trad.png> <./biometric_funct.png>] [4]
+ [3 <./Media/biometric_trad.png> <./Media/biometric_funct.png>]
+[4]
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9> on input line 128.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 128.
- [5])
-(bachelorprojekt_johannes_waltmann_3029975.bbl [6]
+ [5]
+<Media/controller_setup.png, id=146, 924.45375pt x 608.2725pt>
+File: Media/controller_setup.png Graphic file (type png)
+<use Media/controller_setup.png>
+Package pdftex.def Info: Media/controller_setup.png  used on input line 150.
+(pdftex.def)             Requested size: 347.12354pt x 228.39864pt.
+
+(C:\Users\Waltmann\AppData\Roaming\MiKTeX\2.9\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+)
+(C:\Users\Waltmann\AppData\Roaming\MiKTeX\2.9\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+)
+(C:\Users\Waltmann\AppData\Roaming\MiKTeX\2.9\tex/latex/listings\lstmisc.sty
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+)
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 155.
+
+[6 <./Media/controller_setup.png>])
+(bachelorprojekt_johannes_waltmann_3029975.bbl [7]
 Underfull \hbox (badness 1308) in paragraph at lines 61--65
 []\OT1/cmr/m/n/9 Liebers, J., Schnee-gass, S.: In-tro-duc-ing func-tional bio-m
 et-rics: Us-ing body-
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 63.
- [7]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 63.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 90.
+ [8]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 90.
  (bachelorprojekt_johannes_waltmann_3029975.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 63.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 63.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 90.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 90.
 Package rerunfilecheck Info: File `bachelorprojekt_johannes_waltmann_3029975.ou
 t' has not changed.
 (rerunfilecheck)             Checksum: 9BD85224A75FF3D7410B746E7DCA2C87;123.
  ) 
 Here is how much of TeX's memory you used:
- 7224 strings out of 492453
- 109875 string characters out of 3129811
- 224336 words of memory out of 3000000
- 11480 multiletter control sequences out of 15000+200000
- 7802 words of font info for 28 fonts, out of 3000000 for 9000
+ 9407 strings out of 492453
+ 138236 string characters out of 3129811
+ 465027 words of memory out of 3000000
+ 13623 multiletter control sequences out of 15000+200000
+ 7970 words of font info for 29 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,11n,51p,866b,509s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,11n,64p,866b,2019s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files/MiKTe
 X 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fo
 nts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
-sfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
-cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb
-><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on bachelorprojekt_johannes_waltmann_3029975.pdf (7 pages, 45623
-2 bytes).
+/public/amsfonts/cm/cmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
+sfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
+cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><
+C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Progr
+am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on bachelorprojekt_johannes_waltmann_3029975.pdf (8 pages, 49666
+3 bytes).
 PDF statistics:
- 213 PDF objects out of 1000 (max. 8388607)
- 52 named destinations out of 1000 (max. 500000)
- 19 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 240 PDF objects out of 1000 (max. 8388607)
+ 67 named destinations out of 1000 (max. 500000)
+ 24 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -52,9 +52,9 @@ A physiological system should also have a little higher accuracy than a behaviou
 This new concept stands as a major influence to this work notably with its first implementation in SkullConduct\cite{SkullConduct}. 
 \begin{figure}
 	\begin{center}
-		\subfloat[Traditional Biometrics]{\includegraphics[width=0.4\textwidth]{biometric_trad.png}\label{fig:tradBiom}}
+		\subfloat[Traditional Biometrics]{\includegraphics[width=0.4\textwidth]{Media/biometric_trad.png}\label{fig:tradBiom}}
 		\hspace{0.5cm}
-		\subfloat[Functional Biometrics]{\includegraphics[width=0.4\textwidth]{biometric_funct.png}\label{fig:functBiom}}
+		\subfloat[Functional Biometrics]{\includegraphics[width=0.4\textwidth]{Media/biometric_funct.png}\label{fig:functBiom}}
 	\end{center}
 	\caption{(a) shows the authentication process of a traditional biometric system where a characteristic response is created based on someone's unique trait.
 	(b) shows the order of steps for functional biometrics when a stimulus is added to create the characteristic based on body reflections \cite{schneegass2020functbiometric}.}
@@ -141,11 +141,38 @@ Pinout einfügen und Zusammenhang der Komponenten beschreiben
 \subsubsection{Development Environments}
 The majority of code in this project was written in the Arduino IDE. 
 This open-source IDE is designed and optimized for the use with microcontrollers from the arduino family.
-It is also possible to add plugins for the support of other microcontroller chips like esp8266 or esp32.
+It is also possible to add plugins for the support of other microcontroller chips like esp32.
 The IDE supports C and C++ as additional programming languages which can be processed by the microcontrollers.
 
 \subsubsection{Code}
+
+\begin{figure}[t]
+	\includegraphics[width=\linewidth]{Media/controller_setup.png}
+	\caption{Visual description of the setup-function of the microcontroller}
+	\label{fig:cntrlr_stp}
+\end{figure}
+
+\begin{lstlisting}[language=c++, caption=Function used to generate Audio output]
+void tone(int channel, int frequency_in_HZ, long durance) {
+
+	long delayAmount = (long)(1000000 / frequency_in_HZ);
+	long loopTime = (long)((durance*1000) / (delayAmount*2));
+
+	for ( int x = 0; x < loopTime; x++) {
+		ledcWriteTone(channel, 3000);
+		delayMicroseconds(delayAmount);
+		ledcWriteTone(channel, 0);
+		delayMicroseconds(delayAmount);
+	}
+	delay(20);
+}
+\end{lstlisting}
+
 The code used can be split into two distinct functionalities both implemented in the same file.
+
+
+
+
 \paragraph{Audio Recording}
 
 \section{Evaluation}
