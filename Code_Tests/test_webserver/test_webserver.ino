@@ -1,9 +1,10 @@
 // Load Wi-Fi library
 #include <WiFi.h>
+#include "sound.h"
 
-// Replace with your network credentials
-const char* ssid = "WaltLAN-2017";
-const char* password = "20.JateC-TropeX-ReguittI.17";
+// Credentials of the used wireless network
+const char* ssid = "SSID";
+const char* password = "PASSWORD";
 
 // Set web server port number to 80
 WiFiServer server(80);
@@ -12,19 +13,14 @@ WiFiServer server(80);
 String header;
 
 // Auxiliar variables to store the current output state
-/**
- * Werden für Statusanzeige der Buttons genutzt;
- * Anpassen auf Recording on/Off
- */
-String output26State = "off";
-String output27State = "off";
+String output26State_Speaker = "off";
 
 // Assign output variables to GPIO pins
-/**
- * Test ob das auch mit Speaker/Mic? funktioniert
- */
-const int output26 = 26;
-const int output27 = 27;
+const int speaker_output26 = 26;
+// Parameters for ledc Initialization
+const int channel = 0; // PWM channel
+const int frequency = 4000; // Initial frequency
+const int resolution = 8; // Resolution of the duty cycle in Bit
 
 // Current time
 unsigned long currentTime = millis();
@@ -35,20 +31,22 @@ const long timeoutTime = 2000;
 
 void setup() {
   Serial.begin(115200);
-  // Initialize the output variables as outputs
-  pinMode(output26, OUTPUT);
-  pinMode(output27, OUTPUT);
-  // Set outputs to LOW
-  /**
-   * Angesprochene PINs solange deaktiv bis angesprochen werden
-   */
-  digitalWrite(output26, LOW);
-  digitalWrite(output27, LOW);
+  // Initialize the output variable as output
+  pinMode(speaker_output26, OUTPUT);
+  // Set output to LOW
+  digitalWrite(speaker_output26, LOW);
+  // Assign the output variable to ledc PWM functions
+  Serial.print("Initializing Speaker...");
+  if(!ledcSetup(channel, frequency, resolution)) {
+     Serial.print("Initialization failed..");
+  }
+  ledcAttachPin(speaker_output26, channel);
 
   // Connect to Wi-Fi network with SSID and password
   Serial.print("Connecting to ");
   Serial.println(ssid);
   WiFi.begin(ssid, password);
+  // Wait for Wi-Fi to connect
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
@@ -86,27 +84,17 @@ void loop(){
             client.println("Connection: close");
             client.println();
             
-            // turns the GPIOs on and off
-            /**
-             * Für Start einer Aufnahme umarbeiten
-             * Also Speaker aktivieren und Recording starten (über taskCreate?)
-             */
+            // turns the GPIO on and off
             if (header.indexOf("GET /26/on") >= 0) {
               Serial.println("GPIO 26 on");
-              output26State = "on";
-              digitalWrite(output26, HIGH);
+              output26State_Speaker = "on";
+              digitalWrite(speaker_output26, HIGH);
+              // If GPIO was turned on start to play the defined melody
+              melody();
             } else if (header.indexOf("GET /26/off") >= 0) {
               Serial.println("GPIO 26 off");
-              output26State = "off";
-              digitalWrite(output26, LOW);
-            } else if (header.indexOf("GET /27/on") >= 0) {
-              Serial.println("GPIO 27 on");
-              output27State = "on";
-              digitalWrite(output27, HIGH);
-            } else if (header.indexOf("GET /27/off") >= 0) {
-              Serial.println("GPIO 27 off");
-              output27State = "off";
-              digitalWrite(output27, LOW);
+              output26State_Speaker = "off";
+              digitalWrite(speaker_output26, LOW);
             }
             
             // Display the HTML web page
@@ -125,24 +113,13 @@ void loop(){
             client.println("<body><h1>ESP32 Web Server</h1>");
             
             // Display current state, and ON/OFF buttons for GPIO 26
-            /**  
-             *  Button für jew. funktion anzeigen je nachdem ob ON oder OFF
-             */
-            client.println("<p>GPIO 26 - State " + output26State + "</p>");
-            // If the output26State is off, it displays the ON button       
-            if (output26State=="off") {
+            client.println("<p>GPIO 26 - State " + output26State_Speaker + "</p>");
+            // If the output26State_Speaker is off, it displays the ON button       
+            if (output26State_Speaker == "off") {
               client.println("<p><a href=\"/26/on\"><button class=\"button\">ON</button></a></p>");
             } else {
+            // If output26State_Speaker is on, it displays the OFF button
               client.println("<p><a href=\"/26/off\"><button class=\"button button2\">OFF</button></a></p>");
-            } 
-               
-            // Display current state, and ON/OFF buttons for GPIO 27  
-            client.println("<p>GPIO 27 - State " + output27State + "</p>");
-            // If the output27State is off, it displays the ON button       
-            if (output27State=="off") {
-              client.println("<p><a href=\"/27/on\"><button class=\"button\">ON</button></a></p>");
-            } else {
-              client.println("<p><a href=\"/27/off\"><button class=\"button button2\">OFF</button></a></p>");
             }
             client.println("</body></html>");
             
@@ -165,4 +142,116 @@ void loop(){
     Serial.println("Client disconnected.");
     Serial.println("");
   }
+}
+
+/**
+ * Computes a desired note based on the given params.
+ * 
+ * @param channel - The used PWM channel
+ * @param frequencyHZ - The frequency used to compute the exact note 
+ * @param durance - Used to display the beat of the note to be displayed
+*/
+void tone(int channel, int frequencyHZ, long durance) {
+
+  // Computes the pitch of the note
+  long delayAmount = (long)(1000000 / frequencyHZ);
+  // Compute the length of the note
+  long loopTime = (long)((durance * 1000) / (delayAmount * 2));
+
+  // Not each tick of the computed notelength activate the speaker
+  for ( int x = 0; x < loopTime; x++) {
+    ledcWriteTone(channel, 3000);
+    delayMicroseconds(delayAmount);
+    ledcWriteTone(channel, 0);
+    delayMicroseconds(delayAmount);
+  }
+
+  delay(20);
+}
+
+/**
+ * Plays a soundmelody by using the function tone() multiple times
+ * and altering notefrequency and notedurance each time
+ */
+void melody() {
+  tone(channel, a, 500);
+  tone(channel, a, 500);
+  tone(channel, a, 500);
+  tone(channel, f, 350);
+  tone(channel, cH, 150);
+
+  tone(channel, a, 500);
+  tone(channel, f, 350);
+  tone(channel, a, 1000);
+
+  tone(channel, eH, 500);
+  tone(channel, eH, 500);
+  tone(channel, eH, 500);
+  tone(channel, fH, 350);
+  tone(channel, cH, 150);
+
+  tone(channel, gS, 500);
+  tone(channel, f, 350);
+  tone(channel, cH, 150);
+  tone(channel, a, 1000);
+
+  tone(channel, aH, 500);
+  tone(channel, a, 350);
+  tone(channel, a, 150);
+  tone(channel, aH, 500);
+  tone(channel, gSH, 250);
+  tone(channel, gH, 250);
+
+  tone(channel, fSH, 125);
+  tone(channel, fH, 125);
+  tone(channel, fSH, 250);
+  delay(250);
+  tone(channel, aS, 250);
+  tone(channel, dSH, 500);
+  tone(channel, dH, 250);
+  tone(channel, cSH, 250);
+
+  tone(channel, cH, 125);
+  tone(channel, b, 125);
+  tone(channel, cH, 250);
+  delay(250);
+  tone(channel, f, 125);
+  tone(channel, gS, 500);
+  tone(channel, f, 375);
+  tone(channel, a, 125);
+
+  tone(channel, cH, 500);
+  tone(channel, a, 375);
+  tone(channel, cH, 125);
+  tone(channel, eH, 1000);
+
+  tone(channel, aH, 500);
+  tone(channel, a, 350);
+  tone(channel, a, 150);
+  tone(channel, aH, 500);
+  tone(channel, gSH, 250);
+  tone(channel, gH, 250);
+
+  tone(channel, fSH, 125);
+  tone(channel, fH, 125);
+  tone(channel, fSH, 250);
+  delay(250);
+  tone(channel, aS, 250);
+  tone(channel, dSH, 500);
+  tone(channel, dH, 250);
+  tone(channel, cSH, 250);
+
+  tone(channel, cH, 125);
+  tone(channel, b, 125);
+  tone(channel, cH, 250);
+  delay(250);
+  tone(channel, f, 250);
+  tone(channel, gS, 500);
+  tone(channel, f, 375);
+  tone(channel, cH, 125);
+
+  tone(channel, a, 500);
+  tone(channel, f, 375);
+  tone(channel, c, 125);
+  tone(channel, a, 1000);
 }

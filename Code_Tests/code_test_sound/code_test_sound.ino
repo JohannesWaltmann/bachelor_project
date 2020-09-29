@@ -5,8 +5,8 @@
 #define g 391
 #define gS 415
 #define a 440
-#define aS 455
-#define b 466
+#define aS 466
+#define b 494
 #define cH 523
 #define cSH 554
 #define dH 587
@@ -18,13 +18,21 @@
 #define gSH 830
 #define aH 880
 
+#define Speaker_pin 26
+
 int channel = 0;
 int frequency = 4000;
 int resolution = 8;
 
 void setup() {
-  ledcSetup(channel, frequency, resolution);
-  ledcAttachPin(2, channel);
+  Serial.begin(115200);
+  //pinMode(Speaker_pin, OUTPUT);
+  //digitalWrite(Speaker_pin, HIGH);
+  
+  if (!ledcSetup(channel, frequency, resolution)) {
+    Serial.println("Setting speaker failed!");
+  }
+  ledcAttachPin(Speaker_pin, channel);
 }
 
 void loop() {

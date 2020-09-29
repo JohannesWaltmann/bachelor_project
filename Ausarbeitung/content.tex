@@ -152,13 +152,29 @@ The IDE supports C and C++ as additional programming languages which can be proc
 	\label{fig:cntrlr_stp}
 \end{figure}
 
-\begin{lstlisting}[language=c++, caption=Function used to generate Audio output]
-void tone(int channel, int frequency_in_HZ, long durance) {
+
+
+The code used can be split into two distinct functionalities both implemented in the same file.
+
+\paragraph{Audio Recording}
+Since the esp32 Chipset does not naturally support the arduinos own \textbf{\textit{tone()}}-function it needs to be implemented separately.
+For this purpose the LED PWM functions can be used.
+
+There you first have to call the methods \textit{ledcSetup()} and \textit{ledcAttachPin()} during the controllers general setup-function.
+With these methods the base duty cycle and base frequency are set as well as the pin to which the speaker component will be attached. 
+
+When changing the duty cycle at constant frequency it is possible to shift the pitch/the tone colour of the sound using the \textit{ledcWrite-function}.
+When changing the frequency at constant duty cycle it is possible to generate different notes.
+To change the frequency the function \textit{ledcWriteTone()} has to be used instead of \textit{ledcWrite()}.
+\begin{lstlisting}[language={c++}, caption={Function used to generate Audio output}, label={lst:toneFunct}]
+void tone(int channel, int frequency_in_HZ,
+		  		long durance_in_ms) {
 
 	long delayAmount = (long)(1000000 / frequency_in_HZ);
-	long loopTime = (long)((durance*1000) / (delayAmount*2));
+	long loopTime = (long)((durance_in_ms*1000) / 
+									(delayAmount*2));
 
-	for ( int x = 0; x < loopTime; x++) {
+	for (int x = 0; x < loopTime; x++) {
 		ledcWriteTone(channel, 3000);
 		delayMicroseconds(delayAmount);
 		ledcWriteTone(channel, 0);
@@ -167,13 +183,14 @@ void tone(int channel, int frequency_in_HZ, long durance) {
 	delay(20);
 }
 \end{lstlisting}
+je kleiner delayAmount berechnet ist desto höher wird die letztendliche Note
 
-The code used can be split into two distinct functionalities both implemented in the same file.
+loopTime berechnet die Länge des Tons/der Note
 
+im Loop wird dann für Tonlänge mit jedem Looptick der digitalWrite alternierend auf high und low gesetzt und mit dem Delay die Tonhöhe reguliert
+-> Am ende wird ein kleiner delay eingebaut um einzelne Noten von einander abzutrennen
 
-
-
-\paragraph{Audio Recording}
+Methodenparameter geben an über welchen Pin die Methode ausgeführt werden soll sowie benötigte Frequenz und Länge um einen bestimmten Ton abzuspielen
 
 \section{Evaluation}
 \section{Conclusion}

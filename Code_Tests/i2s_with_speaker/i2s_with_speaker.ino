@@ -16,7 +16,14 @@
 #define I2S_CHANNEL_NUM   (1)
 #define FLASH_RECORD_SIZE (I2S_CHANNEL_NUM * I2S_SAMPLE_RATE * I2S_SAMPLE_BITS / 8 * RECORD_TIME)
 
-#define SPEAKER_PIN 2
+#define SPEAKER_PIN (26)
+//pinMode(38, OUTPUT);
+
+#define SD_CS 5
+#define SD_SCK 18
+#define SD_MOSI 23
+#define SD_MISO 19
+SPIClass sd_spi(HSPI);
 
 //Parameters for the soundfile
 File file;
@@ -30,9 +37,11 @@ const int resolution  = 8;
 
 void setup() {
   Serial.begin(115200);
+  
   SDInit();
   i2sInit();
   SpeakerInit();
+  
   xTaskCreate(i2s_adc, "i2s_adc", 2 * 1024, NULL, 1, NULL);
 }
 
@@ -54,7 +63,10 @@ void SpeakerInit() {
  * create a file for the soundrecording and add the .wav header to it
  */
 void SDInit() {
-  if(!SD.begin()) {
+
+  sd_spi.begin(SD_SCK, SD_MISO, SD_MOSI, SD_CS);
+  
+  if(!SD.begin(SD_CS, sd_spi)) {
     Serial.println("SD initialization failed");
     return;
   }
@@ -65,7 +77,7 @@ void SDInit() {
     return;
   }
 
-  while (!SD.begin()) {
+  while (!SD.begin(SD_CS, sd_spi)) {
     Serial.println(".");
     delay(500);
   }
