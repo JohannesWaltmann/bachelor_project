@@ -1,10 +1,17 @@
 // Load Wi-Fi library
 #include <WiFi.h>
-#include "sound.h"
+#include <SPI.h>
+#include <SD.h>
+#include <FS.h>
+
+#include "requirements.h"
+#include "heltec.h"
+#include "Arduino.h"
+#include "stdio.h"
 
 // Credentials of the used wireless network
-const char* ssid = "SSID";
-const char* password = "PASSWORD";
+const char* ssid = "WaltLAN-2017";
+const char* password = "20.JateC-ReguittI-TropeX.17";
 
 // Set web server port number to 80
 WiFiServer server(80);
@@ -12,39 +19,76 @@ WiFiServer server(80);
 // Variable to store the HTTP request
 String header;
 
-// Auxiliar variables to store the current output state
+// Store the current state of the used pins
 String output26State_Speaker = "off";
 
 // Assign output variables to GPIO pins
 const int speaker_output26 = 26;
+
 // Parameters for ledc Initialization
 const int channel = 0; // PWM channel
 const int frequency = 4000; // Initial frequency
 const int resolution = 8; // Resolution of the duty cycle in Bit
 
-// Current time
+// Timer variables used for client timeouts defined in Millisecs
 unsigned long currentTime = millis();
-// Previous time
 unsigned long previousTime = 0; 
-// Define timeout time in milliseconds (example: 2000ms = 2s)
 const long timeoutTime = 2000;
 
+// STuff for SD Cardreader
+#define SD_CS 5
+#define SD_SCK 18
+#define SD_MOSI 23
+#define SD_MISO 19
+SPIClass sd_spi(HSPI);
+
+File file;
+const char filename[] = "/recording.wav";
+const int headerSize = 44;
+
+#define I2S_WS 15
+#define I2S_SD 21
+#define I2s_SCK 13
+#define I2S_PORT I2S_NUM_0
+#define I2S_SAMPLE_RATE   (16000)
+#define I2S_SAMPLE_BITS   (16)
+#define I2S_READ_LEN      (16 * 1024)
+#define RECORD_TIME       (20) //in seconds
+#define I2S_CHANNEL_NUM   (1)
+#define FLASH_RECORD_SIZE (I2S_CHANNEL_NUM * I2S_SAMPLE_RATE * I2S_SAMPLE_BITS / 8 * RECORD_TIME)
+
+
+
+
 void setup() {
+  //Start Display
+  Heltec.begin(true/*enables Display*/, false/*disables LoRa*/, true/*enables Serial*/);
+  Heltec.display->flipScreenVertically();
+  Heltec.display->setFont(ArialMT_Plain_10);
+  
   Serial.begin(115200);
+
+  SDInit();
+  
   // Initialize the output variable as output
   pinMode(speaker_output26, OUTPUT);
-  // Set output to LOW
   digitalWrite(speaker_output26, LOW);
+  
+  Serial.println("Initializing Speaker...");
   // Assign the output variable to ledc PWM functions
-  Serial.print("Initializing Speaker...");
   if(!ledcSetup(channel, frequency, resolution)) {
-     Serial.print("Initialization failed..");
+     Serial.println("Initialization failed..");
   }
   ledcAttachPin(speaker_output26, channel);
 
-  // Connect to Wi-Fi network with SSID and password
-  Serial.print("Connecting to ");
-  Serial.println(ssid);
+  //Display Parameters
+  Heltec.display->clear();
+  Heltec.display->setTextAlignment(TEXT_ALIGN_LEFT);
+  Heltec.display->setFont(ArialMT_Plain_10);
+
+  Heltec.display->drawString(0,0,"Connecting to ");
+  Heltec.display->drawString(10,10, ssid); 
+  
   WiFi.begin(ssid, password);
   // Wait for Wi-Fi to connect
   while (WiFi.status() != WL_CONNECTED) {
@@ -53,9 +97,12 @@ void setup() {
   }
   // Print local IP address and start web server
   Serial.println("");
-  Serial.println("WiFi connected.");
-  Serial.println("IP address: ");
-  Serial.println(WiFi.localIP());
+  Heltec.display->drawString(0,20, "WiFi connected.");
+  Heltec.display->drawString(0,30, "IP address:");
+  Heltec.display->drawString(10,40, WiFi.localIP().toString());
+
+  Heltec.display->display();
+  
   server.begin();
 }
 
@@ -87,6 +134,11 @@ void loop(){
             // turns the GPIO on and off
             if (header.indexOf("GET /26/on") >= 0) {
               Serial.println("GPIO 26 on");
+
+              //Heltec.display->clear();
+              Heltec.display->drawString(0,50,"Starting audio");
+              Heltec.display->display();
+              
               output26State_Speaker = "on";
               digitalWrite(speaker_output26, HIGH);
               // If GPIO was turned on start to play the defined melody
@@ -113,14 +165,20 @@ void loop(){
             client.println("<body><h1>ESP32 Web Server</h1>");
             
             // Display current state, and ON/OFF buttons for GPIO 26
-            client.println("<p>GPIO 26 - State " + output26State_Speaker + "</p>");
+            client.println("<p>Start Soundfile</p>");
             // If the output26State_Speaker is off, it displays the ON button       
             if (output26State_Speaker == "off") {
               client.println("<p><a href=\"/26/on\"><button class=\"button\">ON</button></a></p>");
-            } else {
+            } 
+            //else {
             // If output26State_Speaker is on, it displays the OFF button
-              client.println("<p><a href=\"/26/off\"><button class=\"button button2\">OFF</button></a></p>");
-            }
+            //  client.println("<p><a href=\"/26/off\"><button class=\"button button2\">OFF</button></a></p>");
+            //}
+
+            //Display UI-Reset Button
+            client.println("<p>Reset UI</p>");
+            client.println("<p><a href=\"/26/off\"><button class=\"button button2\">OFF</button></a></p>");          
+
             client.println("</body></html>");
             
             // The HTTP response ends with another blank line
@@ -254,4 +312,37 @@ void melody() {
   tone(channel, f, 375);
   tone(channel, c, 125);
   tone(channel, a, 1000);
+}
+
+void SDInit() {
+
+  sd_spi.begin(SD_SCK, SD_MISO, SD_MOSI, SD_CS);
+  
+  if(!SD.begin(SD_CS, sd_spi)) {
+    Serial.println("SD initialization failed");
+    return;
+  }
+
+  uint8_t cardType = SD.cardType();
+  if(cardType == CARD_NONE) {
+    Serial.println("No SD card attatched");
+    return;
+  }
+
+  while (!SD.begin(SD_CS, sd_spi)) {
+    Serial.println(".");
+    delay(500);
+  }
+
+  SD.remove(filename);
+  file = SD.open(filename, FILE_WRITE);
+  if(!file){
+    Serial.println("File not available");
+  }
+
+  byte header[headerSize];
+  wavHeader(header, FLASH_RECORD_SIZE);
+  
+  file.write(header, headerSize);
+  listSD();
 }
