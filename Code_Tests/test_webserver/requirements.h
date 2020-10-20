@@ -1,4 +1,5 @@
 #include "Arduino.h"
+#include "FS.h"
 
 const int c = 261;
 const int d = 294;
@@ -19,6 +20,8 @@ const int fSH = 740;
 const int gH = 784;
 const int gSH = 830;
 const int aH = 880;
+
+extern File file;
 
 void listSD();
 

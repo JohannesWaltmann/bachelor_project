@@ -1,10 +1,9 @@
-// Load Wi-Fi library
 #include <WiFi.h>
 #include <SPI.h>
 #include <SD.h>
 #include <FS.h>
 
-#include "requirements.h"
+#include "i2s_specs.h"
 #include "heltec.h"
 #include "Arduino.h"
 #include "stdio.h"
@@ -35,14 +34,15 @@ unsigned long currentTime = millis();
 unsigned long previousTime = 0; 
 const long timeoutTime = 2000;
 
-// STuff for SD Cardreader
+// Stuff for SD Cardreader
 #define SD_CS 5
 #define SD_SCK 18
 #define SD_MOSI 23
 #define SD_MISO 19
 SPIClass sd_spi(HSPI);
 
-File file;
+
+
 const char filename[] = "/recording.wav";
 const int headerSize = 44;
 
@@ -58,8 +58,6 @@ const int headerSize = 44;
 #define FLASH_RECORD_SIZE (I2S_CHANNEL_NUM * I2S_SAMPLE_RATE * I2S_SAMPLE_BITS / 8 * RECORD_TIME)
 
 
-
-
 void setup() {
   //Start Display
   Heltec.begin(true/*enables Display*/, false/*disables LoRa*/, true/*enables Serial*/);
@@ -67,13 +65,17 @@ void setup() {
   Heltec.display->setFont(ArialMT_Plain_10);
   
   Serial.begin(115200);
-
-  SDInit();
   
+  SDInit();
+
   // Initialize the output variable as output
   pinMode(speaker_output26, OUTPUT);
   digitalWrite(speaker_output26, LOW);
-  
+
+  digitalWrite(I2S_WS, LOW);
+  digitalWrite(I2S_SD, LOW);
+  digitalWrite(I2s_SCK, LOW);
+
   Serial.println("Initializing Speaker...");
   // Assign the output variable to ledc PWM functions
   if(!ledcSetup(channel, frequency, resolution)) {
@@ -88,7 +90,7 @@ void setup() {
 
   Heltec.display->drawString(0,0,"Connecting to ");
   Heltec.display->drawString(10,10, ssid); 
-  
+
   WiFi.begin(ssid, password);
   // Wait for Wi-Fi to connect
   while (WiFi.status() != WL_CONNECTED) {
@@ -102,6 +104,9 @@ void setup() {
   Heltec.display->drawString(10,40, WiFi.localIP().toString());
 
   Heltec.display->display();
+
+  //TODO: Display can't show footage after i2sInit() is included
+  i2sInit();
   
   server.begin();
 }
@@ -141,8 +146,16 @@ void loop(){
               
               output26State_Speaker = "on";
               digitalWrite(speaker_output26, HIGH);
+
+              digitalWrite(I2S_WS, HIGH);
+              digitalWrite(I2S_SD, HIGH);
+              digitalWrite(I2s_SCK, HIGH);
               // If GPIO was turned on start to play the defined melody
+              xTaskCreate(i2s_adc, "i2s_adc", 2 * 1024, NULL, 1, NULL);
               melody();
+              Heltec.display->clear();
+              Heltec.display->drawString(0,0, "Recording finished!");
+              Heltec.display->display();
             } else if (header.indexOf("GET /26/off") >= 0) {
               Serial.println("GPIO 26 off");
               output26State_Speaker = "off";
