@@ -127,46 +127,51 @@ Additionally the controller is connected with a microphone capsule and a (piezo?
 \subsection{Hardware}
 The microcontroller used in this project is the LoRa 32 by Heltec Automation\footnote{\url{https://heltec.org/project/wifi-kit-32/}}.
 The controller uses an 32bit dual-core microprocessor by espressif (esp32).
-Other features of the controller include onboard Wi-Fi and Bluetooth and a 0.97 inch OLED display.
+Other features include onboard Wi-Fi and Bluetooth as well as an 0.97 inch OLED display.
 The controller can be powered using a micro-USB connection to a computer or an attachable lithium battery.
 
 The implementation for the recordings is based around the use of an omnidirectional digital microphone\footnote{\href{https://www.amazon.de/Ambility-Omnidirektionales-Mikrofonmodul-I2S-Schnittstelle-Precision/dp/B07MW95PSS}{Ambility INMP441}}.
 This microphone uses a digital I$^{2}$S-Interface to process its input. 
 For the output of the generated stimuli a miniature speaker with a mylar-membrane\footnote{\href{https://www.conrad.de/de/p/lsf-15m-s-8-ohm-0-8w-miniatur-lautsprecher-geraeusch-entwicklung-85-db-0-500-w-1-st-710277.html}{LSF-15M/S}} is used which is able to conduct noise at up to 85 dB.
 
+Further used hardware includes an SD-Card Reader equipped with an 32 Gigabyte SD-Card which is used as a cache to temporarily store the generated audiosamples.
 
-Evtl Referenz auf SD Modul.
-Pinout einfügen und Zusammenhang der Komponenten beschreiben
+\textit{\textbf{TODO: Komponentenverkabelung als Schematic oder Breadboardfoto}}
 \subsection{Software}
 \subsubsection{Development Environments}
 The majority of code in this project was written in the Arduino IDE. 
 This open-source IDE is designed and optimized for the use with microcontrollers from the arduino family.
-It is also possible to add plugins for the support of other microcontroller chips like esp32.
+It is also possible to add plugins for the support of other microcontroller chips like esp32 or the heltec LoRa family.
 The IDE supports C and C++ as additional programming languages which can be processed by the microcontrollers.
 
-\subsubsection{Code}
+Another major feature of the IDE is its ability to not only compile the designed sketches but also to flash them onto a microcontroller plugged into the computer via usb.
 
-\begin{figure}[t]
-	\includegraphics[width=\linewidth]{Media/controller_setup.png}
+\subsubsection{Code}
+\begin{figure}[h]
+	\includegraphics[width=\linewidth]{Media/Controller_setup.png}
 	\caption{Visual description of the setup-function of the microcontroller}
 	\label{fig:cntrlr_stp}
 \end{figure}
 
+The code in this projects sketch is split up into three different parts - the main .ino-file and two additional .cpp files providing further code needed.
 
+The main file locates the standard setup and loop functions for the microcontroller as well as the functionalities to generate the audio stimulus.
+As seen in cf.~Figure~\ref{fig:cntrlr_stp} the setup functions main focus is initializing the different hardware components as well as starting the provided webinterface.
 
-The code used can be split into two distinct functionalities both implemented in the same file.
+The webinterface can later on be used to apply the stimulus and record its alterations.
+\textit{Also the webinterface can be used to download the generated audio sample from the SD Card attached to the microcontroller.}
+To record the audio sample the i2s-interface is used.
+Its exact specifications are defined in the i2s{\_}specs.cpp file. 
 
-\paragraph{Audio Recording}
-Since the esp32 Chipset does not naturally support the arduinos own \textbf{\textit{tone()}}-function it needs to be implemented separately.
+As for the stimulus' generation the used tone() function is implemented separately since the esp32 chipset does not support its functionalities naturally.
 For this purpose the LED PWM functions can be used.
+Using this functionality it is possible to control and alter both frequency and duty cycle of the output.
 
-There you first have to call the methods \textit{ledcSetup()} and \textit{ledcAttachPin()} during the controllers general setup-function.
-With these methods the base duty cycle and base frequency are set as well as the pin to which the speaker component will be attached. 
-
-When changing the duty cycle at constant frequency it is possible to shift the pitch/the tone colour of the sound using the \textit{ledcWrite-function}.
+Initially these values are set within the \textit{ledcSetup()} function.
+When changing the duty cycle at constant frequency it is possible to shift the pitch of the sound using the \textit{ledcWrite()} function.
 When changing the frequency at constant duty cycle it is possible to generate different notes.
-To change the frequency the function \textit{ledcWriteTone()} has to be used instead of \textit{ledcWrite()}.
-\begin{lstlisting}[language={c++}, caption={Function used to generate Audio output}, label={lst:toneFunct}]
+To do so the function \textit{ledcWriteTone()} has to be used instead of \textit{ledcWrite()}.
+\begin{lstlisting}[frame=single, language={c++}, caption={Function used to generate Audio output}, label={lst:toneFunct},float= !htb]
 void tone(int channel, int frequency_in_HZ,
 		  		long durance_in_ms) {
 
@@ -183,14 +188,20 @@ void tone(int channel, int frequency_in_HZ,
 	delay(20);
 }
 \end{lstlisting}
-je kleiner delayAmount berechnet ist desto höher wird die letztendliche Note
 
-loopTime berechnet die Länge des Tons/der Note
+Based on these conditions the function tone() as seen in Listing~\ref{lst:toneFunct} uses the method ledcWriteTone() to generate sound.
+Additionally the parameters \textit{channel, frequency and durance} are required.
+Using these parameters the function can determine the values for delay and loopTime representing pitch and sound duration respectively of the generated audio.
+The third parameter is used to represent the PWM channel through which the sound will be forwarded.
+
+Within the for-loop 
+
+
 
 im Loop wird dann für Tonlänge mit jedem Looptick der digitalWrite alternierend auf high und low gesetzt und mit dem Delay die Tonhöhe reguliert
--> Am ende wird ein kleiner delay eingebaut um einzelne Noten von einander abzutrennen
+      
+      Am ende wird ein kleiner delay eingebaut um einzelne Noten von einander abzutrennen
 
-Methodenparameter geben an über welchen Pin die Methode ausgeführt werden soll sowie benötigte Frequenz und Länge um einen bestimmten Ton abzuspielen
 
 \section{Evaluation}
 \section{Conclusion}
