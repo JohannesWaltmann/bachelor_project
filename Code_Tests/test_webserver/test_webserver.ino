@@ -7,10 +7,16 @@
 #include "heltec.h"
 #include "Arduino.h"
 #include "stdio.h"
+#include "time.h"
 
 // Credentials of the used wireless network
-const char* ssid = "WaltLAN-2017";
-const char* password = "20.JateC-ReguittI-TropeX.17";
+const char* ssid = "";
+const char* password = "";
+
+//NTP Data
+const char* ntpServer = "pool.ntp.org";
+const long gmtOffset_sec = 3600;
+const int daylightOffset_sec = 3600;
 
 // Set web server port number to 80
 WiFiServer server(80);
@@ -41,11 +47,6 @@ const long timeoutTime = 2000;
 #define SD_MISO 19
 SPIClass sd_spi(HSPI);
 
-
-
-const char filename[] = "/recording.wav";
-const int headerSize = 44;
-
 #define I2S_WS 15
 #define I2S_SD 21
 #define I2s_SCK 13
@@ -57,6 +58,26 @@ const int headerSize = 44;
 #define I2S_CHANNEL_NUM   (1)
 #define FLASH_RECORD_SIZE (I2S_CHANNEL_NUM * I2S_SAMPLE_RATE * I2S_SAMPLE_BITS / 8 * RECORD_TIME)
 
+const int headerSize = 44;
+char filename[64 + 1];
+
+/**
+ *  Generates the name for the recordingfile to be used by accessing an ntp server 
+ *  and adding current time and date values to the filepath
+ */
+bool printTime(char *buffer, size_t buffer_size) {
+  struct tm timeinfo;
+  if(!getLocalTime(&timeinfo)){
+    Serial.println("Failed to obtain time");    
+  }
+
+  int err = strftime(buffer, buffer_size, "/recording_%d %B, %H-%M-%S.wav", &timeinfo);
+  if(err == 0) {
+    Serial.println("strftime failed");
+    return false;
+  }
+  return true;
+}
 
 void setup() {
   //Start Display
@@ -65,8 +86,6 @@ void setup() {
   Heltec.display->setFont(ArialMT_Plain_10);
   
   Serial.begin(115200);
-  
-  SDInit();
 
   // Initialize the output variable as output
   pinMode(speaker_output26, OUTPUT);
@@ -97,6 +116,17 @@ void setup() {
     delay(500);
     Serial.print(".");
   }
+  
+  configTime(gmtOffset_sec, daylightOffset_sec, ntpServer); //Connects to NTP-Server to get current UNIX-Time
+
+  if (!printTime(filename, sizeof(filename))) { //
+    Serial.println("Couldn't format filepath");
+  }
+  Serial.print("Formatted filepath: ");
+  Serial.println(filename);
+
+  SDInit();
+  
   // Print local IP address and start web server
   Serial.println("");
   Heltec.display->drawString(0,20, "WiFi connected.");
@@ -105,7 +135,6 @@ void setup() {
 
   Heltec.display->display();
 
-  //TODO: Display can't show footage after i2sInit() is included
   i2sInit();
   
   server.begin();
@@ -160,7 +189,29 @@ void loop(){
               Serial.println("GPIO 26 off");
               output26State_Speaker = "off";
               digitalWrite(speaker_output26, LOW);
-            }
+            //Download the written file to clientsystem
+            } 
+//            else if (header.indexOf("GET /dwnld") >= 0) {
+//              Serial.println("Initiation file download");
+//              
+//              client.println("<?php");
+//              client.println("$file = filename;");
+//              client.println("if (file_exists($file)) {");
+//              client.println("header('Content-Description: File Transfer');");
+//              client.println("header('Content-Type: application/octet-stream');");
+//              client.print("header('Content-Disposition: attachment; ");
+//              client.print(""filename="");
+//              client.print("'.basename($file).'");
+//              client.println("');");
+//              client.println("header('Expires: 0');");
+//              client.println("header('Cache-Control: must-revalidate');");
+//              client.println("header('Pragma: public');");
+//              client.println("header('Content-Length: ' . filesize($file));");
+//              client.println("readfile($file);");
+//              client.println("exit;");
+//              client.println("}");
+//              client.println("?>");
+//            }
             
             // Display the HTML web page
             client.println("<!DOCTYPE html><html>");
@@ -183,10 +234,9 @@ void loop(){
             if (output26State_Speaker == "off") {
               client.println("<p><a href=\"/26/on\"><button class=\"button\">ON</button></a></p>");
             } 
-            //else {
-            // If output26State_Speaker is on, it displays the OFF button
-            //  client.println("<p><a href=\"/26/off\"><button class=\"button button2\">OFF</button></a></p>");
-            //}
+            //Button to start Filedownload
+            client.println("<p>Download Recordsample</p>");
+            client.println("<p><a href=\"/dwnld\"><button class=\"button\">DOWNLOAD</button></a></p>");
 
             //Display UI-Reset Button
             client.println("<p>Reset UI</p>");
