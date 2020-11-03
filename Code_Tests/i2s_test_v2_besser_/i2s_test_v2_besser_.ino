@@ -3,6 +3,12 @@
 #include <SD.h>
 #include <FS.h>
 
+#define SD_CS 5
+#define SD_SCK 18
+#define SD_MOSI 23
+#define SD_MISO 19
+SPIClass sd_spi(HSPI);
+
 
 #define I2S_WS 15
 #define I2S_SD 21
@@ -29,7 +35,10 @@ void setup() {
 void loop() {}
 
 void SDInit() {
-  if(!SD.begin()) {
+
+  sd_spi.begin(SD_SCK, SD_MISO, SD_MOSI, SD_CS);
+  
+  if(!SD.begin(SD_CS, sd_spi)) {
     Serial.println("SD initialization failed");
     return;
   }
@@ -55,7 +64,7 @@ void SDInit() {
   wavHeader(header, FLASH_RECORD_SIZE);
   
   file.write(header, headerSize);
-  listSD();
+ // listSD();
 }
 
 void i2sInit() {
