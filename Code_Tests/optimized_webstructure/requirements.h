@@ -25,10 +25,4 @@ extern File file;
 
 //void listSD();
 
-void clearSD();
-
-void deleteFile(fs::FS &fs, const char * path);
-
-String getUsedSpace(void);
-
 void wavHeader(byte* header, int wavSize);

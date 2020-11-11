@@ -5,57 +5,52 @@
 
 int headerSize;
 
-
-void clearSD(void) {
-  Serial.println("Remove every .wav from SD");
-  fs::FS fs = SD;
-  
-  fs::File root = SD.open("/");
-  if (!root) {
-    Serial.println(F("Failed to open directory"));
-    return;
-  }
-  if (!root.isDirectory()) {
-    Serial.println(F("Not a directory"));
-    return;
-  }
-  fs::File file = root.openNextFile();
-  while (file) {
-    String fileName = '/' + file.name();
-
-    if (fileName != "interface.html" && fileName != "style.css") {
-      if (fs.remove(fileName)) {
-        Serial.println("File deleted");
-      } else {
-        Serial.println("Delete failed");
-      }
-    }
-    file = root.openNextFile();
-  }
-}
-
-String getUsedSpace(void) {
-
-  int sumFileSize = 0;
-
-  fs::File root = SD.open("/");
-  if (!root) {
-    Serial.println(F("Failed to open directory"));
-  }
-  if (!root.isDirectory()) {
-    Serial.println(F("Not a directory"));
-  }
-
-  fs::File file = root.openNextFile();
-  while (file) {
-    sumFileSize += file.size();
-    file = root.openNextFile();
-  }
-  delay(1000);
-  sumFileSize /= 1000;
-
-  return String(sumFileSize);
-}
+//void listSD(void) {
+//  Serial.println(F("\r\nListing SD files:"));
+//  static const char line[] PROGMEM =  "=================================================";
+//
+//  Serial.println(FPSTR(line));
+//  Serial.println(F("  File name                              Size"));
+//  Serial.println(FPSTR(line));
+//
+//  fs::File root = SD.open("/");
+//  if (!root) {
+//    Serial.println(F("Failed to open directory"));
+//    return;
+//  }
+//  if (!root.isDirectory()) {
+//    Serial.println(F("Not a directory"));
+//    return;
+//  }
+//
+//  fs::File file = root.openNextFile();
+//  while (file) {
+//
+//    if (file.isDirectory()) {
+//      Serial.print("DIR : ");
+//      String fileName = file.name();
+//      Serial.print(fileName);
+//    } else {
+//      String fileName = file.name();
+//      Serial.print("  " + fileName);
+//      // File path can be 31 characters maximum in SPIFFS
+//      int spaces = 33 - fileName.length(); // Tabulate nicely
+//      if (spaces < 1) spaces = 1;
+//      while (spaces--) Serial.print(" ");
+//      String fileSize = (String) file.size();
+//      spaces = 10 - fileSize.length(); // Tabulate nicely
+//      if (spaces < 1) spaces = 1;
+//      while (spaces--) Serial.print(" ");
+//      Serial.println(fileSize + " bytes");
+//    }
+//
+//    file = root.openNextFile();
+//  }
+//
+//  Serial.println(FPSTR(line));
+//  Serial.println();
+//  delay(1000);
+//}
 
 void wavHeader(byte* header, int wavSize) {
   header[0] = 'R';

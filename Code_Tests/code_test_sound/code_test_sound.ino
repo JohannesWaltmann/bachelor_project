@@ -26,8 +26,8 @@ int resolution = 8;
 
 void setup() {
   Serial.begin(115200);
-  //pinMode(Speaker_pin, OUTPUT);
-  //digitalWrite(Speaker_pin, HIGH);
+  pinMode(Speaker_pin, OUTPUT);
+  digitalWrite(Speaker_pin, HIGH);
   
   if (!ledcSetup(channel, frequency, resolution)) {
     Serial.println("Setting speaker failed!");

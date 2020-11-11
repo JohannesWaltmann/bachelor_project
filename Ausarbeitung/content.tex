@@ -1,6 +1,6 @@
 \section{Introduction}
 During the last years the usage of smart-wearables (particularly smartwatches) has become more and more common with a number of 337 million units sold in 2019 and a forecast in sales of up to 527 million units by 2024 \cite{tenzer}.
-With that also comes a natural demand in data protection caused by the many sensors built in these devices and their ability to capture sensible personal information (e.g. health informations).
+With that also comes a natural demand in data protection caused by the amount of sensors built in these devices and their ability to capture sensible personal data (e.g. health informations).
 Additionally smart devices can now also be used for many kinds of financial actions.
 Since most wearables are connected to either the distributors or the respective mobile phones virtual assistant they should contain sensors for on one hand sound conduction and on the other hand audio recording.
 In the current general smart-wearable design neither of these sensors is oriented towards the wearers arm.
@@ -145,14 +145,14 @@ It is also possible to add plugins for the support of other microcontroller chip
 The IDE supports C and C++ as additional programming languages which can be processed by the microcontrollers.
 
 Another major feature of the IDE is its ability to not only compile the designed sketches but also to flash them onto a microcontroller plugged into the computer via usb.
-
-\subsubsection{Code}
-\begin{figure}[h]
+\pagebreak
+\begin{figure}[H]
 	\includegraphics[width=\linewidth]{Media/Controller_setup.png}
-	\caption{Visual description of the setup-function of the microcontroller}
+	\caption{The individual steps the microcontroller executes during its setup ordered as Statechart.}
 	\label{fig:cntrlr_stp}
 \end{figure}
 
+\subsubsection{Code}
 The code in this projects sketch is split up into three different parts - the main .ino-file and two additional .cpp files providing further code needed.
 
 The main file locates the standard setup and loop functions for the microcontroller as well as the functionalities to generate the audio stimulus.
@@ -163,6 +163,15 @@ The webinterface can later on be used to apply the stimulus and record its alter
 To record the audio sample the i2s-interface is used.
 Its exact specifications are defined in the i2s{\_}specs.cpp file. 
 
+Information which is needed by the user can be printed onto the controllers OLED display.
+For this purpose Heltec's version of the SSD1306 Library, which is included in the '\textit{heltec.h}' package, is needed.
+To now print something onto the display it is necessary to call with
+\begin{lstlisting}[style=inText]
+	Heltec.display->drawString(int x, int y, String text)
+\end{lstlisting}
+x and y representing the coordinates on the display starting on the top-left from where the string is to be printed and text being the content to be printed. 
+
+\paragraph{Stimulus Generation}
 As for the stimulus' generation the used tone() function is implemented separately since the esp32 chipset does not support its functionalities naturally.
 For this purpose the LED PWM functions can be used.
 Using this functionality it is possible to control and alter both frequency and duty cycle of the output.
@@ -171,13 +180,14 @@ Initially these values are set within the \textit{ledcSetup()} function.
 When changing the duty cycle at constant frequency it is possible to shift the pitch of the sound using the \textit{ledcWrite()} function.
 When changing the frequency at constant duty cycle it is possible to generate different notes.
 To do so the function \textit{ledcWriteTone()} has to be used instead of \textit{ledcWrite()}.
-\begin{lstlisting}[frame=single, language={c++}, caption={Function used to generate Audio output}, label={lst:toneFunct},float= !htb]
+\begin{lstlisting}[frame=single, language={c++}, style=style,
+				   caption={Function used to generate a single note using frequency and sound duration.}, label={lst:toneFunct},float=!htb]
 void tone(int channel, int frequency_in_HZ,
 		  		long durance_in_ms) {
 
 	long delayAmount = (long)(1000000 / frequency_in_HZ);
 	long loopTime = (long)((durance_in_ms*1000) / 
-									(delayAmount*2));
+												 (delayAmount*2));
 
 	for (int x = 0; x < loopTime; x++) {
 		ledcWriteTone(channel, 3000);
@@ -189,19 +199,36 @@ void tone(int channel, int frequency_in_HZ,
 }
 \end{lstlisting}
 
-Based on these conditions the function tone() as seen in Listing~\ref{lst:toneFunct} uses the method ledcWriteTone() to generate sound.
+Based on these conditions the function tone() as seen in Listing~\ref{lst:toneFunct} uses the method ledcWriteTone() to generate sound\footnote{The function is taken from \href{https://gist.github.com/tagliati/1804108}{git} and altered slightly to work with the esp32 chipset}.
 Additionally the parameters \textit{channel, frequency and durance} are required.
 Using these parameters the function can determine the values for delay and loopTime representing pitch and sound duration respectively of the generated audio.
 The third parameter is used to represent the PWM channel through which the sound will be forwarded.
 
-Within the for-loop 
+Within the for-loop the ledcWriteTone() function is used to alternately set the PWM pin to high and low.
+Between these alterations the pitch is set by setting a delay as previously computed.
+As a final step a delay of 20 ms is set to separate the individual tone blocks from one another.
 
+\paragraph{Recording the Sample}
+über die i2s sachen...nochmal in youtube Video reingucken.
 
+- Welche Params warum.
 
-im Loop wird dann für Tonlänge mit jedem Looptick der digitalWrite alternierend auf high und low gesetzt und mit dem Delay die Tonhöhe reguliert
-      
-      Am ende wird ein kleiner delay eingebaut um einzelne Noten von einander abzutrennen
+- Was tut i2s-init.
 
+- was tut i2s-adc und warum bzw braucht man i2s-adc-data-scale.
+
+- In Data-scale Wert mit 4096 /2048 etc...dient der Verstärkung, dabei je kleiner desto lauter
+
+- irgendwas grafisches dazu?.
+
+\paragraph{Webinterface}
+Wie wird erstellt.
+
+welche funktionen haben die einzelnen buttons.
+
+Wie sieht interface in Browser aus!!! Screenshot von Firefox oder so.
+
+Mit welchen Browsern funktioniert/getestet.
 
 \section{Evaluation}
 \section{Conclusion}

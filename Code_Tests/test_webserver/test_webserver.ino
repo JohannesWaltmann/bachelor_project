@@ -21,8 +21,7 @@ const char* ntpServer = "europe.pool.ntp.org";
 const long gmtOffset_sec = 3600;
 const int daylightOffset_sec = 3600;
 
-// Set web server port number to 80
-AsyncWebServer server(80);
+WiFiServer server(80);
 
 // Variable to store the HTTP request
 String header;
@@ -51,8 +50,8 @@ const long timeoutTime = 2000;
 SPIClass sd_spi(HSPI);
 
 #define I2S_WS 15
-#define I2S_SD 21
-#define I2s_SCK 13
+#define I2S_SD 13
+#define I2s_SCK 2
 #define I2S_PORT I2S_NUM_0
 #define I2S_SAMPLE_RATE   (16000)
 #define I2S_SAMPLE_BITS   (16)
@@ -92,7 +91,7 @@ void setup() {
   // Declare the pin for the speaker as output and deactivate it
   // until needed
   pinMode(speaker_output26, OUTPUT);
-  digitalWrite(speaker_output26, LOW);
+  //digitalWrite(speaker_output26, LOW);
 
   // Deactivate Pins for the microphone until needed
 //  digitalWrite(I2S_WS, LOW);
@@ -134,7 +133,6 @@ void setup() {
   Heltec.display->drawString(0, 20, "WiFi connected.");
   Heltec.display->drawString(0, 30, "IP address:");
   Heltec.display->drawString(10, 40, WiFi.localIP().toString());
-
   Heltec.display->display();
 
   i2sInit(); //Maybe better to setup after server started?
@@ -148,13 +146,13 @@ void loop() {
   if (client) {                             // If a new client connects,
     currentTime = millis();
     previousTime = currentTime;
-    Serial.println("New Client.");          // print a message out in the serial port
+    //Serial.println("New Client.");          // print a message out in the serial port
     String currentLine = "";                // make a String to hold incoming data from the client
     while (client.connected() && currentTime - previousTime <= timeoutTime) {  // loop while the client's connected
       currentTime = millis();
       if (client.available()) {             // if there's bytes to read from the client,
         char c = client.read();             // read a byte, then
-        Serial.write(c);                    // print it out the serial monitor
+        //Serial.write(c);                    // print it out the serial monitor
         header += c;
         if (c == '\n') {                    // if the byte is a newline character
           // if the current line is blank, you got two newline characters in a row.
@@ -168,79 +166,64 @@ void loop() {
             client.println();
 
             // turns the GPIO on and off
-            if (header.indexOf("GET /26/on") >= 0) {
-              Serial.println("GPIO 26 on");
-
+            if (header.indexOf("GET /recording") >= 0) {
               Heltec.display->clear();
               Heltec.display->drawString(0, 10, "Starting recording");
               Heltec.display->display();
 
-              output26State_Speaker = "on";
-              digitalWrite(speaker_output26, HIGH);
+              //digitalWrite(speaker_output26, HIGH);
 
-//              digitalWrite(I2S_WS, HIGH);
-//              digitalWrite(I2S_SD, HIGH);
-//              digitalWrite(I2s_SCK, HIGH);
               // If GPIO was turned on start to play the defined melody
               xTaskCreate(i2s_adc, "i2s_adc", 2 * 1024, NULL, 1, NULL);
-              //melody();
+//****************************************************************************************************************************************************************//
+              delay(5000); // Könnte Aktivzeit der Aufnahme verlängern, ansonsten Loopen und gucken ob Task i2s_adc beendet ist
+//****************************************************************************************************************************************************************//
+              melody();
+              digitalWrite(speaker_output26, LOW);
               //Heltec.display->clear();
               Heltec.display->drawString(0, 20, "Recording finished!");
               Heltec.display->display();
             } 
-            else if (header.indexOf("GET /26/off") >= 0) {
-              Serial.println("GPIO 26 off");
-              output26State_Speaker = "off";
-              digitalWrite(speaker_output26, LOW);
+            else if (header.indexOf("GET /clearSD") >= 0) {
+              Serial.println("Wiping .wav-Data from SD");
+              Heltec.display->clear();
+              Heltec.display->drawString(0, 10, "Clearing Soundfiles from SD");
+              Heltec.display->display();
+              clearSD();
             }
-            else if (header.indexOf("GET /dwnld") >= 0) { //Download the written file to clientsystem
-              Serial.println("Initiating file download");
-
-              client.println("HTTP/1.1 200 OK");
-        
-              client.println("Content-type:audio/wav");
-              client.println("Content-Description: File Transfer");
-              client.print("Content-Disposition: attachment; filename=");
-              client.println(filename);
-              client.println("Expires: 0");
-              client.println("Cache-Control: must-revalidate");
-              client.println("Pragma: public");
-              client.print("Content-length: ");
-              client.println(file.size());
-              file.read();
-            }
+            /**
+             * DOWNLOAD NOT MANDATORY FEATURE; DATA CAN BE ACCESSIBLE THROUGH SD-CARD
+             */
+            else if (header.indexOf("GET /download") >= 0) {} //Download the written file to clientsystem          
 
             // Display the HTML web page
             client.println("<!DOCTYPE html><html>");
             client.println("<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
             client.println("<link rel=\"icon\" href=\"data:,\">");
-            // CSS to style the on/off buttons
-            // Feel free to change the background-color and font-size attributes to fit your preferences
-            client.println("<style>html { font-family: Helvetica; display: inline-block; margin: 0px auto; text-align: center;}");
-            // Create button for state ON and for state OFF
-            client.println(".button { background-color: #4CAF50; border: none; color: white; padding: 16px 40px;");
-            client.println("text-decoration: none; font-size: 30px; margin: 2px; cursor: pointer;}");
-            client.println(".button2 {background-color: #555555;}</style></head>");
-
+            client.print("<style>html { font-family: Helvetica; display: inline-block; margin: 0px auto; text-align: center;}");
+            client.print("h1{color: #0F3376;padding: 2vh;}");
+            client.print(".button {display: inline-block;background-color: #008CBA; border: none;border-radius: 4px;color: white;padding: 16px 40px;text-decoration: none;font-size: 30px;margin: 2px;cursor: pointer;}");
+            client.println(".button2 {background-color: #AE270B;}</style></head>");
             // Web Page Heading
-            client.println("<body><h1>ESP32 Web Server</h1>");
-
+            client.println("<body><h1>Microcontroller-Interface</h1>");
             // Display current state, and ON/OFF buttons for GPIO 26
-            client.println("<p>Start Soundfile</p>");
+            client.println("<p>Start Recording</p>");
             // If the output26State_Speaker is off, it displays the ON button
-            if (output26State_Speaker == "off") {
-              client.println("<p><a href=\"/26/on\"><button class=\"button\">ON</button></a></p>");
-            }
+            client.println("<p><a href=\"/recording\"><button class=\"button\">ON</button></a></p>");
             //Button to start Filedownload
-            client.println("<p>Download Recordsample</p>");
-            client.println("<p><a href=\"/dwnld\"><button class=\"button\">DOWNLOAD</button></a></p>");
-
+            client.println("<p>Download Filesample</p>");
+            client.println("<p><a href=\"/download\"><button class=\"button\">DOWNLOAD</button></a></p>");
             //Display UI-Reset Button
-            client.println("<p>Reset UI</p>");
-            client.println("<p><a href=\"/26/off\"><button class=\"button button2\">OFF</button></a></p>");
-
+            client.println("<p>Remove old Recordings</p>");
+            client.println("<p><a href=\"/clearSD\"><button class=\"button button2\">Clear SD</button></a></p>");
+            /**
+             * @brief HAS TO UPDATE AFTER USE OF BUTTON RECORDING AND BUTTON CLEAR SD
+             *        UPDATES AUTOMATICALLY AFTER ANY RECORDING WITH PAGE-REFRESH
+             * 
+             * @TODO CHECK IT THIS ALSO APPLIES TO CLEAR SD
+             */
+            client.println("<dialog open>The SD currently uses " + getUsedSpace() + " Megabyte storage<br></dialog>");
             client.println("</body></html>");
-
             // The HTTP response ends with another blank line
             client.println();
             // Break out of the while loop
@@ -333,7 +316,7 @@ void i2s_adc(void *arg) {
   free(flash_write_buff);
   flash_write_buff = NULL;
 
-  listSD();
+//  listSD();
   vTaskDelete(NULL);
 }
 
