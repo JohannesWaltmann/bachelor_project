@@ -12,7 +12,7 @@
 
 // Credentials of the used wireless network
 const char* ssid = "WaltLAN-2017";
-const char* password = "20.JateC-ReguittI-TropeX.17";
+const char* password = "";
 
 File file;
 
