@@ -3,16 +3,18 @@
 #include <SD.h>
 #include <FS.h>
 #include <driver/i2s.h>
-#include "ESPAsyncWebServer.h" 
+#include "ESPAsyncWebServer.h"
 #include "requirements.h"
 #include "heltec.h"
 #include "Arduino.h"
 #include "stdio.h"
 #include "time.h"
 
+boolean recording_trigger = false;
+
 // Credentials of the used wireless network
-const char* ssid = "WaltLAN-2017";
-const char* password = "";
+const char* ssid = "FRITZ!Box 7590 UR";
+const char* password = "98861303091966401412";
 
 File file;
 
@@ -86,7 +88,7 @@ void setup() {
   Heltec.begin(true/*enables Display*/, false/*disables LoRa*/, true/*enables Serial*/);
   Heltec.display->flipScreenVertically();
 
-  Serial.begin(115200);
+  //Serial.begin(115200);
 
   // Declare the pin for the speaker as output and deactivate it
   // until needed
@@ -94,10 +96,10 @@ void setup() {
   //digitalWrite(speaker_output26, LOW);
 
   // Deactivate Pins for the microphone until needed
-//  digitalWrite(I2S_WS, LOW);
-//  digitalWrite(I2S_SD, LOW);
-//  digitalWrite(I2s_SCK, LOW);
-  
+  //  digitalWrite(I2S_WS, LOW);
+  //  digitalWrite(I2S_SD, LOW);
+  //  digitalWrite(I2s_SCK, LOW);
+
   // Attach ledcPWM to the pin for the speaker
   Serial.println("Initializing Speaker...");
   if (!ledcSetup(channel, frequency, resolution)) {
@@ -125,7 +127,7 @@ void setup() {
   if (!setFilename(filename, sizeof(filename))) { //
     Serial.println("Couldn't format filepath");
   }
-  
+
   SDInit();
 
   // Print local IP address and start web server
@@ -167,23 +169,22 @@ void loop() {
 
             // turns the GPIO on and off
             if (header.indexOf("GET /recording") >= 0) {
-              Heltec.display->clear();
-              Heltec.display->drawString(0, 10, "Starting recording");
-              Heltec.display->display();
-
+              recording_trigger = true;
+              //              Heltec.display->clear();
+              //              Heltec.display->drawString(0, 10, "Starting recording");
+              //              Heltec.display->display();
               //digitalWrite(speaker_output26, HIGH);
-
               // If GPIO was turned on start to play the defined melody
-              xTaskCreate(i2s_adc, "i2s_adc", 2 * 1024, NULL, 1, NULL);
-//****************************************************************************************************************************************************************//
-              delay(5000); // Könnte Aktivzeit der Aufnahme verlängern, ansonsten Loopen und gucken ob Task i2s_adc beendet ist
-//****************************************************************************************************************************************************************//
-              melody();
-              digitalWrite(speaker_output26, LOW);
-              //Heltec.display->clear();
-              Heltec.display->drawString(0, 20, "Recording finished!");
-              Heltec.display->display();
-            } 
+              //              xTaskCreate(i2s_adc, "i2s_adc", 2 * 1024, NULL, 1, NULL);
+              //****************************************************************************************************************************************************************//
+              //              delay(5000); // Könnte Aktivzeit der Aufnahme verlängern, ansonsten Loopen und gucken ob Task i2s_adc beendet ist
+              //****************************************************************************************************************************************************************//
+              //              melody();
+              //              digitalWrite(speaker_output26, LOW);
+              //              //Heltec.display->clear();
+              //              Heltec.display->drawString(0, 20, "Recording finished!");
+              //              Heltec.display->display();
+            }
             else if (header.indexOf("GET /clearSD") >= 0) {
               Serial.println("Wiping .wav-Data from SD");
               Heltec.display->clear();
@@ -192,9 +193,9 @@ void loop() {
               clearSD();
             }
             /**
-             * DOWNLOAD NOT MANDATORY FEATURE; DATA CAN BE ACCESSIBLE THROUGH SD-CARD
-             */
-            else if (header.indexOf("GET /download") >= 0) {} //Download the written file to clientsystem          
+               DOWNLOAD NOT MANDATORY FEATURE; DATA CAN BE ACCESSIBLE THROUGH SD-CARD
+            */
+            else if (header.indexOf("GET /download") >= 0) {} //Download the written file to clientsystem
 
             // Display the HTML web page
             client.println("<!DOCTYPE html><html>");
@@ -217,11 +218,11 @@ void loop() {
             client.println("<p>Remove old Recordings</p>");
             client.println("<p><a href=\"/clearSD\"><button class=\"button button2\">Clear SD</button></a></p>");
             /**
-             * @brief HAS TO UPDATE AFTER USE OF BUTTON RECORDING AND BUTTON CLEAR SD
-             *        UPDATES AUTOMATICALLY AFTER ANY RECORDING WITH PAGE-REFRESH
-             * 
-             * @TODO CHECK IT THIS ALSO APPLIES TO CLEAR SD
-             */
+               @brief HAS TO UPDATE AFTER USE OF BUTTON RECORDING AND BUTTON CLEAR SD
+                      UPDATES AUTOMATICALLY AFTER ANY RECORDING WITH PAGE-REFRESH
+
+               @TODO CHECK IT THIS ALSO APPLIES TO CLEAR SD
+            */
             client.println("<dialog open>The SD currently uses " + getUsedSpace() + " Megabyte storage<br></dialog>");
             client.println("</body></html>");
             // The HTTP response ends with another blank line
@@ -242,6 +243,15 @@ void loop() {
     client.stop();
     Serial.println("Client disconnected.");
     Serial.println("");
+
+    if (recording_trigger) {
+      digitalWrite(speaker_output26, HIGH);
+      //If GPIO was turned on start to play the defined melody
+      xTaskCreate(i2s_adc, "i2s_adc", 2 * 1024, NULL, 1, NULL);
+      //melody();
+      digitalWrite(speaker_output26, LOW);
+      recording_trigger = false;
+    }
   }
 }
 
@@ -316,7 +326,7 @@ void i2s_adc(void *arg) {
   free(flash_write_buff);
   flash_write_buff = NULL;
 
-//  listSD();
+  //  listSD();
   vTaskDelete(NULL);
 }
 
@@ -462,7 +472,7 @@ void SDInit() {
     Serial.println(".");
     delay(500);
   }
-
+  Serial.println("SD connected");
   //SD.remove(filename);
   file = SD.open(filename, FILE_WRITE);
   if (!file) {

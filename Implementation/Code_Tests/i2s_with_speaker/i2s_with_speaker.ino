@@ -27,7 +27,7 @@ SPIClass sd_spi(HSPI);
 
 //Parameters for the soundfile
 File file;
-const char filename[] = "/recording.wav";
+const char filename[] = "/2_recording.wav";
 const int headerSize = 44;
 
 //Parameters for the speaker
@@ -81,8 +81,8 @@ void SDInit() {
     Serial.println(".");
     delay(500);
   }
-
-  SD.remove(filename);
+  Serial.println("SD connected!");
+  
   file = SD.open(filename, FILE_WRITE);
   if(!file){
     Serial.println("File not available");
@@ -92,7 +92,7 @@ void SDInit() {
   wavHeader(header, FLASH_RECORD_SIZE);
   
   file.write(header, headerSize);
-  listSD();
+  //listSD();
 }
 
 /**
@@ -169,7 +169,7 @@ void i2s_adc(void *arg) {
   free(flash_write_buff);
   flash_write_buff = NULL;
   
-  listSD();
+  //listSD();
   vTaskDelete(NULL);
 }
 

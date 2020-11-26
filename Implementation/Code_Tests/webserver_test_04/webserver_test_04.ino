@@ -99,7 +99,7 @@ void setup() {
 void loop() {
   server.handleClient();
 
-  while (record_trigger) {
+  if (record_trigger) {
     recordSample();
     record_trigger = false;
   }
