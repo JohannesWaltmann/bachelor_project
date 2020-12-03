@@ -13,8 +13,8 @@
 boolean recording_trigger = false;
 
 // Credentials of the used wireless network
-const char* ssid = "FRITZ!Box 7590 UR";
-const char* password = "98861303091966401412";
+const char* ssid = "";
+const char* password = "";
 
 File file;
 
@@ -88,17 +88,9 @@ void setup() {
   Heltec.begin(true/*enables Display*/, false/*disables LoRa*/, true/*enables Serial*/);
   Heltec.display->flipScreenVertically();
 
-  //Serial.begin(115200);
-
   // Declare the pin for the speaker as output and deactivate it
-  // until needed
   pinMode(speaker_output26, OUTPUT);
-  //digitalWrite(speaker_output26, LOW);
-
-  // Deactivate Pins for the microphone until needed
-  //  digitalWrite(I2S_WS, LOW);
-  //  digitalWrite(I2S_SD, LOW);
-  //  digitalWrite(I2s_SCK, LOW);
+  digitalWrite(speaker_output26, LOW);
 
   // Attach ledcPWM to the pin for the speaker
   Serial.println("Initializing Speaker...");
@@ -124,9 +116,9 @@ void setup() {
 
   configTime(gmtOffset_sec, daylightOffset_sec, ntpServer); //Connects to NTP-Server to get current UNIX-Time
 
-  if (!setFilename(filename, sizeof(filename))) { //
-    Serial.println("Couldn't format filepath");
-  }
+  //  if (!setFilename(filename, sizeof(filename))) { //
+  //    Serial.println("Couldn't format filepath");
+  //  }
 
   SDInit();
 
@@ -170,20 +162,12 @@ void loop() {
             // turns the GPIO on and off
             if (header.indexOf("GET /recording") >= 0) {
               recording_trigger = true;
-              //              Heltec.display->clear();
-              //              Heltec.display->drawString(0, 10, "Starting recording");
-              //              Heltec.display->display();
-              //digitalWrite(speaker_output26, HIGH);
+
+              // digitalWrite(speaker_output26, HIGH);
               // If GPIO was turned on start to play the defined melody
-              //              xTaskCreate(i2s_adc, "i2s_adc", 2 * 1024, NULL, 1, NULL);
-              //****************************************************************************************************************************************************************//
-              //              delay(5000); // Könnte Aktivzeit der Aufnahme verlängern, ansonsten Loopen und gucken ob Task i2s_adc beendet ist
-              //****************************************************************************************************************************************************************//
-              //              melody();
-              //              digitalWrite(speaker_output26, LOW);
-              //              //Heltec.display->clear();
-              //              Heltec.display->drawString(0, 20, "Recording finished!");
-              //              Heltec.display->display();
+              // xTaskCreate(i2s_adc, "i2s_adc", 2 * 1024, NULL, 1, NULL);
+              // melody();
+              // digitalWrite(speaker_output26, LOW);
             }
             else if (header.indexOf("GET /clearSD") >= 0) {
               Serial.println("Wiping .wav-Data from SD");
@@ -245,10 +229,27 @@ void loop() {
     Serial.println("");
 
     if (recording_trigger) {
+      // Format filepath
+      if (!setFilename(filename, sizeof(filename))) { //
+        Serial.println("Couldn't format filepath");
+      }
+      // Create File
+      file = SD.open(filename, FILE_WRITE);
+      if (!file) {
+        Serial.println("File not available");
+      }
+      byte header[headerSize];
+      wavHeader(header, FLASH_RECORD_SIZE);
+      file.write(header, headerSize);
+
+      Serial.print("\nPrinting to file: ");
+      Serial.println(filename);
+      Serial.print("\n");
+      
+      // Start recording of a soundsample
       digitalWrite(speaker_output26, HIGH);
-      //If GPIO was turned on start to play the defined melody
-      xTaskCreate(i2s_adc, "i2s_adc", 2 * 1024, NULL, 1, NULL);
-      //melody();
+      i2s_adc();
+//      melody();
       digitalWrite(speaker_output26, LOW);
       recording_trigger = false;
     }
@@ -297,7 +298,7 @@ void i2s_adc_data_scale(uint8_t* d_buff, uint8_t* s_buff, uint32_t len) {
 /**
    Record any soundinput captured by the microphone
 */
-void i2s_adc(void *arg) {
+void i2s_adc(void) {
   int i2s_read_len = I2S_READ_LEN;
   int flash_wr_size = 0;
   size_t bytes_read;
@@ -313,6 +314,9 @@ void i2s_adc(void *arg) {
     i2s_read(I2S_PORT, (void*) i2s_read_buff, i2s_read_len, &bytes_read, portMAX_DELAY);
     //    example_disp_buf((uint8_t*) i2s_read_buff, 64);
 
+    Serial.print("Bytes read: ");
+    Serial.println(bytes_read);
+
     i2s_adc_data_scale(flash_write_buff, (uint8_t*)i2s_read_buff, i2s_read_len);
     file.write((const byte*) flash_write_buff, i2s_read_len);
     flash_wr_size += i2s_read_len;
@@ -326,8 +330,7 @@ void i2s_adc(void *arg) {
   free(flash_write_buff);
   flash_write_buff = NULL;
 
-  //  listSD();
-  vTaskDelete(NULL);
+  //  vTaskDelete(NULL);
 }
 
 void example_disp_buf(uint8_t* buf, int length) {
@@ -474,13 +477,13 @@ void SDInit() {
   }
   Serial.println("SD connected");
   //SD.remove(filename);
-  file = SD.open(filename, FILE_WRITE);
-  if (!file) {
-    Serial.println("File not available");
-  }
-
-  byte header[headerSize];
-  wavHeader(header, FLASH_RECORD_SIZE);
-
-  file.write(header, headerSize);
+  //  file = SD.open(filename, FILE_WRITE);
+  //  if (!file) {
+  //    Serial.println("File not available");
+  //  }
+  //
+  //  byte header[headerSize];
+  //  wavHeader(header, FLASH_RECORD_SIZE);
+  //
+  //  file.write(header, headerSize);
 }
