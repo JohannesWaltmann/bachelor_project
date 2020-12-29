@@ -1,3 +1,4 @@
+% !TeX spellcheck = en_GB
 \section{Introduction}
 During the last years the usage of smart-wearables (particularly smartwatches) has become more and more common with a number of 337 million units sold in 2019 and a forecast in sales of up to 527 million units by 2024 \cite{tenzer}.
 With that also comes a natural demand in data protection caused by the amount of sensors built in these devices and their ability to capture sensible personal data (e.g. health informations).
@@ -120,56 +121,84 @@ The stimulus can then be applied to the wearer on a regular basis over the time 
 Also if the stimulus used gets leaked or corrupted otherwise a functional biometric system does not need to be recalibrated completely.
 Since even the system itself does not really know the nature of the transformation function only a new stimulus and new sample data are needed.
 
-The realisation of this prototype consists of a microcontroller to generate the stimulus and process its transformation.
+The realization of this prototype consists of a microcontroller to generate the stimulus and process its transformation.
 Additionally the controller is connected with a microphone capsule and a (piezo?-)speaker to emit and record the sound pattern.
  
 \section{Implementation}
 \subsection{Hardware}
-The microcontroller used in this project is the LoRa 32 by Heltec Automation\footnote{\url{https://heltec.org/project/wifi-kit-32/}}.
+\subsubsection{Components}
+The microcontroller used in this project is the LoRa 32 by Heltec Automation\footnote{\href{https://heltec.org/project/wifi-kit-32/}{LoRa Controller}}.
 The controller uses an 32bit dual-core microprocessor by espressif (esp32).
 Other features include onboard Wi-Fi and Bluetooth as well as an 0.97 inch OLED display.
 The controller can be powered using a micro-USB connection to a computer or an attachable lithium battery.
 
 The implementation for the recordings is based around the use of an omnidirectional digital microphone\footnote{\href{https://www.amazon.de/Ambility-Omnidirektionales-Mikrofonmodul-I2S-Schnittstelle-Precision/dp/B07MW95PSS}{Ambility INMP441}}.
 This microphone uses a digital I$^{2}$S-Interface to process its input. 
-For the output of the generated stimuli a miniature speaker with a mylar-membrane\footnote{\href{https://www.conrad.de/de/p/lsf-15m-s-8-ohm-0-8w-miniatur-lautsprecher-geraeusch-entwicklung-85-db-0-500-w-1-st-710277.html}{LSF-15M/S}} is used which is able to conduct noise at up to 85 dB.
+For the output of the generated stimuli a miniature speaker with a mylar-membrane\footnote{\href{https://www.conrad.de/de/p/lsf-15m-s-8-ohm-0-8w-miniatur-lautsprecher-geraeusch-entwicklung-85-db-0-500-w-1-st-710277.html}{LSF-15M/S}} is used.
+The speaker can conduct noise at up to 85 dB.
 
-Further used hardware includes an SD-Card Reader equipped with an 32 Gigabyte SD-Card which is used as a cache to temporarily store the generated audiosamples.
+Further used hardware includes an SD-Card Reader equipped with an 32 Gigabyte SD-Card which is used to store the generated audio-samples.
 
-\textit{\textbf{TODO: Komponentenverkabelung als Schematic oder Breadboardfoto}}
+How the components and the controller are connected to each other can be seen in cf.~Figure~\ref*{fig:pinout}.
+An exact mapping of the single components can be taken from the code.
+\begin{figure}[H]
+	\includegraphics[width=\linewidth]{Media/Hardware_Pinout.png}
+	\caption{Pinout scheme of every component used in the project except the battery-pack.}
+	\label{fig:pinout}
+\end{figure}
+The hardware is powered by a lithium-ion battery with a capacity of 1200mAh and an output of 3.7V.
+It is connected to the controller on its underside using a JST-PH connector. 
+
+\subsubsection{Casing}
+To conduct the associated study, where it is necessary to wear the hardware on the body, a case which is approximately shaped like a bracelet is designed.
+The case consists of two major parts, one to store the controller and battery, the other containing microphone and speaker.
+To keep the cases in place when in use they were fitted with a wristband made from stretchable rubber.
+//TO BE CONTINUED....
+
 \subsection{Software}
 \subsubsection{Development Environments}
-The majority of code in this project was written in the Arduino IDE. 
+The majority of code in this project was written in the Arduino development environment (IDE). 
 This open-source IDE is designed and optimized for the use with microcontrollers from the arduino family.
-It is also possible to add plugins for the support of other microcontroller chips like esp32 or the heltec LoRa family.
+It is also possible to add plugins for the support of other microcontroller chips like esp32 or the Heltec LoRa-controller.
 The IDE supports C and C++ as additional programming languages which can be processed by the microcontrollers.
 
 Another major feature of the IDE is its ability to not only compile the designed sketches but also to flash them onto a microcontroller plugged into the computer via usb.
-\pagebreak
+
+For the design of the casing the software Fusion 360 published by Autodesk was used.
+With this CAD-software it is possible to design shapes in either 2D or 3D format.
+These shapes can then be exported from Fusion 360 in a format which is readable by either a 3D-printer or laser-cutter.
+ 
+
 \begin{figure}[H]
 	\includegraphics[width=\linewidth]{Media/Controller_setup.png}
-	\caption{The individual steps the microcontroller executes during its setup ordered as Statechart.}
+	\caption{Individual steps the microcontroller executes during its setup ordered as Statechart.}
 	\label{fig:cntrlr_stp}
 \end{figure}
 
 \subsubsection{Code}
-The code in this projects sketch is split up into three different parts - the main .ino-file and two additional .cpp files providing further code needed.
+The code in this project is split up into multiple (logical) parts - the main .ino-file and additional .cpp files providing further code needed.
 
-The main file locates the standard setup and loop functions for the microcontroller as well as the functionalities to generate the audio stimulus.
-As seen in cf.~Figure~\ref{fig:cntrlr_stp} the setup functions main focus is initializing the different hardware components as well as starting the provided webinterface.
+The main file locates the default microcontroller functions as well as functionalities to generate the audio stimulus.
 
-The webinterface can later on be used to apply the stimulus and record its alterations.
-\textit{Also the webinterface can be used to download the generated audio sample from the SD Card attached to the microcontroller.}
-To record the audio sample the i2s-interface is used.
-Its exact specifications are defined in the i2s{\_}specs.cpp file. 
+As seen in cf.~Figure~\ref{fig:cntrlr_stp} the setup functions main focus lays on initializing the different hardware components and hosting the socket for the provided web server.
+From this web server an interface is accessible which can be used to apply the stimulus and record its alterations.
+To capture the recordings the i2s interface is used.
 
-Information which is needed by the user can be printed onto the controllers OLED display.
+Information needed by the user can be printed onto the controllers OLED display.
 For this purpose Heltec's version of the SSD1306 Library, which is included in the '\textit{heltec.h}' package, is needed.
-To now print something onto the display it is necessary to call with
+To now print something onto the display it is necessary to use the following statement:
 \begin{lstlisting}[style=inText]
-	Heltec.display->drawString(int x, int y, String text)
+	Heltec.display->drawString(int x, int y, String text);
 \end{lstlisting}
-x and y representing the coordinates on the display starting on the top-left from where the string is to be printed and text being the content to be printed. 
+x and y represent the coordinates on the display starting on the top-left from where the string is to be printed and text being the content to be printed.
+Afterwards the method \textit{display()} has to be called using the statement
+\begin{lstlisting}[style=inText]
+	Heltec.display->display();
+\end{lstlisting}
+since just using the \textit{drawString} method will only write the strings into a buffer but not print them onto the
+display.
+An additional feature which is implemented during the setup function is the connection to an NTP-Server.
+This server is later used to uniquely identify the recorded data by adding date- and timestamps of the recordings start to each file.
 
 \paragraph{Stimulus Generation}
 As for the stimulus' generation the used tone() function is implemented separately since the esp32 chipset does not support its functionalities naturally.
@@ -209,26 +238,78 @@ Between these alterations the pitch is set by setting a delay as previously comp
 As a final step a delay of 20 ms is set to separate the individual tone blocks from one another.
 
 \paragraph{Recording the Sample}
-über die i2s sachen...nochmal in youtube Video reingucken.
 
 - Welche Params warum.
-
 - Was tut i2s-init.
-
 - was tut i2s-adc und warum bzw braucht man i2s-adc-data-scale.
-
 - In Data-scale Wert mit 4096 /2048 etc...dient der Verstärkung, dabei je kleiner desto lauter
-
 - irgendwas grafisches dazu?.
 
 \paragraph{Webinterface}
-Wie wird erstellt.
+To manage the functions of this project and start the recordings and playbacks a webinterface is used.
+It's implementation is located in the main .ino-file as a part of the loop-function.
 
-welche funktionen haben die einzelnen buttons.
+As it can be seen in Listing~\ref{lst:WiFiCon} the socket listens for incoming clients and then processes the incoming requests as long as the client is connected.
+The first response sent to an incoming client is "HTTP/1.1 200 OK" and the content-type of the response.
 
-Wie sieht interface in Browser aus!!! Screenshot von Firefox oder so.
+Additionally to this response code the client can process incoming GET-requests, e.g. when the button to start a recording is pressed on the webinterface.
+For this handling if statements like the following are used.
+\begin{lstlisting}[style=inText] 
+	if (header.indexOf("GET /recording") >= 0) {...}  
+\end{lstlisting}
+The last mandatory feature which is printed to the client during this first if-statement consists of several single \textit{client.println()} statements containing the data for the web page.
+These prints have to go in between the last printed blank line (seen in line 25 of Listing~\ref{lst:WiFiCon}) and the if-statements to handle incoming requests as described above.
 
-Mit welchen Browsern funktioniert/getestet.
+How the webinterface is displayed is shown in cf. Figure~\ref{fig:webinterface} using the browser Microsoft Edge.
+\begin{figure}
+	\frame{\includegraphics[width=\linewidth]{Media/webinterface_edge.png}}
+	\caption{The Webinterface which is used to control the functions of the prototype as it is displayed by the Microsoft Edge browser.}
+	\label{fig:webinterface}
+\end{figure}
+Through the interface it is possible to on the recording of a new test sample and also to remove every recording which is saved on the attached SD-card.
+A third feature is located in the box on the pages bottom where the SD-cards space which is already in use is shown (represented by the character 'X').
+The exact space is calculated by the method \textit{getUsedSpace()} located in the requirements.cpp-file which then replaces the character 'X' on the interface. 
+\begin{lstlisting}[frame=single, language={c++}, style=style,
+	caption={TBD sadfasfvereqadsfasfadsvasdfwFSADGASGDFASDFG.}, label={lst:WiFiCon},float=!htb]
+void loop() {
+	WiFiClient client = server.available();
+	
+	if (client) {
+		currentTime = millis();
+		previousTime = currentTime;
+		String currentLine = "";
+		while (client.connected() && currentTime - previousTime <= timeoutTime) {
+			currentTime = millis();
+			if (client.available()) {
+				char c = client.read();
+				header += c;
+				if (c == '\n') {
+					if (currentLine.length() == 0) {
+						client.println("HTTP/1.1 200 OK");
+						client.println("Content-type:text/html");
+						client.println("Connection: close");
+						client.println();
+						
+						// Handle incoming GET-Request
+						
+						// Print the content of the web page to be
+						// displayed
+						
+						client.println();
+						break;
+					} else {
+						currentLine = "";
+					}
+				} else if (c != '\r') {
+					currentLine += c;
+				}
+			}
+		}
+		header = "";
+		client.stop();
+\end{lstlisting}
+
+Other web-browsers which were used include Google Chrome and Mozilla Firefox with Firefox being the browser used the most for testing the prototypes functionalities.
 
 \section{Evaluation}
 \section{Conclusion}
