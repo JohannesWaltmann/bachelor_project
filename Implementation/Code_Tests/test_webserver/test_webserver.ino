@@ -13,8 +13,8 @@
 boolean recording_trigger = false;
 
 // Credentials of the used wireless network
-const char* ssid = "";
-const char* password = "";
+const char* ssid = "FRITZ!Box 7590 UR";
+const char* password = "98861303091966401412";
 
 File file;
 
@@ -36,7 +36,7 @@ const int speaker_output26 = 26;
 
 // Parameters for ledc Initialization
 const int channel = 0; // PWM channel
-const int frequency = 4000; // Initial frequency
+const int frequency = 2000; // Initial frequency
 const int resolution = 8; // Resolution of the duty cycle in Bit
 
 // Timer variables used for client timeouts defined in Millisecs
@@ -90,7 +90,7 @@ void setup() {
 
   // Declare the pin for the speaker as output and deactivate it
   pinMode(speaker_output26, OUTPUT);
-  digitalWrite(speaker_output26, LOW);
+  //digitalWrite(speaker_output26, LOW);
 
   // Attach ledcPWM to the pin for the speaker
   Serial.println("Initializing Speaker...");
@@ -161,12 +161,10 @@ void loop() {
 
             // turns the GPIO on and off
             if (header.indexOf("GET /recording") >= 0) {
-              recording_trigger = true;
-
-              // digitalWrite(speaker_output26, HIGH);
-              // If GPIO was turned on start to play the defined melody
-              // xTaskCreate(i2s_adc, "i2s_adc", 2 * 1024, NULL, 1, NULL);
-              // melody();
+              //recording_trigger = true;
+              melody();
+              
+              // digitalWrite(speaker_output26, HIGH);              
               // digitalWrite(speaker_output26, LOW);
             }
             else if (header.indexOf("GET /clearSD") >= 0) {
@@ -360,7 +358,7 @@ void tone(int channel, int frequencyHZ, long durance) {
 
   // Not each tick of the computed notelength activate the speaker
   for ( int x = 0; x < loopTime; x++) {
-    ledcWriteTone(channel, 3000);
+    ledcWriteTone(channel, 2000);
     delayMicroseconds(delayAmount);
     ledcWriteTone(channel, 0);
     delayMicroseconds(delayAmount);

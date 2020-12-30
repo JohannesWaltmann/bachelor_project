@@ -238,11 +238,21 @@ Between these alterations the pitch is set by setting a delay as previously comp
 As a final step a delay of 20 ms is set to separate the individual tone blocks from one another.
 
 \paragraph{Recording the Sample}
+With Inter-IC Sound (I$^2$S) an serial interface is used to generate the recordings needed for the study.
+I$^2$S works with a bus consisting of minimum three lines.
+
+The lines which are definitely needed include Serial Clock (SCK), Word Select (WS) and Serial Data (SD) but it is also possible to add further lines to the bus.  
+
+To work with an arduino or esp-32 based microcontroller it is necessary to include the I$^2$S-Drivers into the source-code.
 
 - Welche Params warum.
+
 - Was tut i2s-init.
+
 - was tut i2s-adc und warum bzw braucht man i2s-adc-data-scale.
+
 - In Data-scale Wert mit 4096 /2048 etc...dient der Verstärkung, dabei je kleiner desto lauter
+
 - irgendwas grafisches dazu?.
 
 \paragraph{Webinterface}
