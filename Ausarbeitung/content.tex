@@ -104,7 +104,7 @@ Conclusions Johnston et al. drew from their results were that it is possible to 
 %For the realisation of the described prototype a microcontroller will be used in combination with a microphone capsule and a little buzzer or speaker to capture and generate the stimuli described above.
 
 \section{Concept}
-With the introduction of functional biometrics space was created for the development of new mechanisms and variations in biometric authentication.
+With the introduction of functional biometrics, space was created for the development of new mechanisms and variations in biometric authentication.
 Contrary to other biometric systems which rely on e.g. fingerprints the body function used in functional biometrics can not be leaked or reproduced that easily.
 This is due to the function being comprised of each individuals own body structure and bone density \cite{schneegass2020functbiometric}.
 
@@ -127,23 +127,22 @@ Additionally the controller is connected with a microphone capsule and a speaker
 \section{Implementation}
 \subsection{Hardware}
 \subsubsection{Components}
-The microcontroller used in this project is the LoRa 32 by Heltec Automation\footnote{\href{https://heltec.org/project/wifi-kit-32/}{LoRa Controller}}.
-The controller uses an 32bit dual-core microprocessor by espressif (esp32).
+The microcontroller used in this project is the LoRa 32 by Heltec Automation\footnote{LoR Controller,~\url{https://heltec.org/project/wifi-kit-32/}}.
+The controller uses an 32bit dual-core microprocessor by espressif (ESP32).
 Other features include onboard Wi-Fi and Bluetooth as well as an 0.97 inch OLED display.
 The controller can be powered using a micro-USB connection to a computer or an attachable lithium battery.
 
-The implementation for the recordings is based around the use of an omnidirectional digital microphone\footnote{\href{https://www.amazon.de/Ambility-Omnidirektionales-Mikrofonmodul-I2S-Schnittstelle-Precision/dp/B07MW95PSS}{Ambility INMP441}}.
+The implementation for the recordings is based around the use of an omnidirectional digital microphone\footnote{Ambility~INMP441,~\url{https://www.amazon.de/Ambility-Omnidirektionales-\\Mikrofonmodul-I2S-Schnittstelle-Precision/dp/B07MW95PSS}}.
 This microphone uses a digital I$^{2}$S-Interface to process its input. 
-For the output of the generated stimuli a miniature speaker with a mylar-membrane\footnote{\href{https://www.conrad.de/de/p/lsf-15m-s-8-ohm-0-8w-miniatur-lautsprecher-geraeusch-entwicklung-85-db-0-500-w-1-st-710277.html}{LSF-15M/S}} is used.
-The speaker can conduct noise at up to 85 dB.
-
+For the output of the generated stimuli a miniature speaker with a mylar-membrane\footnote{LSF-15M/S,~\url{https://www.conrad.de/de/p/lsf-15m-s-8-ohm-0-8w-miniatur-\\lautsprecher-geraeusch-entwicklung-85-db-0-500-w-1-st-710277.html}} is used.
+The speaker can conduct noise at up to 85~dB.
 Further used hardware includes an SD-Card Reader equipped with an 32 Gigabyte SD-Card which is used to store the generated audio-samples.
 
-How the components and the controller are connected to each other can be seen in cf.~Figure~\ref*{fig:pinout}.
-An exact mapping of the single components can be taken from the code.
+An overview of the connection between controller and the other components can be seen in Figure~\ref{fig:pinout}.
+An exact mapping of the single components can be taken from the code\footnote{URL zum Git einfügen}.
 \begin{figure}[H]
 	\includegraphics[width=\linewidth]{Media/Hardware_Pinout.png}
-	\caption{Pinout scheme of every component used in the project except the battery-pack.}
+	\caption{Pinout scheme of every component used in the project. The battery-pack which can be connected to the underside of the controller is not shown here for reasons of clarity.}
 	\label{fig:pinout}
 \end{figure}
 The hardware is powered by a lithium-ion battery with a capacity of 1200mAh and an output of 3.7V.
@@ -155,12 +154,15 @@ The case consists of two major parts, one to store the controller and battery, t
 To keep the cases in place when in use they were fitted with a wristband made from stretchable rubber.
 //TO BE CONTINUED....
 
-\subsection{Software}
-\subsubsection{Development Environments}
+%\subsection{Software}
+%The following section will focus on every aspect regarding the development of the software used for this work.
+%This includes the tools used (such as development environments or software to design the hardware-casing) but also the steps taken to design the actual %software are described. 
+\subsection{Development Tools}
 The majority of code in this project was written in the Arduino development environment (IDE). 
 This open-source IDE is designed and optimized for the use with microcontrollers from the arduino family.
-It is also possible to add plugins for the support of other microcontroller chips like esp32 or the Heltec LoRa-controller.
-The IDE supports C and C++ as additional programming languages which can be processed by the microcontrollers.
+It is also possible to add plugins for the support of other microcontroller chips like ESP32 or the Heltec LoRa-controller.
+Therefore it is necessary to include the functionality-packages provided by the chip developers under \texttt{"Tools > Board > Board Manager"} in the Arduino IDE.
+The IDE supports C and C\texttt{++} as additional programming languages which can be processed by the microcontrollers.
 
 Another major feature of the IDE is its ability to not only compile the designed sketches but also to flash them onto a microcontroller plugged into the computer via usb.
 
@@ -175,40 +177,41 @@ These shapes can then be exported from Fusion 360 in a format which is readable 
 	\label{fig:cntrlr_stp}
 \end{figure}
 
-\subsubsection{Code}
+\subsection{Software}
 The code in this project is split up into multiple (logical) parts - the main .ino-file and additional .cpp files providing further code needed.
-
 The main file locates the default microcontroller functions as well as functionalities to generate the audio stimulus.
 
-As seen in cf.~Figure~\ref{fig:cntrlr_stp} the setup functions main focus lays on initializing the different hardware components and hosting the socket for the provided web server.
+As seen in Figure~\ref{fig:cntrlr_stp} the setup functions main focus lays on initializing the different hardware components and hosting the socket for the provided web server.
 From this web server an interface is accessible which can be used to apply the stimulus and record its alterations.
 To capture the recordings the i2s interface is used.
 
 Information needed by the user can be printed onto the controllers OLED display.
-For this purpose Heltec's version of the SSD1306 Library, which is included in the '\textit{heltec.h}' package, is needed.
-To now print something onto the display it is necessary to use the following statement:
+For this purpose Heltec's version of the SSD1306 Library, which is included in the \enquote{\texttt{heltec.h}} package\footnote{\url{https://github.com/HelTecAutomation/Heltec_ESP32/blob/master/src/heltec.h}}, is needed.
+It is located in the data included with the Heltec ESP32 board manager.
+The packages functionalities are accessible by including its header at the beginning of the sketches main-file.
+
+To print something onto the display it is necessary to use the following statements first line:
 \begin{lstlisting}[style=inText]
 	Heltec.display->drawString(int x, int y, String text);
-\end{lstlisting}
-x and y represent the coordinates on the display starting on the top-left from where the string is to be printed and text being the content to be printed.
-Afterwards the method \textit{display()} has to be called using the statement
-\begin{lstlisting}[style=inText]
 	Heltec.display->display();
 \end{lstlisting}
-since just using the \textit{drawString} method will only write the strings into a buffer but not print them onto the
+The parameters \texttt{x} and \texttt{y} represent the coordinates on the display starting on the top-left from where the string is to be printed and text being the content to be printed.
+Afterwards the method \texttt{display()} has to be called using the  statements second line since just using the \texttt{drawString} method will only write the strings into a buffer but not print them onto the
 display.
+It is not necessary to call the method \texttt{display()} after each line but just once per block.
+
 An additional feature which is implemented during the setup function is the connection to an NTP-Server.
 This server is later used to uniquely identify the recorded data by adding date- and timestamps of the recordings start to each file.
 
-\paragraph{Stimulus Generation}
-As for the stimulus' generation the used tone() function is implemented separately since the esp32 chipset does not support its functionalities naturally.
+\subsubsection{Stimulus Generation}
+As for the stimulus' generation the used \texttt{tone()} function is implemented separately since the ESP32 chipset does not support its functionalities naturally.
 For this purpose the LED PWM functions can be used.
 Using this functionality it is possible to control and alter both frequency and duty cycle of the output.
 
-Initially these values are set within the \textit{ledcSetup()} function.
-When changing the duty cycle at constant frequency it is possible to shift the pitch of the sound using the \textit{ledcWrite()} function.
+Initially these values are set within the \texttt{ledcSetup()} function.
+When changing the duty cycle at constant frequency it is possible to shift the pitch of the sound using the \texttt{ledcWrite()} function.
 When changing the frequency at constant duty cycle it is possible to generate different notes.
-To do so the function \textit{ledcWriteTone()} has to be used instead of \textit{ledcWrite()}.
+To do so the function \texttt{ledcWriteTone()} has to be used instead of \texttt{ledcWrite()}.
 \begin{lstlisting}[frame=single, language={c++}, style=style,
 				   caption={Function used to generate a single note using frequency and sound duration.}, label={lst:toneFunct},float=!htb]
 void tone(int channel, int frequency_in_HZ,
@@ -228,38 +231,38 @@ void tone(int channel, int frequency_in_HZ,
 }
 \end{lstlisting}
 
-Based on these conditions the function tone() as seen in Listing~\ref{lst:toneFunct} uses the method ledcWriteTone() to generate sound\footnote{The function is taken from this \href{https://gist.github.com/tagliati/1804108}{git} and altered slightly to work with the esp32 chipset}.
-Additionally the parameters \textit{channel, frequency and durance} are required.
+Based on these conditions the function \texttt{tone()} as seen in Listing~\ref{lst:toneFunct} uses the method \texttt{ledcWriteTone()} to generate sound\footnote{The function is taken from the gitHub provided by André Tagliati~\cite{tagliati} and altered slightly to work with the ESP32 chipset.}.
+Additionally the parameters \texttt{channel, frequency} and \texttt{durance} are required.
 Using these parameters the function can determine the values for delay and loopTime representing pitch and sound duration respectively of the generated audio.
 The third parameter is used to represent the PWM channel through which the sound will be forwarded.
 
-Within the for-loop the ledcWriteTone() function is used to alternately set the PWM pin to high and low.
+Within the for-loop the \texttt{ledcWriteTone()} function is used to alternately set the PWM pin to high and low.
 Between these alterations the pitch is set by setting a delay as previously computed.
 As a final step a delay of 20 ms is set to separate the individual tone blocks from one another.
 
 Now the actual stimulus can be designed by implementing a method which uses a combination of the tone-function as described above and the delay-function.
 The method containing the stimulus can then be called during the loop-function each time a new recording is started through the web-interface.
 
-\paragraph{Recording the Sample}
+\subsubsection{Recording the Sample}
 With Inter-IC Sound (I$^2$S) an serial interface is used to generate the recordings needed for the study.
 I$^2$S works with a bus consisting of minimum three lines.
 
 The lines which are mandatory include Serial Clock (SCK), Word Select (WS) and Serial Data (SD) but it is also possible to add further lines to the bus.  
 
-To work with an arduino or esp-32 based microcontroller it is necessary to include the I$^2$S-Drivers into the source-code.
-Based on this package the methods\textit{ i2sInit()}, \textit{i2s\_adc\_data\_scale()} and \textit{i2s\_adc()} operate.
+To work with an arduino or ESP32 based microcontroller it is necessary to include the I$^2$S-Drivers into the source-code.
+Based on this package the methods\texttt{ i2sInit()}, \texttt{i2s\_adc\_data\_scale()} and \texttt{i2s\_adc()} operate.
 
-Within i2sInit the parameters needed by the I$^2$S framework are configured.
-Also the ports needed by the hardware are assigned and it is defined whether sound shall be recorded (the serial data param is set to data\_in\_num) or emitted (the serial data param is set to data\_out\_num).
+Within \texttt{i2sInit()} the parameters needed by the I$^2$S framework are configured.
+Also the ports needed by the hardware are assigned and it is defined whether sound shall be recorded (the serial data param is set to \texttt{data\_in\_num}) or emitted (the serial data param is set to \texttt{data\_out\_num}).
 
-The actual recording-process is controlled by the method i2s\_adc.
-There the input form the microphone is captured using the method i2s\_read from the I$^2$S package.
+The actual recording-process is controlled by the method \texttt{i2s\_adc()}.
+There the input form the microphone is captured using the method \texttt{i2s\_read()} from the I$^2$S package.
 It is used to read the data captured by e.g. a microphone into a predefined destination address.
 After defining the different buffer sizes needed during the recording process the input from the attached microphone is read and saved to a file.
 This process takes until a specified file size is reached.
 The file size is computed from amongst other parameters the sample rate, bits per sample but also the recordings duration.  
 
-Since the natural volume of the recording is relatively low when using only the i2s\_adc method each chunk of data can be scaled using the method i2s\_adc\_data\_scale before writing it to the filesystem.
+Since the natural volume of the recording is relatively low when using only the \texttt{i2s\_adc()} method each chunk of data can be scaled using the method \texttt{i2s\_adc\_data\_scale()} before writing it to the filesystem.
 This scaling is done by multiplying each bit of the recording with a special factor as it can be seen in Listing~\ref{lst:adcScale} after performing a bitshift on the original values.
 \begin{lstlisting}[frame=single, language={c++}, style=style,
 	caption={The function which is used to scale the captured recordings volume.}, label={lst:adcScale},float=!htb]	
@@ -278,7 +281,7 @@ This scaling is done by multiplying each bit of the recording with a special fac
 The parameter which is represented by the placeholder "FACTOR" in the Listing~\ref{lst:adcScale} is a multiple of 1024 where the less the value is set the louder the recording will become (For this implementation the value 4096 is used).
 One little disadvantage of this method is that not only the recorded sound will be scaled but also the volume of other recorded noise is enhanced.
 
-\paragraph{Webinterface}
+\subsubsection{Webinterface}
 To manage the functions of this project and start the recordings and playbacks a webinterface is used.
 It's implementation is located in the main .ino-file as a part of the loop-function.
 
@@ -290,10 +293,10 @@ For this handling if statements like the following are used.
 \begin{lstlisting}[style=inText] 
 	if (header.indexOf("GET /recording") >= 0) {...}  
 \end{lstlisting}
-The last mandatory feature which is printed to the client during this first if-statement consists of several single \textit{client.println()} statements containing the data for the web page.
-These prints have to go in between the last printed blank line (seen in line 25 of Listing~\ref{lst:WiFiCon}) and the if-statements to handle incoming requests as described above.
+The last mandatory feature which is printed to the client during this first if-statement consists of several single \texttt{client.println()} statements containing the data for the web page.
+These prints have to go in between the last printed blank line (seen in line 25 of cf.,~Listing~\ref{lst:WiFiCon}) and the if-statements to handle incoming requests as described above.
 
-How the webinterface is displayed is shown in cf. Figure~\ref{fig:webinterface} using the browser Microsoft Edge.
+How the webinterface is displayed is shown in Figure~\ref{fig:webinterface} using the browser Microsoft Edge.
 \begin{figure}
 	\frame{\includegraphics[width=\linewidth]{Media/webinterface_edge.png}}
 	\caption{The Webinterface which is used to control the functions of the prototype as it is displayed by the Microsoft Edge browser.}
@@ -301,7 +304,7 @@ How the webinterface is displayed is shown in cf. Figure~\ref{fig:webinterface} 
 \end{figure}
 Through the interface it is possible to on the recording of a new test sample and also to remove every recording which is saved on the attached SD-card.
 A third feature is located in the box on the pages bottom where the SD-cards space which is already in use is shown (represented by the character 'X').
-The exact space is calculated by the method \textit{getUsedSpace()} located in the requirements.cpp-file which then replaces the character 'X' on the interface. 
+The exact space is calculated by the method \texttt{getUsedSpace()} located in the requirements.cpp-file which then replaces the character 'X' on the interface. 
 \begin{lstlisting}[frame=single, language={c++}, style=style,
 	caption={The part of the loop-function which is used to manage the connection of a socket hosted on the microcontroller to a web-client.}, label={lst:WiFiCon},float=!htb]
 void loop() {
