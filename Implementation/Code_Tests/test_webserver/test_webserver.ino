@@ -192,10 +192,9 @@ void loop() {
             // Display current state, and ON/OFF buttons for GPIO 26
             client.println("<p>Start Recording</p>");
             // If the output26State_Speaker is off, it displays the ON button
-            client.println("<p><a href=\"/recording\"><button class=\"button\">ON</button></a></p>");
-            //Button to start Filedownload
-            client.println("<p>Download Filesample</p>");
-            client.println("<p><a href=\"/download\"><button class=\"button\">DOWNLOAD</button></a></p>");
+            client.println("<a href=\"/recordingHigh\"><button class=\"button\">High-Pitch</button></a>");
+            client.println("<a href=\"/recordingLow\"><button class=\"button\">Low-Pitch</button></a>");
+            client.println("<a href=\"/recordingMelody\"><button class=\"button\">Melody</button></a>");
             //Display UI-Reset Button
             client.println("<p>Remove old Recordings</p>");
             client.println("<p><a href=\"/clearSD\"><button class=\"button button2\">Clear SD</button></a></p>");
