@@ -89,41 +89,32 @@ Tests in regard of both design types showed that the general performance of auth
 Additionally the overall performances of the acceleration-sensor was higher than the gyro-sensor.
 Conclusions Johnston et al. drew from their results were that it is possible to authenticate someone sufficient enough using a smartwatch but they propose not to use the system for something other than a multi-modal biometric system at its current level. 
 \newpage
-%\section{Concept v1}
-%The main motivation for this work lays in the concept of \textit{functional biometrics} \cite{schneegass2020functbiometric}.
-%One already proposed implementation for this concept is the head mounted SkullConduct device \cite{SkullConduct}.
-%There the HMD would emit a white noise sound sample against the wearers head whichs captured alteration is then used for the authentication.
-%Limitations of SkullConduct are, amongst others, that it can only be applied on a fixed position whereas the concept provided here could be used on different body parts like arms or legs.
-%This is relevant as it is more likely that the majority of people would use small smart devices rather than HMDs.
-%
-%Possible stimuli for the bracelet could be sound patters which use either white noise, frequency changes or little melodies.
-%The stimulus can then be applied to the wearer on a regular base over the time the device is worn to ensure it is used by the correct user.
-%Also if the stimulus used gets leaked or corrupted otherwise a functional biometric system does not need to be recalibrated completely.
-%Since even the system itself does not really know the nature of the transformation function only a new stimulus and new sample data are needed.
-%
-%For the realisation of the described prototype a microcontroller will be used in combination with a microphone capsule and a little buzzer or speaker to capture and generate the stimuli described above.
 
 \section{Concept}
 With the introduction of functional biometrics, space was created for the development of new mechanisms and variations in biometric authentication.
 Contrary to other biometric systems which rely on e.g. fingerprints the body function used in functional biometrics can not be leaked or reproduced that easily.
 This is due to the function being comprised of each individuals own body structure and bone density \cite{schneegass2020functbiometric}.
 
+A function based biometric system authenticates its user by applying a stimulus to the users body.
+Based around the name-giving body-function a characteristic transformation of the stimulus happens which can be measured.
+This measurement can then be compared with a previously stored measurement using the same stimulus to authenticate the user.
+
 An already existing implementation approach to functional biometrics is the SkullConduct head mounted device (HMD) introduced by Schneegass et al. \cite{SkullConduct}.
-There the HMD would emit a white noise sound sample against the wearers head.
-The captured sound alteration is then used for the authentication.
-Limitations of SkullConduct are, amongst others, that it can only be applied on a fixed position whereas the concept provided here could be used on different body parts like arms or legs.
-This is relevant as it is more likely that the majority of possible users would prefer smaller smart devices such as smartwatches or other forms of bracelets, rather than HMDs on an everyday basis(cite?).
- 
+There the stimulus used consisted of a sound sample being applied and re-captured by the HMD.
+One limitation coming with this exemplary work is, that with the authentication being reliant on the HMD it is based around a device with rather fixed location.
+
+From this point of view it would be more useful to have a device in smaller shape e.g. the form of a bracelet, which could be worn on either arms or legs.
+It's functionalities could exemplarily be integrated into a smartwatch or other small wearable smart-devices. 
 The authentication provided by the bracelet could be either used to secure data saved on the smart device or as multiple factor authentication for other connected devices like smartphones.
 
 Possible stimuli for the bracelet could be sound patters which use either white noise, frequency changes or little melodies.
 The stimulus can then be applied to the wearer on a regular basis over the time the device is worn to ensure it is used by the correct user.
-Also if the stimulus used gets leaked or corrupted otherwise a functional biometric system does not need to be recalibrated completely.
+Also, if the stimulus used gets leaked or corrupted otherwise, a functional biometric system does not need to be recalibrated completely.
 Since even the system itself does not really know the nature of the transformation function only a new stimulus and new sample data are needed.
 
-The realization of this prototype consists of a microcontroller to generate the stimulus and process its transformation.
-Additionally the controller is connected with a microphone capsule and a speaker to emit and record the sound pattern.
- 
+The prototype realised in this work consists of a microcontroller which is used to generate and apply the stimulus as well as to capture the transformation.
+For this purpose it is connected to each a little microphone capsule and a speaker with small form factor.
+
 \section{Implementation}
 \subsection{Hardware}
 \subsubsection{Components}
@@ -348,4 +339,17 @@ void loop() {
 Other web-browsers which were used include Google Chrome and Mozilla Firefox with the latter one being the browser used most for testing the prototypes functionalities.
 
 \section{Evaluation}
+\subsection{Studydesign}
+repeated measures
+5-6 probanden mit je mind 2 Sessions aka 2 Tage
+Alle machen das gleiche 
+
+Armband an verscheidene Stellen
+LO, LU RO RU
+Tonfolge benötigt 
+1x radom 1x hoch 1x tief
+
+Jede Messung 2x machen
+--> 24 measures pP
+
 \section{Conclusion}
