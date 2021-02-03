@@ -38,34 +38,35 @@ Jain, A.K., Flynn, P., Ross, A.A.: Handbook of biometrics. Springer Science \&
 \bibitem{jakobsson2009implicit}
 Jakobsson, M., Shi, E., Golle, P., Chow, R.: Implicit authentication for mobile
   devices. In: Proceedings of the 4th USENIX conference on Hot topics in
-  security. pp.~9--9 (2009)
+  security. pp.~9--9 (2009). \doi{10.5555/1855628.1855637}
 
 \bibitem{johnston2015smartwatch}
 Johnston, A.H., Weiss, G.M.: Smartwatch-based biometric gait recognition. In:
   2015 IEEE 7th International Conference on Biometrics Theory, Applications and
-  Systems (BTAS). pp.~1--6. IEEE (2015)
+  Systems (BTAS). pp.~1--6. IEEE (2015). \doi{10.1109/BTAS.2015.7358794}
 
 \bibitem{koong2014user}
 Koong, C.S., Yang, T.I., Tseng, C.C.: A user authentication scheme using
   physiological and behavioral biometrics for multitouch devices. The
-  Scientific World Journal  \textbf{2014} (2014)
+  Scientific World Journal  \textbf{2014} (2014). \doi{10.1155/2014/781234}
 
 \bibitem{kwapisz2010cell}
 Kwapisz, J.R., Weiss, G.M., Moore, S.A.: Cell phone-based biometric
   identification. In: 2010 Fourth IEEE International Conference on Biometrics:
-  Theory, Applications and Systems (BTAS). pp.~1--7. IEEE (2010)
+  Theory, Applications and Systems (BTAS). pp.~1--7. IEEE (2010).
+  \doi{10.1109/BTAS.2010.5634532}
 
 \bibitem{schneegass2020functbiometric}
 Liebers, J., Schneegass, S.: Introducing functional biometrics: Using
   body-reflections as a novel class of biometric authentication systems. In:
   Extended Abstracts of the 2020 CHI Conference on Human Factors in Computing
-  Systems Extended Abstracts. pp.~1--7 (2020)
+  Systems Extended Abstracts. pp.~1--7 (2020). \doi{10.1145/3334480.3383059}
 
 \bibitem{ranjan2016automatic}
 Ranjan, J., Whitehouse, K.: Automatic authentication of smartphone touch
   interactions using smartwatch. In: Proceedings of the 2016 ACM International
   Joint Conference on Pervasive and Ubiquitous Computing: Adjunct. pp. 361--364
-  (2016)
+  (2016). \doi{10.1145/2968219.2971370}
 
 \bibitem{SkullConduct}
 Schneegass, S., Oualil, Y., Bulling, A.: Skullconduct: Biometric user
@@ -77,27 +78,28 @@ Schneegass, S., Oualil, Y., Bulling, A.: Skullconduct: Biometric user
 \bibitem{shi2010implicit}
 Shi, E., Niu, Y., Jakobsson, M., Chow, R.: Implicit authentication through
   learning user behavior. In: International Conference on Information Security.
-  pp. 99--113. Springer (2010)
+  pp. 99--113. Springer-Verlag (2010). \doi{10.5555/1949317.1949329}
 
 \bibitem{wayman2005introduction}
 Wayman, J., Jain, A., Maltoni, D., Maio, D.: An introduction to biometric
-  authentication systems. In: Biometric Systems, pp. 1--20. Springer (2005)
+  authentication systems. In: Biometric Systems, pp. 1--20. Springer (2005).
+  \doi{10.1007/1-84628-064-8_1}
 
 \bibitem{xu2017gait}
 Xu, W., Shen, Y., Zhang, Y., Bergmann, N., Hu, W.: Gait-watch: A context-aware
   authentication system for smart watch based on gait recognition. In:
   Proceedings of the Second International Conference on Internet-of-Things
-  Design and Implementation. pp. 59--70 (2017)
+  Design and Implementation. pp. 59--70 (2017). \doi{10.1145/3054977.3054991}
 
 \bibitem{yampolskiy2008behavioural}
 Yampolskiy, R.V., Govindaraju, V.: Behavioural biometrics: a survey and
   classification. International Journal of Biometrics  \textbf{1}(1),  81--113
-  (2008)
+  (2008). \doi{10.1504/IJBM.2008.018665}
 
 \bibitem{yang2015motionauth}
 Yang, J., Li, Y., Xie, M.: Motionauth: Motion-based authentication for wrist
   worn smart devices. In: 2015 IEEE International Conference on Pervasive
   Computing and Communication Workshops (PerCom Workshops). pp. 550--555. IEEE
-  (2015)
+  (2015). \doi{10.1109/PERCOMW.2015.7134097}
 
 \end{thebibliography}

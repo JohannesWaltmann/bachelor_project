@@ -286,13 +286,15 @@ For this handling if statements like the following are used.
 \end{lstlisting}
 The last mandatory feature which is printed to the client during this first if-statement consists of several single \texttt{client.println()} statements containing the data for the web page.
 These prints have to go in between the last printed blank line (seen in line 25 of cf.,~Listing~\ref{lst:WiFiCon}) and the if-statements to handle incoming requests as described above.
+The webinterfaces visual appearance was designed using a basic combination of HTML and CSS.
+It can be seen in Figure~\ref{fig:webinterface} displayed by the browser Microsoft Edge.
 
-How the webinterface is displayed is shown in Figure~\ref{fig:webinterface} using the browser Microsoft Edge.
 \begin{figure}
 	\frame{\includegraphics[width=\linewidth]{Media/webinterface_edge.png}}
-	\caption{The Webinterface which is used to control the functions of the prototype as it is displayed by the Microsoft Edge browser.}
+	\caption{The Webinterface which is used to control the functions of the prototype as it is displayed by the Microsoft Edge browser. The three blue buttons can be used to start playing and recording one version of the soundstimulus each. The fourth button can be used to clear every existing .wav-File from the SD-Card.}
 	\label{fig:webinterface}
 \end{figure}
+
 Through the interface it is possible to on the recording of a new test sample and also to remove every recording which is saved on the attached SD-card.
 A third feature is located in the box on the pages bottom where the SD-cards space which is already in use is shown (represented by the character 'X').
 The exact space is calculated by the method \texttt{getUsedSpace()} located in the requirements.cpp-file which then replaces the character 'X' on the interface. 
@@ -339,17 +341,17 @@ void loop() {
 Other web-browsers which were used include Google Chrome and Mozilla Firefox with the latter one being the browser used most for testing the prototypes functionalities.
 
 \section{Evaluation}
-\subsection{Studydesign}
-repeated measures
-5-6 probanden mit je mind 2 Sessions aka 2 Tage
-Alle machen das gleiche 
 
-Armband an verscheidene Stellen
-LO, LU RO RU
-Tonfolge benötigt 
-1x radom 1x hoch 1x tief
+\subsection{Study}
+\subsubsection{Design}
+asdfsd\cite{wayman2005introduction} asdfs
+Study as repeated measures.
+5 (6) participants attended on two distinct sessions each.
+All participants tested with the same stimuli and configs.
+Each participant recorded three different soundstimuli, each stimulus on four different positions making 12 recordings per session
+and 24 recordings per participant in total.
 
-Jede Messung 2x machen
---> 24 measures pP
+Recorded length was (20sec) for every recording.
+
 
 \section{Conclusion}
