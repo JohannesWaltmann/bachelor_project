@@ -160,12 +160,16 @@ void loop() {
             client.println();
 
             // turns the GPIO on and off
-            if (header.indexOf("GET /recording") >= 0) {
+            if (header.indexOf("GET /recordingMelody") >= 0) {
               //recording_trigger = true;
               melody();
-              
-              // digitalWrite(speaker_output26, HIGH);              
-              // digitalWrite(speaker_output26, LOW);
+
+            }
+            else if (header.indexOf("GET /recordingHigh") >= 0) {
+              // TODO: Start Recording a highpitched Soundsample
+            }
+            else if (header.indexOf("GET /recordingLow") >= 0) {
+              // TODO: Start Recording a lowpitched Soundsample
             }
             else if (header.indexOf("GET /clearSD") >= 0) {
               Serial.println("Wiping .wav-Data from SD");
