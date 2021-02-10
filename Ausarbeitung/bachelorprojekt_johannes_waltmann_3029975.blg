@@ -2,23 +2,14 @@ This is BibTeX, Version 0.99dThe top-level auxiliary file: bachelorprojekt_johan
 The style file: splncs04.bst
 Database file #1: references.bib
 Warning--entry type for "tenzer" isn't style-file defined
---line 29 of file references.bib
+--line 34 of file references.bib
 Warning--entry type for "tagliati" isn't style-file defined
---line 38 of file references.bib
-I was expecting a `,' or a `}'---line 125 of file references.bib
- : 
- : @article{schmidt2000implicit,
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
-Repeated entry---line 182 of file references.bib
+--line 43 of file references.bib
+Repeated entry---line 189 of file references.bib
  : @inproceedings{ranjan2016automatic
  :                                   ,
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 200 of file references.bib
- :  
- :  doi = {10.1515/icom-2019-0009}
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
 Warning--to sort, need author or key in tenzer
 Warning--to sort, need author or key in tagliati
-(There were 3 error messages)
+Warning--can't use both author and editor fields in wayman2005introduction
+(There was 1 error message)

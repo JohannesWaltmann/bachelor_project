@@ -12,3 +12,8 @@ Analysing e.g. the uniqueness of an individuals movements or other behaviour the
 Another alternative to these two types of authentication would be the use of the new approach on functional biometrics.
 For example, a smartwatch based authentication system which uses functional biometrics could send a stimulus on an interval base whose alteration is compared to a previously stored default value.
 The advantage of this functional approach against the behavioural one is that, even though both are implicit, movements or behaviours could still be mimicked whereas the transformation of the functional system is based on  someone's body structure e.g. the done density.
+
+
+%\subsection{Software}
+%The following section will focus on every aspect regarding the development of the software used for this work.
+%This includes the tools used (such as development environments or software to design the hardware-casing) but also the steps taken to design the actual %software are described. 

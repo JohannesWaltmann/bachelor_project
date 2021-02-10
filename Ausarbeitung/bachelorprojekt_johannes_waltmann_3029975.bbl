@@ -29,7 +29,7 @@ Delac, K., Grgic, M.: A survey of biometric recognition methods. In:
 \bibitem{faltaous2019vpid}
 Faltaous, S., Liebers, J., Abdelrahman, Y., Alt, F., Schneegass, S.: Vpid:
   Towards vein pattern identification using thermal imaging. i-com
-  \textbf{18}(3),  259--270 (2019)
+  \textbf{18}(3),  259--270 (2019). \doi{10.1515/icom-2019-0009}
 
 \bibitem{jain2007handbook}
 Jain, A.K., Flynn, P., Ross, A.A.: Handbook of biometrics. Springer Science \&
@@ -38,7 +38,8 @@ Jain, A.K., Flynn, P., Ross, A.A.: Handbook of biometrics. Springer Science \&
 \bibitem{jakobsson2009implicit}
 Jakobsson, M., Shi, E., Golle, P., Chow, R.: Implicit authentication for mobile
   devices. In: Proceedings of the 4th USENIX conference on Hot topics in
-  security. pp.~9--9 (2009). \doi{10.5555/1855628.1855637}
+  security. p.~9. HotSec'09, USENIX Association, USA (2009).
+  \doi{10.5555/1855628.1855637}
 
 \bibitem{johnston2015smartwatch}
 Johnston, A.H., Weiss, G.M.: Smartwatch-based biometric gait recognition. In:
@@ -82,8 +83,8 @@ Shi, E., Niu, Y., Jakobsson, M., Chow, R.: Implicit authentication through
 
 \bibitem{wayman2005introduction}
 Wayman, J., Jain, A., Maltoni, D., Maio, D.: An introduction to biometric
-  authentication systems. In: Biometric Systems, pp. 1--20. Springer (2005).
-  \doi{10.1007/1-84628-064-8_1}
+  authentication systems, pp. 1--20. Springer London (2005).
+  \doi{10.1007/1-84628-064-8\_1}
 
 \bibitem{xu2017gait}
 Xu, W., Shen, Y., Zhang, Y., Bergmann, N., Hu, W.: Gait-watch: A context-aware

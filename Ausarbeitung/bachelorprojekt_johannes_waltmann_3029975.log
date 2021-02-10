@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7200 64-bit) (preloaded format=pdflatex 2019.11.1)  3 FEB 2021 12:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7200 64-bit) (preloaded format=pdflatex 2019.11.1)  10 FEB 2021 10:53
 entering extended mode
 **./bachelorprojekt_johannes_waltmann_3029975.tex
 (bachelorprojekt_johannes_waltmann_3029975.tex
@@ -370,20 +370,20 @@ Package csquotes Info: ... none found.
 (bachelorprojekt_johannes_waltmann_3029975.aux)
 \openout1 = `bachelorprojekt_johannes_waltmann_3029975.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
 
 (C:\Users\Waltmann\AppData\Roaming\MiKTeX\2.9\tex/context/base/mkii\supp-pdf.mk
 ii
@@ -416,7 +416,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box60
-Package hyperref Info: Link coloring ON on input line 61.
+Package hyperref Info: Link coloring ON on input line 63.
 
 ("C:\Program Files\MiKTeX 2.9\tex/latex/hyperref\nameref.sty"
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -426,9 +426,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count157
 )
-LaTeX Info: Redefining \ref on input line 61.
-LaTeX Info: Redefining \pageref on input line 61.
-LaTeX Info: Redefining \nameref on input line 61.
+LaTeX Info: Redefining \ref on input line 63.
+LaTeX Info: Redefining \pageref on input line 63.
+LaTeX Info: Redefining \nameref on input line 63.
 
 (bachelorprojekt_johannes_waltmann_3029975.out)
 (bachelorprojekt_johannes_waltmann_3029975.out)
@@ -437,21 +437,26 @@ LaTeX Info: Redefining \nameref on input line 61.
 
 \c@lstlisting=\count158
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 82.
+(Font)              <7> on input line 84.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 82.
+(Font)              <5> on input line 84.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\\' on input line 82.
+(hyperref)                removing `\\' on input line 84.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\\' on input line 82.
+(hyperref)                removing `\\' on input line 84.
 
 (content.tex [1
 
 {C:/Users/Waltmann/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
+Overfull \hbox (0.47589pt too wide) in paragraph at lines 47--49
+ \OT1/cmr/bx/n/10 2.2.2 Phys-i-o-log-i-cal Bio-met-rics[] \OT1/cmr/m/n/10 Apart
+ from be-havioural bio-met-rics the clas-
+ []
+
 <Media/biometric_trad.png, id=92, 855.195pt x 702.2235pt>
 File: Media/biometric_trad.png Graphic file (type png)
 <use Media/biometric_trad.png>
@@ -462,64 +467,71 @@ File: Media/biometric_funct.png Graphic file (type png)
 <use Media/biometric_funct.png>
 Package pdftex.def Info: Media/biometric_funct.png  used on input line 58.
 (pdftex.def)             Requested size: 138.84729pt x 114.00816pt.
- [3pdfTeX warning (ext4): destination with the same identifier (name{figure.1.1
-}) has been already used, duplicate ignored
+[3pdfTeX warning (ext4): destination with the same identifier (name{figure.1.1}
+) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.74 
       <./Media/biometric_trad.png> <./Media/biometric_funct.png>] [4]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 121.
+(Font)              <9> on input line 125.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 121.
+(Font)              <6> on input line 125.
  [5]
-Underfull \hbox (badness 10000) in paragraph at lines 126--126
+Underfull \hbox (badness 10000) in paragraph at lines 130--130
  [][][]\OT1/cmr/m/n/9 Ambility INMP441, [][]$\OT1/cmtt/m/n/9 https : / / www . 
 amazon . de / Ambility-[]Omnidirektionales-[] \
  []
 
 
-Underfull \hbox (badness 5578) in paragraph at lines 128--128
+Underfull \hbox (badness 5578) in paragraph at lines 132--132
  [][][]\OT1/cmr/m/n/9 LSF-15M/S, [][]$\OT1/cmtt/m/n/9 https : / / www . conrad 
 . de / de / p / lsf-[]15m-[]s-[]8-[]ohm-[]0-[]8w-[]miniatur-[] \
  []
 
-<Media/Hardware_Pinout.png, id=148, 467.346pt x 288.277pt>
+<Media/Hardware_Pinout.png, id=146, 467.346pt x 288.277pt>
 File: Media/Hardware_Pinout.png Graphic file (type png)
 <use Media/Hardware_Pinout.png>
-Package pdftex.def Info: Media/Hardware_Pinout.png  used on input line 135.
+Package pdftex.def Info: Media/Hardware_Pinout.png  used on input line 139.
 (pdftex.def)             Requested size: 347.12354pt x 214.11781pt.
 
-Overfull \hbox (0.54373pt too wide) in paragraph at lines 139--141
+Overfull \hbox (0.54373pt too wide) in paragraph at lines 143--145
 []\OT1/cmr/m/n/10 The hard-ware is pow-ered by a lithium-ion bat-tery with a ca
 -pac-ity of 1200mAh
  []
 
-[6pdfTeX warning (ext4): destination with the same identifier (name{figure.1.2}
-) has been already used, duplicate ignored
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.147 
-       <./Media/Hardware_Pinout.png>]
-<Media/Controller_setup.png, id=160, 1095.09125pt x 603.25375pt>
-File: Media/Controller_setup.png Graphic file (type png)
-<use Media/Controller_setup.png>
-Package pdftex.def Info: Media/Controller_setup.png  used on input line 166.
-(pdftex.def)             Requested size: 347.12354pt x 191.22256pt.
- [7pdfTeX warning (ext4): destination with the same identifier (name{figure.1.3
+Underfull \vbox (badness 1102) has occurred while \output is active []
+
+ [6pdfTeX warning (ext4): destination with the same identifier (name{figure.1.2
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.174 
-       <./Media/Controller_setup.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 180--180
+l.146 \subsubsection
+                    {Casing} <./Media/Hardware_Pinout.png>]
+<Media/Controller_setup.png, id=161, 1095.09125pt x 603.25375pt>
+File: Media/Controller_setup.png Graphic file (type png)
+<use Media/Controller_setup.png>
+Package pdftex.def Info: Media/Controller_setup.png  used on input line 165.
+(pdftex.def)             Requested size: 347.12354pt x 191.22256pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [7]
+Underfull \hbox (badness 10000) in paragraph at lines 179--179
  [][][][][]$\OT1/cmtt/m/n/9 https : / / github . com / HelTecAutomation / Helte
 c _ ESP32 / blob / master / src /
  []
 
+[8pdfTeX warning (ext4): destination with the same identifier (name{figure.1.3}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.192 
+       <./Media/Controller_setup.png>]
 (C:\Users\Waltmann\AppData\Roaming\MiKTeX\2.9\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
@@ -530,110 +542,133 @@ File: lstlang1.sty 2020/03/24 1.8d listings language file
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 207.
+nput line 206.
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <9> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 208.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 207.
 
-[8] [9] [10]
-<Media/webinterface_edge.png, id=236, 1921.1775pt x 1052.43187pt>
+[9]
+Underfull \vbox (badness 1430) has occurred while \output is active []
+
+ [10]
+<Media/webinterface_edge.png, id=224, 1921.1775pt x 1052.43187pt>
 File: Media/webinterface_edge.png Graphic file (type png)
 <use Media/webinterface_edge.png>
-Package pdftex.def Info: Media/webinterface_edge.png  used on input line 293.
+Package pdftex.def Info: Media/webinterface_edge.png  used on input line 292.
 (pdftex.def)             Requested size: 347.12354pt x 190.1522pt.
- [11pdfTeX warning (ext4): destination with the same identifier (name{figure.1.
+
+[11]
+<Media/lat_square.png, id=246, 419.31656pt x 137.01187pt>
+File: Media/lat_square.png Graphic file (type png)
+<use Media/lat_square.png>
+Package pdftex.def Info: Media/lat_square.png  used on input line 353.
+(pdftex.def)             Requested size: 347.12354pt x 113.42294pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [12pdfTeX warning (ext4): destination with the same identifier (name{figure.1.
 4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.343 \section
-              {Evaluation} <./Media/webinterface_edge.png>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+l.357 
+       <./Media/webinterface_edge.png>]
+Overfull \vbox (71.59685pt too high) has occurred while \output is active []
 
- [12])
-(bachelorprojekt_johannes_waltmann_3029975.bbl
-Underfull \hbox (badness 10000) in paragraph at lines 44--47
+
+[13pdfTeX warning (ext4): destination with the same identifier (name{figure.1.5
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.357 
+       <./Media/lat_square.png>]
+Overfull \hbox (2.23837pt too wide) in paragraph at lines 372--373
+[]\OT1/cmr/m/n/10 vgl. http://florian-alt.org/unibw/wp-content/publications/lie
+bers2021chi.pdf
+ []
+
+) (bachelorprojekt_johannes_waltmann_3029975.bbl
+Underfull \hbox (badness 2142) in paragraph at lines 39--43
+[]\OT1/cmr/m/n/9 Jakobsson, M., Shi, E., Golle, P., Chow, R.: Im-plicit au-then
+-ti-ca-tion for
+ []
+
+
+Underfull \hbox (badness 2689) in paragraph at lines 39--43
+\OT1/cmr/m/n/9 mo-bile de-vices. In: Pro-ceed-ings of the 4th USENIX con-fer-en
+ce on Hot
+ []
+
+
+Underfull \hbox (badness 4229) in paragraph at lines 39--43
+\OT1/cmr/m/n/9 top-ics in se-cu-rity. p. 9. Hot-Sec'09, USENIX As-so-ci-a-tion,
+ USA (2009).
+ []
+
+[14]
+Underfull \hbox (badness 10000) in paragraph at lines 45--48
 []\OT1/cmr/m/n/9 Johnston, A.H., Weiss, G.M.: Smartwatch-based bio-met-ric gait
  recog-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--47
+Underfull \hbox (badness 10000) in paragraph at lines 45--48
 \OT1/cmr/m/n/9 ni-tion. In: 2015 IEEE 7th In-ter-na-tional Con-fer-ence on Bio-
 met-rics
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--47
+Underfull \hbox (badness 10000) in paragraph at lines 45--48
 \OT1/cmr/m/n/9 The-ory, Ap-pli-ca-tions and Sys-tems (BTAS). pp. 1--6. IEEE (20
 15).
  []
 
 
-Underfull \hbox (badness 6268) in paragraph at lines 54--58
+Underfull \hbox (badness 6268) in paragraph at lines 55--59
 \OT1/cmr/m/n/9 ti-fi-ca-tion. In: 2010 Fourth IEEE In-ter-na-tional Con-fer-enc
 e on Bio-met-
  []
 
 
-Underfull \hbox (badness 2932) in paragraph at lines 54--58
+Underfull \hbox (badness 2932) in paragraph at lines 55--59
 \OT1/cmr/m/n/9 rics: The-ory, Ap-pli-ca-tions and Sys-tems (BTAS). pp. 1--7. IE
 EE (2010).
  []
 
 
-Underfull \hbox (badness 1308) in paragraph at lines 60--64
+Underfull \hbox (badness 1308) in paragraph at lines 61--65
 []\OT1/cmr/m/n/9 Liebers, J., Schnee-gass, S.: In-tro-duc-ing func-tional bio-m
 et-rics: Us-ing body-
  []
 
-[13]
-! Missing $ inserted.
-<inserted text> 
-                $
-l.86   \doi{10.1007/1-84628-064-8_1}
-                                    
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.86   \doi{10.1007/1-84628-064-8_1}
-                                    
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-
-Underfull \hbox (badness 1735) in paragraph at lines 95--98
+Underfull \hbox (badness 1735) in paragraph at lines 96--99
 []\OT1/cmr/m/n/9 Yampolskiy, R.V., Govin-daraju, V.: Be-havioural bio-met-rics:
  a sur-vey and
  []
 
 
-Underfull \hbox (badness 7722) in paragraph at lines 95--98
+Underfull \hbox (badness 7722) in paragraph at lines 96--99
 \OT1/cmr/m/n/9 clas-si-fi-ca-tion. In-ter-na-tional Jour-nal of Bio-met-rics \O
 T1/cmr/bx/n/9 1\OT1/cmr/m/n/9 (1), 81--113 (2008).
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 100.
- [14]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 100.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 102.
+ [15]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 102.
  (bachelorprojekt_johannes_waltmann_3029975.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 100.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 100.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 102.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 102.
 Package rerunfilecheck Info: File `bachelorprojekt_johannes_waltmann_3029975.ou
 t' has not changed.
 (rerunfilecheck)             Checksum: 0C314A2924A265E3D6ADD5CFB2A9DC4C;124.
  ) 
 Here is how much of TeX's memory you used:
- 9627 strings out of 492453
- 141301 string characters out of 3129811
- 592273 words of memory out of 3000000
- 13764 multiletter control sequences out of 15000+200000
+ 9641 strings out of 492453
+ 141636 string characters out of 3129811
+ 645002 words of memory out of 3000000
+ 13773 multiletter control sequences out of 15000+200000
  7970 words of font info for 29 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,11n,64p,866b,1366s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -648,10 +683,10 @@ cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><
 C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Progr
 am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files
 /MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on bachelorprojekt_johannes_waltmann_3029975.pdf (14 pages, 8522
-57 bytes).
+Output written on bachelorprojekt_johannes_waltmann_3029975.pdf (15 pages, 8655
+17 bytes).
 PDF statistics:
- 386 PDF objects out of 1000 (max. 8388607)
- 140 named destinations out of 1000 (max. 500000)
- 34 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 397 PDF objects out of 1000 (max. 8388607)
+ 144 named destinations out of 1000 (max. 500000)
+ 39 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,13 +1,13 @@
 % !TeX spellcheck = en_GB
 \section{Introduction}
-During the last years the usage of smart-wearables (particularly smartwatches) has become more and more common with a number of 337 million units sold in 2019 and a forecast in sales of up to 527 million units by 2024 \cite{tenzer}.
+During the last years the usage of smart-wearables (particularly smartwatches) has become more and more common with a number of 337 million units sold in 2019 and a forecast in sales of up to 527 million units by 2024~\cite{tenzer}.
 With that also comes a natural demand in data protection caused by the amount of sensors built in these devices and their ability to capture sensible personal data (e.g. health informations).
 Additionally smart devices can now also be used for many kinds of financial actions.
 Since most wearables are connected to either the distributors or the respective mobile phones virtual assistant they should contain sensors for on one hand sound conduction and on the other hand audio recording.
 In the current general smart-wearable design neither of these sensors is oriented towards the wearers arm.
 With a change in position of these sensors smartwatches become eligible for functional biometric authentication.
-Further motivation for this new authentication method comes from the fact that the previous classical methods (PIN, password...) are not suited for usage on smartwatches \cite{xu2017gait}.   
-Nevertheless it is shown by Johnston \cite{johnston2015smartwatch} and Yang \cite{yang2015motionauth} in their respective works that there already are potential biometric authentication methods for smartwatches based on distinct hand or arm movements. 
+Further motivation for this new authentication method comes from the fact that the previous classical methods (PIN, password...) are not suited for usage on smartwatches~\cite{xu2017gait}.   
+Nevertheless it is shown by Johnston~\cite{johnston2015smartwatch} and Yang~\cite{yang2015motionauth} in their respective works that there already are potential biometric authentication methods for smartwatches based on distinct hand or arm movements. 
 
 From these preconditions a prototype is defined. This prototype uses a sound based functional biometric which gets applied to its wearers arm. 
 
@@ -16,41 +16,41 @@ This section will give an overview on the terms of biometrics and its variations
 Additionally an insight into other works on biometric or smartwatch based authentication will be provided. 
 
 \subsection{Authentication}
-The term in general describes the process based on which a security systems tries to approve someone's claim of identity \cite{bhattacharyya2009biometric}.
+The term in general describes the process based on which a security systems tries to approve someone's claim of identity~\cite{bhattacharyya2009biometric}.
 Based on the input type of this claim the term authentication can be further subdivided into explicit and implicit authentication.
-\textit{Explicit} authentication is more often also known as traditional authentication \cite{ranjan2016automatic}.
+\textit{Explicit} authentication is more often also known as traditional authentication~\cite{ranjan2016automatic}.
 This includes providing knowledge like PIN or password, using a token but also performing gestures, fingerprints etc. from the biometrical field.
 
 \textit{Implicit} authentication on the other hand describes mechanisms where a user does not provide a password, etc. directly.
-Instead users are authenticated based on observations of their behavioural patterns\cite{jakobsson2009implicit}.
-These observations are qualified for the use in e.g. biometrics since every individual has its own distinct habits which could be captured and analysed using different sensors \cite{shi2010implicit}.
-Furthermore Shi, Jakobsson et al. state in their 2009 and 2010 works that implicit authentication is well suited for usage in combination with mobile smart-devices \cite{shi2010implicit} or portable computers \cite{jakobsson2009implicit}.
+Instead users are authenticated based on observations of their behavioural patterns~\cite{jakobsson2009implicit}.
+These observations are qualified for the use in e.g. biometrics since every individual has its own distinct habits which could be captured and analysed using different sensors~\cite{shi2010implicit}.
+Furthermore Shi, Jakobsson et al. state in their 2009 and 2010 works that implicit authentication is well suited for usage in combination with mobile smart-devices~\cite{shi2010implicit} or portable computers~\cite{jakobsson2009implicit}.
 Based on this they propose three different application scenarios.
 First as a second factor in combination with passwords, second as the main authenticator and thus replacing the usage of a password and last as additional assurance or an extra trust factor when performing e.g. financial actions on a mobile device.
 
 \subsection{Biometrics}
-\textit{Biometrics} (as in the Greek terms \textit{bios} and \textit{metrikos}) describes the utilization of an individuals physical traits or behaviour to clearly identify one from others. Contrary to the more known verification methods of PINs, passwords or ID-cards biometric identification does not rely on tokens or knowledge which could easily be forgotten or stolen, rather than unique personal traits like fingerprints, face geometry or the specific way someone interacts \cite[chpt. 1.1]{jain2007handbook}\cite{delac2004survey}.
-Depending on the concept of usage a biometric system can be used in either verification or identification mode \cite[chpt. 1.3]{jain2007handbook}.
-These two modes can also be differed by the use of \textit{positive} or \textit{negative identification} techniques \cite{wayman2005introduction}.
+\textit{Biometrics} (as in the Greek terms \textit{bios} and \textit{metrikos}) describes the utilization of an individuals physical traits or behaviour to clearly identify one from others. Contrary to the more known verification methods of PINs, passwords or ID-cards biometric identification does not rely on tokens or knowledge which could easily be forgotten or stolen, rather than unique personal traits like fingerprints, face geometry or the specific way someone interacts~\cite[chpt. 1.1]{jain2007handbook}\cite{delac2004survey}.
+Depending on the concept of usage a biometric system can be used in either verification or identification mode~\cite[chpt. 1.3]{jain2007handbook}.
+These two modes can also be differed by the use of \textit{positive} or \textit{negative identification} techniques~\cite{wayman2005introduction}.
 
 As already stated above biometric authentication uses an individuals personal traits as authentication tokens. Based on the kind of trait and the methods how they are provided the general term of biometrics can be further divided into behavioural and physiological biometrics.
-Also a new kind of biometrics called functional biometrics was introduced by Liebers and Schneegass in 2020 \cite{schneegass2020functbiometric}.
+Also a new kind of biometrics called functional biometrics was introduced by Liebers and Schneegass in 2020~\cite{schneegass2020functbiometric}.
 
 \subsubsection{Behavioural Biometrics}
-Behavioural biometrics refers to authentication systems in which the process of authentication is related to the behaviour of an individual \cite{bhattacharyya2009biometric}.
-In most cases this process is conducted with the use of primarily gestures or other actions or movements capable of being performed in everyday life \cite{yampolskiy2008behavioural}.
+Behavioural biometrics refers to authentication systems in which the process of authentication is related to the behaviour of an individual~\cite{bhattacharyya2009biometric}.
+In most cases this process is conducted with the use of primarily gestures or other actions or movements capable of being performed in everyday life~\cite{yampolskiy2008behavioural}.
 Features which can be used for behavioural biometrics include e.g gait, keystrokes but also authentication patterns on smartphones could be used.
-One main advantage compared to physiological biometrics is that some behavioural traits must not be collected actively but can be captured whilst performing any kind of different tasks \cite{yampolskiy2008behavioural}. 
-Also there is no definite need for special hardware since the sensors needed are mostly built in smart wearables which are one of the main users of behavioural biometrics \cite{johnston2015smartwatch}.
+One main advantage compared to physiological biometrics is that some behavioural traits must not be collected actively but can be captured whilst performing any kind of different tasks~\cite{yampolskiy2008behavioural}. 
+Also there is no definite need for special hardware since the sensors needed are mostly built in smart wearables which are one of the main users of behavioural biometrics~\cite{johnston2015smartwatch}.
 
 \subsubsection{Physiological Biometrics}
 Apart from behavioural biometrics the classification of physiological biometrics is also existent. 
-This form of biometric authentication uses the more "static" traits of a users body as token such as e.g. fingerprints, hand geometry \cite{alsaadi2015physiological} or vein patterns \cite{faltaous2019vpid}.
+This form of biometric authentication uses the more "static" traits of a users body as token such as e.g. fingerprints, hand geometry~\cite{alsaadi2015physiological} or vein patterns~\cite{faltaous2019vpid}.
 
-A physiological system should also have a little higher accuracy than a behavioural one and it should be harder to use as an imposter since it is nearly impossible to identically copy a finger print, iris pattern, etc. \cite{koong2014user}, \cite{delac2004survey}.
+A physiological system should also have a little higher accuracy than a behavioural one and it should be harder to use as an imposter since it is nearly impossible to identically copy a finger print, iris pattern, etc.~\cite{koong2014user},~\cite{delac2004survey}.
 
-\subsubsection{Functional Biometrics} With functional biometrics another novel kind of biometric authentication was introduced lately by Liebers and Schneegass \cite{schneegass2020functbiometric}.
-This new concept stands as a major influence to this work notably with its first implementation in SkullConduct\cite{SkullConduct}. 
+\subsubsection{Functional Biometrics} With functional biometrics another novel kind of biometric authentication was introduced lately by Liebers and Schneegass~\cite{schneegass2020functbiometric}.
+This new concept stands as a major influence to this work notably with its first implementation in SkullConduct~\cite{SkullConduct}. 
 \begin{figure}
 	\begin{center}
 		\subfloat[Traditional Biometrics]{\includegraphics[width=0.4\textwidth]{Media/biometric_trad.png}\label{fig:tradBiom}}
@@ -58,7 +58,7 @@ This new concept stands as a major influence to this work notably with its first
 		\subfloat[Functional Biometrics]{\includegraphics[width=0.4\textwidth]{Media/biometric_funct.png}\label{fig:functBiom}}
 	\end{center}
 	\caption{(a) shows the authentication process of a traditional biometric system where a characteristic response is created based on someone's unique trait.
-	(b) shows the order of steps for functional biometrics when a stimulus is added to create the characteristic based on body reflections \cite{schneegass2020functbiometric}.}
+	(b) shows the order of steps for functional biometrics when a stimulus is added to create the characteristic based on body reflections~\cite{schneegass2020functbiometric}.}
 	\label{fig:biometricsVersions}
 \end{figure}
 
@@ -81,8 +81,8 @@ The sample which gets transformed due to the unique nature of each individuals h
 Results of this study  indicate that with all tested users SkullConduct had a probability of around 97\% when it comes just to identify a correct user.
 Test of the system as an authentication tool showed an Equal Error Rate (EER) of around 6.9\% in average but with significant drops the shorter the used sample gets (less than 1 second).
 
-Other work on authentication via smart devices includes e.g. the works from A. Johnston et al. who implemented a smartwatch based authentication module that used gait recognition \cite{johnston2015smartwatch}.
-They adapted from previous work of theirs where gyro- and acceleration-sensors of smart phones were used to develop authentication methods \cite{kwapisz2010cell}.
+Other work on authentication via smart devices includes e.g. the works from A. Johnston et al. who implemented a smartwatch based authentication module that used gait recognition~\cite{johnston2015smartwatch}.
+They adapted from previous work of theirs where gyro- and acceleration-sensors of smart phones were used to develop authentication methods~\cite{kwapisz2010cell}.
 The main thought behind the proposed use of gait authentication on smartwatches is that their place of wearing/usage is more consistent than the one of a smart phone and therefore more advantageous.
 Each participants dataset includes both data from gyro- and acceleration-sensor.
 Tests in regard of both design types showed that the general performance of authentication is way higher in average than the one of identification (e.g. 97.2\% compared to 79.2\%).
@@ -92,14 +92,14 @@ Conclusions Johnston et al. drew from their results were that it is possible to 
 
 \section{Concept}
 With the introduction of functional biometrics, space was created for the development of new mechanisms and variations in biometric authentication.
-Contrary to other biometric systems which rely on e.g. fingerprints the body function used in functional biometrics can not be leaked or reproduced that easily.
-This is due to the function being comprised of each individuals own body structure and bone density \cite{schneegass2020functbiometric}.
+Contrary to other biometric systems which rely on e.g. fingerprints the body function used in functional biometrics cannot be leaked or reproduced that easily.
+This is due to the function being comprised of each individuals own body structure and bone density~\cite{schneegass2020functbiometric}.
 
 A function based biometric system authenticates its user by applying a stimulus to the users body.
 Based around the name-giving body-function a characteristic transformation of the stimulus happens which can be measured.
 This measurement can then be compared with a previously stored measurement using the same stimulus to authenticate the user.
 
-An already existing implementation approach to functional biometrics is the SkullConduct head mounted device (HMD) introduced by Schneegass et al. \cite{SkullConduct}.
+An already existing implementation approach to functional biometrics is the SkullConduct head mounted device (HMD) introduced by Schneegass et al.~\cite{SkullConduct}.
 There the stimulus used consisted of a sound sample being applied and re-captured by the HMD.
 One limitation coming with this exemplary work is, that with the authentication being reliant on the HMD it is based around a device with rather fixed location.
 
@@ -116,8 +116,12 @@ The prototype realised in this work consists of a microcontroller which is used 
 For this purpose it is connected to each a little microphone capsule and a speaker with small form factor.
 
 \section{Implementation}
+
 \subsection{Hardware}
-\subsubsection{Components}
+Different hardware used included a microcontroller and it's accessories which were used to conduct the user-study and run the implemented functionalities.
+Additionally a casing was designed which fits the components described in section~\ref{sssec::num1} and can be worn by the participants during the user-study.
+
+\subsubsection{Components}\label{sssec::num1}
 The microcontroller used in this project is the LoRa 32 by Heltec Automation\footnote{LoR Controller,~\url{https://heltec.org/project/wifi-kit-32/}}.
 The controller uses an 32bit dual-core microprocessor by espressif (ESP32).
 Other features include onboard Wi-Fi and Bluetooth as well as an 0.97 inch OLED display.
@@ -145,9 +149,6 @@ The case consists of two major parts, one to store the controller and battery, t
 To keep the cases in place when in use they were fitted with a wristband made from stretchable rubber.
 //TO BE CONTINUED....
 
-%\subsection{Software}
-%The following section will focus on every aspect regarding the development of the software used for this work.
-%This includes the tools used (such as development environments or software to design the hardware-casing) but also the steps taken to design the actual %software are described. 
 \subsection{Development Tools}
 The majority of code in this project was written in the Arduino development environment (IDE). 
 This open-source IDE is designed and optimized for the use with microcontrollers from the arduino family.
@@ -155,10 +156,8 @@ It is also possible to add plugins for the support of other microcontroller chip
 Therefore it is necessary to include the functionality-packages provided by the chip developers under \texttt{"Tools > Board > Board Manager"} in the Arduino IDE.
 The IDE supports C and C\texttt{++} as additional programming languages which can be processed by the microcontrollers.
 
-Another major feature of the IDE is its ability to not only compile the designed sketches but also to flash them onto a microcontroller plugged into the computer via usb.
-
-For the design of the casing the software Fusion 360 published by Autodesk was used.
-With this CAD-software it is possible to design shapes in either 2D or 3D format.
+For the design of the casing the software Fusion 360, published by Autodesk, was used.
+With this CAD-software it is possible to design shapes in either 2D- or 3D-format.
 These shapes can then be exported from Fusion 360 in a format which is readable by either a 3D-printer or laser-cutter.
  
 
@@ -341,17 +340,46 @@ void loop() {
 Other web-browsers which were used include Google Chrome and Mozilla Firefox with the latter one being the browser used most for testing the prototypes functionalities.
 
 \section{Evaluation}
+The following chapter will cover everything related to corresponding study. 
+It will focus on the general aspects of it's design and conduction as well as the studies results.
 
-\subsection{Study}
-\subsubsection{Design}
-asdfsd\cite{wayman2005introduction} asdfs
-Study as repeated measures.
-5 (6) participants attended on two distinct sessions each.
-All participants tested with the same stimuli and configs.
-Each participant recorded three different soundstimuli, each stimulus on four different positions making 12 recordings per session
-and 24 recordings per participant in total.
+\subsection{Study Design}
+The conducted user-study followed a repeated-measures design in a controlled environment.
+It was held on two distinct days with every participant being tested on each day.
+This was done to ensure stability of the biometric recognition over time, as well as to make the authentication task more realistic.
+Each participant was tested with three different sound stimuli (high-pitch, low-pitch, mixed/melody) with every test being made 'X' times for 'n' seconds each.\\
+To prevent possible carry-over effects the order of the three stimuli were randomised using a latin square matrix (cf., Figure~\ref{fig:lat_square}).
+\begin{figure}[H]
+	\includegraphics[width=\linewidth]{Media/lat_square.png}
+	\caption{Randomisation of the three different stimuli chosen for the study using a latin square matrix.}
+	\label{fig:lat_square}
+\end{figure}
 
-Recorded length was (20sec) for every recording.
+According to the proposed application scenario each participant had to record one full set of the three stimuli with the apparatus worn on each, the left and right arms wrist.
+To ensure that the bracelet is placed in the same areas on the second day the participants arms were photographed wearing the bracelet.
+
+\subsection{Procedure}
+- Prosaablauf eines Probanden
+- Participants gave written and informed consent und Demographics
+- All question answered
+- P could cancel the procedure at any time without detriments.
+- Danach Condition 1 entsprechend Latin Square gemacht
+- Armband gewechselt mit Unterstützung des Practitioners
+- Condition 2
+- ...
+- Eventuell Fragebogen
+
+vgl. http://florian-alt.org/unibw/wp-content/publications/liebers2021chi.pdf Kapitel 4
+
+\subsection{Results}
+- N Probanden, x Frauen und y Männer, Alter Median, Min, Max, Standard Deviation
+- Ergebnisse des Classifiers (=> Implementation in Kapitel 4 beschreiben)
+
+\subsection{Discussion}
+
+- Ergebnisse deuten -- was bedeuten die Ergebnisse im Hinblick auf die Ideen/Hypothesen, die am Anfang der Arbeit vorgestellt wurden?
+- "Our findings support functional biometrics. This can be seen due to ..." (im positiven Fall)
+- im negativen Fall: Woran lag es, dass was schief gelaufen ist?
 
 
 \section{Conclusion}
