@@ -88,7 +88,7 @@ void setup() {
   Heltec.begin(true/*enables Display*/, false/*disables LoRa*/, true/*enables Serial*/);
   Heltec.display->flipScreenVertically();
 
-  // Declare the pin for the speaker as output and deactivate it
+  // Declare the pin for the speaker as output
   pinMode(speaker_output26, OUTPUT);
   //digitalWrite(speaker_output26, LOW);
 
@@ -161,12 +161,13 @@ void loop() {
 
             // turns the GPIO on and off
             if (header.indexOf("GET /recordingMelody") >= 0) {
-              //recording_trigger = true;
-              melody();
+              recording_trigger = true;
+              //melody();
 
             }
             else if (header.indexOf("GET /recordingHigh") >= 0) {
               // TODO: Start Recording a highpitched Soundsample
+              melody();
             }
             else if (header.indexOf("GET /recordingLow") >= 0) {
               // TODO: Start Recording a lowpitched Soundsample
@@ -248,10 +249,8 @@ void loop() {
       Serial.print("\n");
       
       // Start recording of a soundsample
-      digitalWrite(speaker_output26, HIGH);
       i2s_adc();
-//      melody();
-      digitalWrite(speaker_output26, LOW);
+      melody();
       recording_trigger = false;
     }
   }
