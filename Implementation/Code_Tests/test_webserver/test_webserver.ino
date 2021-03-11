@@ -11,6 +11,8 @@
 #include "time.h"
 
 boolean recording_trigger = false;
+boolean trigger_2 = false;
+
 
 // Credentials of the used wireless network
 const char* ssid = "FRITZ!Box 7590 UR";
@@ -27,9 +29,6 @@ WiFiServer server(80);
 
 // Variable to store the HTTP request
 String header;
-
-// Store the current state of the used pins
-String output26State_Speaker = "off";
 
 // Assign output variables to GPIO pins
 const int speaker_output26 = 26;
@@ -90,7 +89,6 @@ void setup() {
 
   // Declare the pin for the speaker as output
   pinMode(speaker_output26, OUTPUT);
-  //digitalWrite(speaker_output26, LOW);
 
   // Attach ledcPWM to the pin for the speaker
   Serial.println("Initializing Speaker...");
@@ -115,10 +113,6 @@ void setup() {
   }
 
   configTime(gmtOffset_sec, daylightOffset_sec, ntpServer); //Connects to NTP-Server to get current UNIX-Time
-
-  //  if (!setFilename(filename, sizeof(filename))) { //
-  //    Serial.println("Couldn't format filepath");
-  //  }
 
   SDInit();
 
@@ -171,6 +165,7 @@ void loop() {
             }
             else if (header.indexOf("GET /recordingLow") >= 0) {
               // TODO: Start Recording a lowpitched Soundsample
+              trigger_2 =  true;
             }
             else if (header.indexOf("GET /clearSD") >= 0) {
               Serial.println("Wiping .wav-Data from SD");
@@ -179,10 +174,6 @@ void loop() {
               Heltec.display->display();
               clearSD();
             }
-            /**
-               DOWNLOAD NOT MANDATORY FEATURE; DATA CAN BE ACCESSIBLE THROUGH SD-CARD
-            */
-            else if (header.indexOf("GET /download") >= 0) {} //Download the written file to clientsystem
 
             // Display the HTML web page
             client.println("<!DOCTYPE html><html>");
@@ -196,7 +187,6 @@ void loop() {
             client.println("<body><h1>Microcontroller-Interface</h1>");
             // Display current state, and ON/OFF buttons for GPIO 26
             client.println("<p>Start Recording</p>");
-            // If the output26State_Speaker is off, it displays the ON button
             client.println("<a href=\"/recordingHigh\"><button class=\"button\">High-Pitch</button></a>");
             client.println("<a href=\"/recordingLow\"><button class=\"button\">Low-Pitch</button></a>");
             client.println("<a href=\"/recordingMelody\"><button class=\"button\">Melody</button></a>");
@@ -230,6 +220,11 @@ void loop() {
     Serial.println("Client disconnected.");
     Serial.println("");
 
+    if (trigger_2) {
+      melody();
+      trigger_2 = false;
+    }
+    
     if (recording_trigger) {
       // Format filepath
       if (!setFilename(filename, sizeof(filename))) { //
@@ -250,8 +245,17 @@ void loop() {
       
       // Start recording of a soundsample
       i2s_adc();
-      melody();
+      //melody();
+      xTaskCreatePinnedToCore(
+        melody,
+        "TestTask",
+        100000,
+        NULL,
+        1,
+        &TestHandle_,
+        0);     
       recording_trigger = false;
+      vTaskDelete(TestHandle_);
     }
   }
 }
@@ -329,8 +333,6 @@ void i2s_adc(void) {
   i2s_read_buff = NULL;
   free(flash_write_buff);
   flash_write_buff = NULL;
-
-  //  vTaskDelete(NULL);
 }
 
 void example_disp_buf(uint8_t* buf, int length) {
@@ -476,14 +478,4 @@ void SDInit() {
     delay(500);
   }
   Serial.println("SD connected");
-  //SD.remove(filename);
-  //  file = SD.open(filename, FILE_WRITE);
-  //  if (!file) {
-  //    Serial.println("File not available");
-  //  }
-  //
-  //  byte header[headerSize];
-  //  wavHeader(header, FLASH_RECORD_SIZE);
-  //
-  //  file.write(header, headerSize);
 }
