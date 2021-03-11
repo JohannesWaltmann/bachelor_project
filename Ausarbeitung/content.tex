@@ -348,12 +348,27 @@ The conducted user-study followed a repeated-measures design in a controlled env
 It was held on two distinct days with every participant being tested on each day.
 This was done to ensure stability of the biometric recognition over time, as well as to make the authentication task more realistic.
 Each participant was tested with three different sound stimuli (high-pitch, low-pitch, mixed/melody) with every test being made 'X' times for 'n' seconds each.\\
-To prevent possible carry-over effects the order of the three stimuli were randomised using a latin square matrix (cf., Figure~\ref{fig:lat_square}).
-\begin{figure}[H]
-	\includegraphics[width=\linewidth]{Media/lat_square.png}
-	\caption{Randomisation of the three different stimuli chosen for the study using a latin square matrix.}
-	\label{fig:lat_square}
-\end{figure}
+To prevent possible carry-over effects the order of the three stimuli were randomised using a latin square matrix (cf., Table~\ref{tbl:lat_sqr}).
+
+\begin{table}[H]
+	\centering
+	\label{tbl:lat_sqr}
+	\caption{Randomisation of the three different stimuli chosen for the study using a latin square matrix. E.g. the second participant would be tested first with a high-pitched sample, then the melody sample and last the low-pitched one.}
+	\begin{tabular}{p{1cm}llllp{1cm}}
+		\toprule%
+		\multirow{2}{*}{$P_{ID}$} & \multicolumn{3}{c}{Order of Application}\\%
+		{} & 1 & 2 & 3 \\%
+		\midrule%
+		1 & High-Pitch & Low-Pitch & Mixed/Melody \\%
+		2 & High-Pitch & Mixed/Melody & Low-Pitch \\%
+		3 & Mixed/Melody & High-Pitch & Low-Pitch \\%
+		4 & Mixed/Melody & Low-Pitch & High-Pitch \\%
+		5 & Low-Pitch & Mixed/Melody & High-Pitch \\%
+		6 & Low-Pitch & High-Pitch & Mixed/Melody \\%
+		\bottomrule%
+	\end{tabular}
+\end{table}
+
 
 According to the proposed application scenario each participant had to record one full set of the three stimuli with the apparatus worn on each, the left and right arms wrist.
 To ensure that the bracelet is placed in the same areas on the second day the participants arms were photographed wearing the bracelet.
