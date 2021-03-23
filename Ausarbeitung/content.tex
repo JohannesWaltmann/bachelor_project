@@ -144,10 +144,27 @@ The hardware is powered by a lithium-ion battery with a capacity of 1200mAh and 
 It is connected to the controller on its underside using a JST-PH connector. 
 
 \subsubsection{Casing}
-To conduct the associated study, where it is necessary to wear the hardware on the body, a case which is approximately shaped like a bracelet is designed.
-The case consists of two major parts, one to store the controller and battery, the other containing microphone and speaker.
-To keep the cases in place when in use they were fitted with a wristband made from stretchable rubber.
-//TO BE CONTINUED....
+To conduct the associated study it is necessary for the participants to wear the hardware on their body.
+For this purpose a case consisting of multiple parts is designed.
+One part of the casing is designed to fit the microcontroller as well as the batterypack and the SD-card-reader.
+The other part is designed in a more smartwatch-like shape and is used to store microphone and speaker. 
+Both parts can be worn by the participant using wristbands made from stretchable rubber.
+
+For both parts the same specifications are used as they both are lasercutted from 4mm thick acrylic glass.
+The case for the microcontroller has a height of approximately 38mm with an extra plane in the middle at around 13mm measured from the inner border of the top-piece.
+The gap above this middle plane was designed to fit the microcontroller while the space below the plane is used to store the SD-card-reader and the battery.
+\begin{figure}
+	\begin{center}
+		\subfloat[Microcontroller Case in design Form]{\includegraphics[width=0.4\textwidth]{Media/case_CAD_view.png}\label{fig:case_cad}}
+		\hspace{0.5cm}
+		\subfloat[Microcontroller Case in printed Form //Need new image??]{\includegraphics[width=0.4\textwidth]{Media/casing_printed.jpg}\label{fig:case_printed}}
+	\end{center}
+	\caption{Image (a) shows the case as it was assembled using Fusion 360. The piece which would normally be located on the left side of the case is set to invisible so the interior can be seen.
+	Image (b) shows the parts of the case after they have been lasercut and assembled. To easier fit the single hardware components the battery pack and the SD-card-reader are stuck to the bottom plane using tape.}
+	\label{fig:cad_designs}
+\end{figure}
+
+//Beschreibung Bracelet für Mikro und Speaker??
 
 \subsection{Development Tools}
 The majority of code in this project was written in the Arduino development environment (IDE). 
@@ -158,8 +175,7 @@ The IDE supports C and C\texttt{++} as additional programming languages which ca
 
 For the design of the casing the software Fusion 360, published by Autodesk, was used.
 With this CAD-software it is possible to design shapes in either 2D- or 3D-format.
-These shapes can then be exported from Fusion 360 in a format which is readable by either a 3D-printer or laser-cutter.
- 
+These shapes can then be exported from Fusion 360 into the dfx-format which can be used to print the design to a 3D-printer or laser-cutter.
 
 \begin{figure}[H]
 	\includegraphics[width=\linewidth]{Media/Controller_setup.png}

@@ -227,7 +227,7 @@ void loop() {
     
     if (recording_trigger) {
       // Format filepath
-      if (!setFilename(filename, sizeof(filename))) { //
+      if (!setFilename(filename, sizeof(filename))) {
         Serial.println("Couldn't format filepath");
       }
       // Create File

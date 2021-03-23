@@ -2,17 +2,54 @@
 #include "melody_player.h"
 #include "melody_factory.h"
 
-int buzzerPin = 26;
-
-MelodyPlayer player(buzzerPin);
-
-
 #include <SD.h>
 #include "heltec.h"
 #include "Arduino.h"
 #include <driver/i2s.h>
 
+#include <WiFi.h>
+#include "time.h"
+
+// Params for the WiFi Connection
+WiFiServer server(80); // Opens a Server on Port 80
+const char* ssid = "FRITZ!Box 7590 UR";
+const char* password = "98861303091966401412";
+String header; // Stores the HTTP Request
+
+// Timer variables used for client timeouts defined in Millisecs
+unsigned long currentTime = millis();
+unsigned long previousTime = 0;
+const long timeoutTime = 2000;
+
+// Params for the NTP Connection
+const char* ntpServer = "europe.pool.ntp.org";
+const long gmtOffset_sec = 3600;
+const int daylightOffset_sec = 3600;
+
+
+int buzzerPin = 26;
+
+MelodyPlayer player(buzzerPin);
 File file;
+char filename[64 + 1];
+
+/**
+    Generates the name for the recordingfile to be used by accessing an ntp server
+    and adding current time and date values to the filepath
+*/
+bool setFilename(char *buffer, size_t buffer_size) {
+  struct tm timeinfo;
+  if (!getLocalTime(&timeinfo)) {
+    Serial.println("Failed to obtain time");
+  }
+  // Print the desired time and date values to a buffer as string
+  int err = strftime(buffer, buffer_size, "/recording_%d %B, %H-%M-%S.wav", &timeinfo);
+  if (err == 0) {
+    Serial.println("strftime failed");
+    return false;
+  }
+  return true;
+}
 
 // Assign output variables to GPIO pins
 const int speaker_output26 = 26;
@@ -20,25 +57,6 @@ const int frequency = 2000; // Initial frequency
 const int resolution = 8; // Resolution of the duty cycle in Bit
 const int channel = 0; // PWM channel
 
-const int c = 261;
-const int d = 294;
-const int e = 329;
-const int f = 349;
-const int g = 391;
-const int gS = 415;
-const int a = 440;
-const int aS = 466;
-const int b = 494;
-const int cH = 523;
-const int cSH = 554;
-const int dH = 587;
-const int dSH = 622;
-const int eH = 659;
-const int fH = 698;
-const int fSH = 740;
-const int gH = 784;
-const int gSH = 830;
-const int aH = 880;
 
 // Stuff for SD Cardreader
 #define SD_CS 5
@@ -62,68 +80,173 @@ const int headerSize = 44; // Size for .wav-header
 
 void setup() {
   Heltec.begin(true/*enables Display*/, false/*disables LoRa*/, true/*enables Serial*/);
-  
+
   // put your setup code here, to run once:
   pinMode(speaker_output26, OUTPUT);
-  
+
   Serial.println("Initializing Speaker...");
   if (!ledcSetup(channel, frequency, resolution)) {
     Serial.println("Initialization failed..");
   }
-  
   ledcAttachPin(speaker_output26, channel);
 
+  Heltec.display->clear();
+  Heltec.display->setTextAlignment(TEXT_ALIGN_LEFT);
+  Heltec.display->setFont(ArialMT_Plain_10);
+  Heltec.display->drawString(0, 0, "Connecting to ");
+  Heltec.display->drawString(10, 10, ssid);
+
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay();
+    Serial.print(".");
+  }
+
+  configTime(gmtOffset_sec, daylightOffset_sec, ntpServer); //Connects to NTP-Server to get current UNIX-Time
+
   SDInit();
+
+  Serial.println("");
+  // Print the IP of the Controller to the display
+  Heltec.display->drawString(0, 20, "WiFi connected.");
+  Heltec.display->drawString(0, 30, "IP address:");
+  Heltec.display->drawString(10, 40, WiFi.localIP().toString());
+  Heltec.display->display();
+
   i2sInit();
-  Serial.println("Start!");
+  //Serial.println("Start!");
+
+  server.begin();
 }
 
-bool run_once = false;
+bool run_melody = false;
+bool run_high = false;
+bool run_low = false;
+
 void loop() {
-  // put your main code here, to run repeatedly:  
-  if (! run_once) {
+  WiFiClient client = server.available(); // Listen for incoming clients
+
+  if (client) {
+    currentTime = millis();
+    previousTime = currentTime;
+    String currentLine = "";
+    while (client.connected() && currentTime - previousTime <= timeoutTime) {
+      currentTime = millis();
+      if (client.available()) {
+        char c = client.read();
+        header += c;
+        if (c == '\n') {
+          if (currentLine.length()  == 0) {
+            client.println("HTTP/1.1 200 OK");
+            client.println("Contnet-type:text/html");
+            client.println("Connection: close");
+            client.println();
+
+            // Hier Managment der GET-Requests
+            if (header.indexOf("GET /recordingMelody") >= 0) {
+              run_melody = true;
+            }
+            else if (header.indexOf("GET /recordingHigh") >= 0) {
+              // TODO
+            }
+            else if (header.indexOf("GET /recordingLow") >= 0) {
+              // TODO
+            }
+            else if (header.indexOf("GET /clearSD") >= 0) {
+              Serial.println("Wiping .wav-Data from SD");
+              Heltec.display->clear();
+              Heltec.display->drawString(0, 10, "Clearing Soundfiles from SD");
+              Heltec.display->display();
+              clearSD();
+            }
+
+            // TODO: Test ob man das in eine einzelne Zeile abändern kann also gesammten Webcode als einen String speichern
+            // und den dann parsen
+            // Display the HTML web page
+            client.println("<!DOCTYPE html><html>");
+            client.println("<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
+            client.println("<link rel=\"icon\" href=\"data:,\">");
+            client.print("<style>html { font-family: Helvetica; display: inline-block; margin: 0px auto; text-align: center;}");
+            client.print("h1{color: #0F3376;padding: 2vh;}");
+            client.print(".button {display: inline-block;background-color: #008CBA; border: none;border-radius: 4px;color: white;padding: 16px 40px;text-decoration: none;font-size: 30px;margin: 2px;cursor: pointer;}");
+            client.println(".button2 {background-color: #AE270B;}</style></head>");
+            // Web Page Heading
+            client.println("<body><h1>Microcontroller-Interface</h1>");
+            // Display current state, and ON/OFF buttons for GPIO 26
+            client.println("<p>Start Recording</p>");
+            client.println("<a href=\"/recordingHigh\"><button class=\"button\">High-Pitch</button></a>");
+            client.println("<a href=\"/recordingLow\"><button class=\"button\">Low-Pitch</button></a>");
+            client.println("<a href=\"/recordingMelody\"><button class=\"button\">Melody</button></a>");
+            //Display UI-Reset Button
+            client.println("<p>Remove old Recordings</p>");
+            client.println("<p><a href=\"/clearSD\"><button class=\"button button2\">Clear SD</button></a></p>");
+            /**
+               @brief HAS TO UPDATE AFTER USE OF BUTTON RECORDING AND BUTTON CLEAR SD
+                      UPDATES AUTOMATICALLY AFTER ANY RECORDING WITH PAGE-REFRESH
+            */
+            client.println("<dialog open>The SD currently uses " + getUsedSpace() + " Megabyte storage<br></dialog>");
+            client.println("</body></html>");
+            // The HTTP response ends with another blank line
+            client.println();
+            // Break out of the while loop
+            break;
+          } else { // if you got a newline, then clear currentLine
+            currentLine = "";
+          }
+        } else if (c != '\r') {  // if you got anything else but a carriage return character,
+          currentLine += c;      // add it to the end of the currentLine
+        }
+      }
+    }
+    // Clear the header variable
+    header = "";
+    // Close the connection
+    client.stop();
+    Serial.println("Client disconnected.");
+    Serial.println("");
+
+    if (run_melody) {
+      // Start Recording
       Serial.println("MELODY START");
-      //melody();  // start melody
 
       Serial.println("Loading melody...");
       String notes[] = { "C4", "G3", "G3", "A3", "G3", "SILENCE", "B3", "C4"};
       // Load and play a correct melody
       Melody melody = MelodyFactory.load("Nice Melody", 2000, notes, 8);
       player.playAsync(melody);
-      
+
       Serial.println("MELODY STOP");
       Serial.println("RECORDING START");
-      
+
       startRecording();
       Serial.println("RECORDING STOP");
-      run_once=true;
-  }  
+      run_melody = false;
+    }
+
+  }
 }
 
 void startRecording() {
-  char* filename = "/test.wav";
-  
-  if (!setFilename(filename, sizeof(filename))) { //
-        Serial.println("Couldn't format filepath");
-      }
-      // Create File
-      Serial.println("Opening file:");
-      Serial.println(filename);
-      file = SD.open(filename, FILE_WRITE);
-      if (!file) {
-        Serial.println("File not available");
-        return;
-      }
-      byte header[headerSize];
-      wavHeader(header, FLASH_RECORD_SIZE);
-      file.write(header, headerSize);
 
-      Serial.print("\nPrinting to file: ");
-      Serial.println(filename);
-      Serial.print("\n");
-      
-      // Start recording of a soundsample
-      i2s_adc();
+  if (!setFilename(filename, sizeof(filename))) {
+    Serial.println("Couldn't format filepath");
+  }
+  // Create File
+  file = SD.open(filename, FILE_WRITE);
+  if (!file) {
+    Serial.println("File not available");
+    return;
+  }
+  byte header[headerSize];
+  wavHeader(header, FLASH_RECORD_SIZE);
+  file.write(header, headerSize);
+
+  Serial.print("\nPrinting to file: ");
+  Serial.println(filename);
+  Serial.print("\n");
+
+  // Start recording of a soundsample
+  i2s_adc();
 }
 
 void i2sInit() {
@@ -149,93 +272,6 @@ void i2sInit() {
   };
 
   i2s_set_pin(I2S_PORT, &pin_config);
-}
-
-/**
-   Plays a soundmelody by using the function tone() multiple times
-   and altering notefrequency and notedurance each time
-*/
-void melody() {
-  tone(channel, a, 500);
-  tone(channel, a, 500);
-  tone(channel, a, 500);
-  tone(channel, f, 350);
-  tone(channel, cH, 150);
-
-  tone(channel, a, 500);
-  tone(channel, f, 350);
-  tone(channel, a, 1000);
-
-  tone(channel, eH, 500);
-  tone(channel, eH, 500);
-  tone(channel, eH, 500);
-  tone(channel, fH, 350);
-  tone(channel, cH, 150);
-
-  tone(channel, gS, 500);
-  tone(channel, f, 350);
-  tone(channel, cH, 150);
-  tone(channel, a, 1000);
-
-  tone(channel, aH, 500);
-  tone(channel, a, 350);
-  tone(channel, a, 150);
-  tone(channel, aH, 500);
-  tone(channel, gSH, 250);
-  tone(channel, gH, 250);
-
-  tone(channel, fSH, 125);
-  tone(channel, fH, 125);
-  tone(channel, fSH, 250);
-  delay(250);
-  tone(channel, aS, 250);
-  tone(channel, dSH, 500);
-  tone(channel, dH, 250);
-  tone(channel, cSH, 250);
-
-  tone(channel, cH, 125);
-  tone(channel, b, 125);
-  tone(channel, cH, 250);
-  delay(250);
-  tone(channel, f, 125);
-  tone(channel, gS, 500);
-  tone(channel, f, 375);
-  tone(channel, a, 125);
-
-  tone(channel, cH, 500);
-  tone(channel, a, 375);
-  tone(channel, cH, 125);
-  tone(channel, eH, 1000);
-
-  tone(channel, aH, 500);
-  tone(channel, a, 350);
-  tone(channel, a, 150);
-  tone(channel, aH, 500);
-  tone(channel, gSH, 250);
-  tone(channel, gH, 250);
-
-  tone(channel, fSH, 125);
-  tone(channel, fH, 125);
-  tone(channel, fSH, 250);
-  delay(250);
-  tone(channel, aS, 250);
-  tone(channel, dSH, 500);
-  tone(channel, dH, 250);
-  tone(channel, cSH, 250);
-
-  tone(channel, cH, 125);
-  tone(channel, b, 125);
-  tone(channel, cH, 250);
-  delay(250);
-  tone(channel, f, 250);
-  tone(channel, gS, 500);
-  tone(channel, f, 375);
-  tone(channel, cH, 125);
-
-  tone(channel, a, 500);
-  tone(channel, f, 375);
-  tone(channel, c, 125);
-  tone(channel, a, 1000);
 }
 
 void tone(int channel, int frequencyHZ, long durance) {
@@ -275,16 +311,6 @@ void SDInit() {
     delay(500);
   }
   Serial.println("SD connected");
-  //SD.remove(filename);
-  //  file = SD.open(filename, FILE_WRITE);
-  //  if (!file) {
-  //    Serial.println("File not available");
-  //  }
-  //
-  //  byte header[headerSize];
-  //  wavHeader(header, FLASH_RECORD_SIZE);
-  //
-  //  file.write(header, headerSize);
 }
 
 /**
@@ -321,13 +347,6 @@ void i2s_adc(void) {
   i2s_read_buff = NULL;
   free(flash_write_buff);
   flash_write_buff = NULL;
-
-  //  vTaskDelete(NULL);
-}
-
-bool setFilename(char *buffer, size_t buffer_size) {
-  
-  return true;
 }
 
 void wavHeader(byte* header, int wavSize) {
