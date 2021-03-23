@@ -33,6 +33,7 @@ MelodyPlayer player(buzzerPin);
 File file;
 char filename[64 + 1];
 
+// TODO Methode in Ansichtsordnung verschieben
 /**
     Generates the name for the recordingfile to be used by accessing an ntp server
     and adding current time and date values to the filepath
@@ -147,10 +148,10 @@ void loop() {
               run_melody = true;
             }
             else if (header.indexOf("GET /recordingHigh") >= 0) {
-              // TODO
+              run_high = true;
             }
             else if (header.indexOf("GET /recordingLow") >= 0) {
-              // TODO
+              run_low = true;
             }
             else if (header.indexOf("GET /clearSD") >= 0) {
               Serial.println("Wiping .wav-Data from SD");
@@ -223,9 +224,12 @@ void loop() {
       run_melody = false;
     }
 
-  }
+    // TODO Wenn run_melody funktioniert
+//    if (run_high) {}
+//    if (run_low) {}
 }
 
+// TODO Comments
 void startRecording() {
 
   if (!setFilename(filename, sizeof(filename))) {
@@ -249,6 +253,7 @@ void startRecording() {
   i2s_adc();
 }
 
+// TODO Comments
 void i2sInit() {
   i2s_config_t i2s_config = {
     .mode = (i2s_mode_t)(I2S_MODE_MASTER | I2S_MODE_RX),
@@ -274,24 +279,26 @@ void i2sInit() {
   i2s_set_pin(I2S_PORT, &pin_config);
 }
 
-void tone(int channel, int frequencyHZ, long durance) {
+// TODO: Methode entfernen, wenn nicht benötigt
+//void tone(int channel, int frequencyHZ, long durance) {
+//
+//  // Computes the pitch of the note
+//  long delayAmount = (long)(1000000 / frequencyHZ);
+//  // Compute the length of the note
+//  long loopTime = (long)((durance * 1000) / (delayAmount * 2));
+//
+//  // Not each tick of the computed notelength activate the speaker
+//  for ( int x = 0; x < loopTime; x++) {
+//    ledcWriteTone(channel, 2000);
+//    delayMicroseconds(delayAmount);
+//    ledcWriteTone(channel, 0);
+//    delayMicroseconds(delayAmount);
+//  }
+//
+//  delay(20);
+//}
 
-  // Computes the pitch of the note
-  long delayAmount = (long)(1000000 / frequencyHZ);
-  // Compute the length of the note
-  long loopTime = (long)((durance * 1000) / (delayAmount * 2));
-
-  // Not each tick of the computed notelength activate the speaker
-  for ( int x = 0; x < loopTime; x++) {
-    ledcWriteTone(channel, 2000);
-    delayMicroseconds(delayAmount);
-    ledcWriteTone(channel, 0);
-    delayMicroseconds(delayAmount);
-  }
-
-  delay(20);
-}
-
+// TODO Comments
 void SDInit() {
   sd_spi.begin(SD_SCK, SD_MISO, SD_MOSI, SD_CS);
 
@@ -349,6 +356,7 @@ void i2s_adc(void) {
   flash_write_buff = NULL;
 }
 
+// TODO Comments
 void wavHeader(byte* header, int wavSize) {
   header[0] = 'R';
   header[1] = 'I';
