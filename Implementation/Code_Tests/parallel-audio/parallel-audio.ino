@@ -31,18 +31,17 @@ const char* ntpServer = "europe.pool.ntp.org";
 const long gmtOffset_sec = 3600;
 const int daylightOffset_sec = 3600;
 
-
-int buzzerPin = 26;
-
+// MelodyPlayer output set to DAC pin
+int buzzerPin = 26; 
 MelodyPlayer player(buzzerPin);
+
 File file;
 char filename[64 + 1];
 
-// TODO Methode in Ansichtsordnung verschieben
 /**
-    Generates the name for the recordingfile to be used by accessing an ntp server
-    and adding current time and date values to the filepath
-*/
+ *  Generates the name for the recordingfile to be used by accessing an ntp server
+ *  and adding current time and date values to the filepath
+ */
 bool setFilename(char *buffer, size_t buffer_size) {
   struct tm timeinfo;
   if (!getLocalTime(&timeinfo)) {
@@ -57,20 +56,22 @@ bool setFilename(char *buffer, size_t buffer_size) {
   return true;
 }
 
-// Assign output variables to GPIO pins
-const int speaker_output26 = 26;
+/* Setup for the speaker
+ *  Maybe not necessary due to melodyplayer
+ */
+const int speaker_output26 = 26; // Speaker output set to DAC pin
 const int frequency = 2000; // Initial frequency
 const int resolution = 8; // Resolution of the duty cycle in Bit
 const int channel = 0; // PWM channel
 
-
-// Stuff for SD Cardreader
+// Pins needed to connect the SD Card
 #define SD_CS 5
 #define SD_SCK 18
 #define SD_MOSI 23
 #define SD_MISO 19
 SPIClass sd_spi(HSPI);
 
+// Pins needed to configure Microphone and recording process
 #define I2S_WS 15
 #define I2S_SD 13
 #define I2s_SCK 2
@@ -84,10 +85,18 @@ SPIClass sd_spi(HSPI);
 
 const int headerSize = 44; // Size for .wav-header
 
+/**
+ * Setup of the sketch.
+ * Initializes the controllers display, establishes a connection to WLAN and to a NTP Server
+ * Connects to SD Reader and Microphone.
+ * Starts the Webserver.
+ */
 void setup() {
   Heltec.begin(true/*enables Display*/, false/*disables LoRa*/, true/*enables Serial*/);
 
-  // put your setup code here, to run once:
+  /* Setup for the speaker
+   * Maybe not necessary due to melodyplayer
+   */
   pinMode(speaker_output26, OUTPUT);
 
   Serial.println("Initializing Speaker...");
@@ -120,7 +129,6 @@ void setup() {
   Heltec.display->display();
 
   i2sInit();
-  //Serial.println("Start!");
 
   server.begin();
 }
@@ -129,6 +137,10 @@ bool run_melody = false;
 bool run_high = false;
 bool run_low = false;
 
+/**
+ * Handles the webrequest and displays the website when controllers IP is called via browser.
+ * Triggers the clearance of the SD Card and handles the different recording processes when called via the website.
+ */
 void loop() {
   WiFiClient client = server.available(); // Listen for incoming clients
 
@@ -148,7 +160,7 @@ void loop() {
             client.println("Connection: close");
             client.println();
 
-            // Hier Managment der GET-Requests
+            // Handle GET requests 
             if (header.indexOf("GET /recordingMelody") >= 0) {
               run_melody = true;
             }
@@ -166,9 +178,7 @@ void loop() {
               clearSD();
             }
 
-            // TODO: Test ob man das in eine einzelne Zeile abändern kann also gesammten Webcode als einen String speichern
-            // und den dann parsen
-            // Display the HTML web page
+            // Display the web page
             client.println("<!DOCTYPE html><html>");
             client.println("<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
             client.println("<link rel=\"icon\" href=\"data:,\">");
@@ -178,18 +188,13 @@ void loop() {
             client.println(".button2 {background-color: #AE270B;}</style></head>");
             // Web Page Heading
             client.println("<body><h1>Microcontroller-Interface</h1>");
-            // Display current state, and ON/OFF buttons for GPIO 26
             client.println("<p>Start Recording</p>");
             client.println("<a href=\"/recordingHigh\"><button class=\"button\">High-Pitch</button></a>");
             client.println("<a href=\"/recordingLow\"><button class=\"button\">Low-Pitch</button></a>");
             client.println("<a href=\"/recordingMelody\"><button class=\"button\">Melody</button></a>");
-            //Display UI-Reset Button
             client.println("<p>Remove old Recordings</p>");
             client.println("<p><a href=\"/clearSD\"><button class=\"button button2\">Clear SD</button></a></p>");
-            /**
-               @brief HAS TO UPDATE AFTER USE OF BUTTON RECORDING AND BUTTON CLEAR SD
-                      UPDATES AUTOMATICALLY AFTER ANY RECORDING WITH PAGE-REFRESH
-            */
+            // 
             client.println("<dialog open>The SD currently uses " + getUsedSpace() + " Megabyte storage<br></dialog>");
             client.println("</body></html>");
             // The HTTP response ends with another blank line
@@ -211,6 +216,7 @@ void loop() {
     Serial.println("Client disconnected.");
     Serial.println("");
 
+    // Loads and plays a soundfile with mixed pitch to the MelodyPlayer and starts the recording process
     if (run_melody) {
       // Start Recording
       Serial.println("MELODY START");
@@ -229,7 +235,7 @@ void loop() {
       run_melody = false;
     }
 
-    // TODO Wenn run_melody funktioniert
+    // Loads and plays a soundfile with a higher pitch to the MelodyPlayer and starts the recording process 
     if (run_high) {
       Serial.println("MELODY START");
 
@@ -242,7 +248,8 @@ void loop() {
       Serial.println("MELODY STOP");
       run_high = false;
     }
-//    
+
+    // Loads and plays a soundfile with a lower pitch to the MelodyPlayer and starts the recording process
     if (run_low) {
       startRecording();
       run_low = false;
@@ -250,7 +257,10 @@ void loop() {
 }
 }
 
-// TODO Comments
+/**
+ * Method which creates a file with the current timestamp as naming and saves it to the SD
+ * Saves the .wav-Header to the File and uses the file for the recording process.
+ */
 void startRecording() {
 
   if (!setFilename(filename, sizeof(filename))) {
@@ -274,7 +284,9 @@ void startRecording() {
   i2s_adc();
 }
 
-// TODO Comments
+/**
+ * Standard Method to configure the Inter-IC Sound interface
+ */
 void i2sInit() {
   i2s_config_t i2s_config = {
     .mode = (i2s_mode_t)(I2S_MODE_MASTER | I2S_MODE_RX),
@@ -300,7 +312,10 @@ void i2sInit() {
   i2s_set_pin(I2S_PORT, &pin_config);
 }
 
-// TODO Comments
+/**
+ * Method which handles the connection of the SD Card to the controller.
+ * Responds to the Serial Monitor if the connection is not succesful at any point.
+ */
 void SDInit() {
   sd_spi.begin(SD_SCK, SD_MISO, SD_MOSI, SD_CS);
 
@@ -323,8 +338,9 @@ void SDInit() {
 }
 
 /**
-   Record any soundinput captured by the microphone
-*/
+ *  Records the input listend to by the microphone to the file currently opened.
+ *  Also prints updates on the recording progession to the serial monitor.
+ */
 void i2s_adc(void) {
   int i2s_read_len = I2S_READ_LEN;
   int flash_wr_size = 0;
@@ -359,15 +375,17 @@ void i2s_adc(void) {
 }
 
 /**
-   Scale up the recorded sound data to increase its volume
-*/
+ *  Scale up the recorded sound data to increase its volume.
+ *  The increase is determined by the parameter 'scale_factor'
+ */
 void i2s_adc_data_scale(uint8_t* d_buff, uint8_t* s_buff, uint32_t len) {
   uint32_t j = 0;
   uint32_t dac_value = 0;
+  uint32_t scale_factor =  4096;
 
   for (int i = 0; i < len; i += 2) {
     dac_value = ((((uint16_t) (s_buff[i + 1] & 0xf) << 8) | ((s_buff[i + 0]))));
     d_buff[j++] = 0;
-    d_buff[j++] = dac_value * 256 / 4096;
+    d_buff[j++] = dac_value * 256 / scale_factor;
   }
 }

@@ -5,7 +5,10 @@
 
 int headerSize;
 
-
+/**
+ * Method which iterates over the complete filesystem of an SD card and
+ * deletes each found file not mandatory to display the webinterface.
+ */
 void clearSD(void) {
   Serial.println("Remove every .wav from SD");
   fs::FS fs = SD;
@@ -34,6 +37,10 @@ void clearSD(void) {
   }
 }
 
+/**
+ * Method which iterates over the filsystem of an SD card and
+ * summarizes the space the found content needs.
+ */
 String getUsedSpace(void) {
 
   int sumFileSize = 0;
@@ -57,6 +64,9 @@ String getUsedSpace(void) {
   return String(sumFileSize);
 }
 
+/**
+ * Creates the header for a .wav-file.
+ */
 void wavHeader(byte* header, int wavSize) {
   header[0] = 'R';
   header[1] = 'I';
