@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7200 64-bit) (preloaded format=pdflatex 2019.11.1)  16 MAR 2021 16:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7200 64-bit) (preloaded format=pdflatex 2019.11.1)  16 APR 2021 12:18
 entering extended mode
 **./bachelorprojekt_johannes_waltmann_3029975.tex
 (bachelorprojekt_johannes_waltmann_3029975.tex
@@ -553,26 +553,28 @@ Package pdftex.def Info: Media/casing_printed.jpg  used on input line 160.
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.175 
+l.177 
        <./Media/case_CAD_view.png> <./Media/casing_printed.jpg>]
-<Media/Controller_setup.png, id=174, 1095.09125pt x 603.25375pt>
+<Media/Controller_setup.png, id=173, 1095.09125pt x 603.25375pt>
 File: Media/Controller_setup.png Graphic file (type png)
 <use Media/Controller_setup.png>
-Package pdftex.def Info: Media/Controller_setup.png  used on input line 181.
+Package pdftex.def Info: Media/Controller_setup.png  used on input line 192.
 (pdftex.def)             Requested size: 347.12354pt x 191.22256pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 195--195
+Underfull \vbox (badness 4328) has occurred while \output is active []
+
+ [8pdfTeX warning (ext4): destination with the same identifier (name{figure.1.4
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.200 
+       <./Media/Controller_setup.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 206--206
  [][][][][]$\OT1/cmtt/m/n/9 https : / / github . com / HelTecAutomation / Helte
 c _ ESP32 / blob / master / src /
  []
 
-[8pdfTeX warning (ext4): destination with the same identifier (name{figure.1.4}
-) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.198 
-       <./Media/Controller_setup.png>]
 (C:\Users\Waltmann\AppData\Roaming\MiKTeX\2.9\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
@@ -583,39 +585,41 @@ File: lstlang1.sty 2020/03/24 1.8d listings language file
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 222.
+nput line 231.
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <9> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 223.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 232.
 
-[9] [10]
-<Media/webinterface_edge.png, id=229, 1921.1775pt x 1052.43187pt>
+[9] [10] [11]
+<Media/webinterface_edge.png, id=248, 1921.1775pt x 1052.43187pt>
 File: Media/webinterface_edge.png Graphic file (type png)
 <use Media/webinterface_edge.png>
-Package pdftex.def Info: Media/webinterface_edge.png  used on input line 308.
+Package pdftex.def Info: Media/webinterface_edge.png  used on input line 317.
 (pdftex.def)             Requested size: 347.12354pt x 190.1522pt.
- [11] [12pdfTeX warning (ext4): destination with the same identifier (name{figu
-re.1.5}) has been already used, duplicate ignored
+
+Underfull \vbox (badness 1400) has occurred while \output is active []
+
+ [12pdfTeX warning (ext4): destination with the same identifier (name{figure.1.
+5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.386 \end{table}
-                  <./Media/webinterface_edge.png>]
+l.367 \section
+              {Evaluation} <./Media/webinterface_edge.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [13]
-Overfull \hbox (2.23837pt too wide) in paragraph at lines 403--404
+Overfull \hbox (2.23837pt too wide) in paragraph at lines 412--413
 []\OT1/cmr/m/n/10 vgl. http://florian-alt.org/unibw/wp-content/publications/lie
 bers2021chi.pdf
  []
 
-) (bachelorprojekt_johannes_waltmann_3029975.bbl [14pdfTeX warning (ext4): dest
-ination with the same identifier (name{table.1.1}) has been already used, dupli
-cate ignored
+[14pdfTeX warning (ext4): destination with the same identifier (name{table.1.1}
+) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.14 \bibitem{alsaadi2015physiological}
-                                       ]
+l.418 \subsection
+                 {Discussion}]) (bachelorprojekt_johannes_waltmann_3029975.bbl
 Underfull \hbox (badness 2142) in paragraph at lines 39--43
 []\OT1/cmr/m/n/9 Jakobsson, M., Shi, E., Golle, P., Chow, R.: Im-plicit au-then
 -ti-ca-tion for
@@ -694,12 +698,12 @@ t' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  9772 strings out of 492453
- 143638 string characters out of 3129811
- 649682 words of memory out of 3000000
- 13890 multiletter control sequences out of 15000+200000
+ 143629 string characters out of 3129811
+ 594794 words of memory out of 3000000
+ 13889 multiletter control sequences out of 15000+200000
  7970 words of font info for 29 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,13n,64p,866b,1366s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,13n,64p,866b,1386s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files/MiKTe
@@ -714,9 +718,9 @@ iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.
 9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/
 type1/public/amsfonts/cm/cmtt9.pfb>
 Output written on bachelorprojekt_johannes_waltmann_3029975.pdf (16 pages, 1752
-116 bytes).
+961 bytes).
 PDF statistics:
- 415 PDF objects out of 1000 (max. 8388607)
- 148 named destinations out of 1000 (max. 500000)
+ 416 PDF objects out of 1000 (max. 8388607)
+ 149 named destinations out of 1000 (max. 500000)
  44 words of extra memory for PDF output out of 10000 (max. 10000000)
 

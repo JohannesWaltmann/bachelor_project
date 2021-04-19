@@ -3,9 +3,9 @@
 \providecommand{\urlprefix}{URL }
 \providecommand{\doi}[1]{https://doi.org/#1}
 
-\bibitem{tagliati}
-Github to the soundgeneration function,
-  \url{https://gist.github.com/tagliati/1804108}, retrieved on 14.01.2021
+\bibitem{melodyPlayer}
+Esp library supporting parallel played audio,
+  \url{https://github.com/fabiuz7/melody-player-arduino}
 
 \bibitem{tenzer}
 Themenseite: Wearables (Mar 2020),

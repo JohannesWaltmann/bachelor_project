@@ -118,7 +118,7 @@ For this purpose it is connected to each a little microphone capsule and a speak
 \section{Implementation}
 
 \subsection{Hardware}
-Different hardware used included a microcontroller and it's accessories which were used to conduct the user-study and run the implemented functionalities.
+The different hardware used included a microcontroller and it's accessories which were used to conduct the user-study and run the implemented functionalities.
 Additionally a casing was designed which fits the components described in section~\ref{sssec::num1} and can be worn by the participants during the user-study.
 
 \subsubsection{Components}\label{sssec::num1}
@@ -144,10 +144,10 @@ The hardware is powered by a lithium-ion battery with a capacity of 1200mAh and 
 It is connected to the controller on its underside using a JST-PH connector. 
 
 \subsubsection{Casing}
-To conduct the associated study it is necessary for the participants to wear the hardware on their body.
+To conduct the associated study it is necessary for the hardware to be wearable by the user. 
 For this purpose a case consisting of multiple parts is designed.
-One part of the casing is designed to fit the microcontroller as well as the batterypack and the SD-card-reader.
-The other part is designed in a more smartwatch-like shape and is used to store microphone and speaker. 
+One part of the casing is designed to fit the microcontroller as well as the battery pack and the SD-card-reader.
+The other part is designed as a bracelet with two chambers one for each of microphone and speaker.  
 Both parts can be worn by the participant using wristbands made from stretchable rubber.
 
 For both parts the same specifications are used as they both are lasercutted from 4mm thick acrylic glass.
@@ -159,12 +159,23 @@ The gap above this middle plane was designed to fit the microcontroller while th
 		\hspace{0.5cm}
 		\subfloat[Microcontroller Case in printed Form //Need new image??]{\includegraphics[width=0.4\textwidth]{Media/casing_printed.jpg}\label{fig:case_printed}}
 	\end{center}
-	\caption{Image (a) shows the case as it was assembled using Fusion 360. The piece which would normally be located on the left side of the case is set to invisible so the interior can be seen.
-	Image (b) shows the parts of the case after they have been lasercut and assembled. To easier fit the single hardware components the battery pack and the SD-card-reader are stuck to the bottom plane using tape.}
+	\caption{Image (a) shows the case as it was assembled using Fusion 360.
+		The piece which would normally be located on the left side of the case is set to invisible so the interior can be seen.
+		Image (b) shows the parts of the case after they have been lasercut and assembled.
+		To easier fit the single hardware components the battery pack and the SD-card-reader are stuck to the bottom plane using tape.
+		Image (c) shows the bracelet which is containing both microphone and speaker whith each of them placed in its own chamber.
+		}
 	\label{fig:cad_designs}
 \end{figure}
 
-//Beschreibung Bracelet für Mikro und Speaker??
+Both the mid-plane and the bottom one have extra cut-outs to guide the wires which are connecting the single components to the controller.
+The cut-outs on top of the case and on its front are for the accessibility of the usb-port and the buttons located on the controller.
+
+Since the box with the controller in it and the bracelet will not be worn directly next to each other the wires used to connect both parts are extended using two jumpers (with at least one female ending) and soldering them together.
+The joints are afterwards covered using scrubbed hoses. 
+The same procedure is used for the wires of the SD-card-reader and the battery except the wires are shortened here and not extended.
+
+// TO-DO: Bild von fertigem Prototypen, wenn alles connected einfügen
 
 \subsection{Development Tools}
 The majority of code in this project was written in the Arduino development environment (IDE). 
@@ -210,44 +221,38 @@ An additional feature which is implemented during the setup function is the conn
 This server is later used to uniquely identify the recorded data by adding date- and timestamps of the recordings start to each file.
 
 \subsubsection{Stimulus Generation}
-As for the stimulus' generation the used \texttt{tone()} function is implemented separately since the ESP32 chipset does not support its functionalities naturally.
-For this purpose the LED PWM functions can be used.
-Using this functionality it is possible to control and alter both frequency and duty cycle of the output.
-
-Initially these values are set within the \texttt{ledcSetup()} function.
-When changing the duty cycle at constant frequency it is possible to shift the pitch of the sound using the \texttt{ledcWrite()} function.
-When changing the frequency at constant duty cycle it is possible to generate different notes.
-To do so the function \texttt{ledcWriteTone()} has to be used instead of \texttt{ledcWrite()}.
+The approach taken for the generation of the stimulus is based around an external library~\cite{melodyPlayer} for the ESP microcontroller family.
+Using this library it is possible to play a soundfile asynchronous and thus record the audio at the same time using the exact same controller.
+The code excerpt shown in Listing~\ref{lst:parAudio} shows how a melody can be assembled and afterwards played using the library.
+The melody can be created using the statements seen in lines 6 and 8 with the parameters used in line 8 being a name for the sound to be played, the duration which the melody should take, the notes which are used (The notes can be coded either as a string representation or as integers.
+In the latter one the integers are the frequencies which are to be played).
+The last parameter states the number of individual notes which are to be played.  
 \begin{lstlisting}[frame=single, language={c++}, style=style,
-				   caption={Function used to generate a single note using frequency and sound duration.}, label={lst:toneFunct},float=!htb]
-void tone(int channel, int frequency_in_HZ,
-		  		long durance_in_ms) {
-
-	long delayAmount = (long)(1000000 / frequency_in_HZ);
-	long loopTime = (long)((durance_in_ms*1000) / 
-												 (delayAmount*2));
-
-	for (int x = 0; x < loopTime; x++) {
-		ledcWriteTone(channel, 3000);
-		delayMicroseconds(delayAmount);
-		ledcWriteTone(channel, 0);
-		delayMicroseconds(delayAmount);
+	caption={The function which is used to scale the captured recordings volume.}, label={lst:parAudio},float=!htb]
+	if (run_melody) {
+		// Start Recording
+		Serial.println("MELODY START");
+		
+		Serial.println("Loading melody...");
+		String notes[] = { "C4", "G3", "G3", "A3", "G3", "SILENCE", "B3", "C4"};
+		// Load and play a correct melody
+		Melody melody = MelodyFactory.load("Nice Melody", 2000, notes, 8);
+		player.playAsync(melody);
+		
+		Serial.println("MELODY STOP");
+		Serial.println("RECORDING START");
+		
+		startRecording();
+		Serial.println("RECORDING STOP");
+		run_melody = false;
 	}
-	delay(20);
-}
 \end{lstlisting}
 
-Based on these conditions the function \texttt{tone()} as seen in Listing~\ref{lst:toneFunct} uses the method \texttt{ledcWriteTone()} to generate sound\footnote{The function is taken from the gitHub provided by André Tagliati~\cite{tagliati} and altered slightly to work with the ESP32 chipset.}.
-Additionally the parameters \texttt{channel, frequency} and \texttt{durance} are required.
-Using these parameters the function can determine the values for delay and loopTime representing pitch and sound duration respectively of the generated audio.
-The third parameter is used to represent the PWM channel through which the sound will be forwarded.
-
-Within the for-loop the \texttt{ledcWriteTone()} function is used to alternately set the PWM pin to high and low.
-Between these alterations the pitch is set by setting a delay as previously computed.
-As a final step a delay of 20 ms is set to separate the individual tone blocks from one another.
-
-Now the actual stimulus can be designed by implementing a method which uses a combination of the tone-function as described above and the delay-function.
-The method containing the stimulus can then be called during the loop-function each time a new recording is started through the web-interface.
+In the last step the created melody can be played using the statement seen in line 9.
+Therefore a \texttt{MelodyPlayer} has to be declared and assigned to the DAC pin which is connected to the speaker.
+A melodyPlayer has access to either the method \texttt{playAsync()} or \texttt{play()} depending on the need of either synchronous or asynchronous play.
+Both of the play methods can be called either with a respective melody or parameterless.
+When no explicit parameter is given the melodyPlayer will then use the last melody which has been played whereas it will play the melody which is given as a parameter if that would be the case.
 
 \subsubsection{Recording the Sample}
 With Inter-IC Sound (I$^2$S) an serial interface is used to generate the recordings needed for the study.
@@ -284,8 +289,12 @@ This scaling is done by multiplying each bit of the recording with a special fac
 		}
 	}	
 \end{lstlisting}
-The parameter which is represented by the placeholder "FACTOR" in the Listing~\ref{lst:adcScale} is a multiple of 1024 where the less the value is set the louder the recording will become (For this implementation the value 4096 is used).
+
+The parameter which is represented by the placeholder "FACTOR" in Listing~\ref{lst:adcScale} is a multiple of 1024 where the less the value is set the louder the recording will become (For this implementation the value 4096 is used).
 One little disadvantage of this method is that not only the recorded sound will be scaled but also the volume of other recorded noise is enhanced.
+
+As it can be seen in Listing~\ref{lst:parAudio} a method called \texttt{startRecording()} is used to perform the recording duties.
+Within this method the .wav-file for the recording is created and saved to the SD-card with \texttt{i2s\_adc()} being called afterwards to start the actual recording process.
 
 \subsubsection{Webinterface}
 To manage the functions of this project and start the recordings and playbacks a webinterface is used.
