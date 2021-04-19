@@ -222,9 +222,9 @@ void loop() {
       Serial.println("MELODY START");
 
       Serial.println("Loading melody...");
-      String notes[] = { "C4", "G3", "G3", "A3", "G3", "SILENCE", "B3", "C4"};
+      String notes[] = { "C4", "G3", "G5", "A3", "G3", "A2", "SILENCE", "B3", "C4", "F5", "SILENCE", "D4", "C4", "B4"};
       // Load and play a correct melody
-      Melody melody = MelodyFactory.load("Nice Melody", 2000, notes, 8);
+      Melody melody = MelodyFactory.load("Mixed Pitch", 2000, notes, 14);
       player.playAsync(melody);
 
       Serial.println("MELODY STOP");
@@ -240,9 +240,9 @@ void loop() {
       Serial.println("MELODY START");
 
       Serial.println("Loading melody...");
-      String notes[] = { "C4", "G3", "G3", "A3", "G3", "SILENCE", "B3", "C4"};
+      String notes[] = { "C5", "G5", "G6", "A7", "G7", "SILENCE", "B6", "C7", "CS7", "CS8", "D8", "SILENCE", "E6", "DS5"};
       // Load and play a correct melody
-      Melody melody = MelodyFactory.load("Nice Melody", 2000, notes, 8);
+      Melody melody = MelodyFactory.load("Nice Melody", 2000, notes, 14);
       player.playAsync(melody);
 
       Serial.println("MELODY STOP");
