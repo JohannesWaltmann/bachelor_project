@@ -1,6 +1,6 @@
 # Bachelor Project #
 ## University project functioning as dircet predecessor to the bachelor thesis ##
----
+
 An [ESP](https://en.wikipedia.org/wiki/ESP32) based project to generate and record audio as a stimulus towards functional biometric authentication.
 
 ### Usability Requirements ###
@@ -10,7 +10,8 @@ The installation instructions for this controller into the arduino environment c
 
 Additional requirements to run [microphone](https://invensense.tdk.com/products/digital/inmp441/) or speaker are already given in the code of the sketch.
 As speaker any mylar speaker can be used.
-
+---
 ### Wiring of the Components ###
 How the different components are wired can be taken from the following schematic:
 ![Component wireing](https://raw.githubusercontent.com/webbasedToast/bachelor_project/master/Ausarbeitung/Media/Hardware_Pinout.png)
+---
