@@ -1,0 +1,4 @@
+<participant_code>_<session_code>_<arm>_<kind of melody>.wav
+
+BSP: p0_s0_ur_mel3 = Participant0_Session0_rechtes Handgelenk_Dritte Record Melodie
+

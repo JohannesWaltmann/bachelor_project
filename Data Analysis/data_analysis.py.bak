@@ -1,0 +1,118 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
+import math
+from scipy.io import wavfile
+from scipy.fft import fft
+import matplotlib.pyplot as plt
+import numpy as np
+import os
+
+plt.rcParams['figure.facecolor'] = 'white'  # enhances visibility in darkmode IDEs
+plt.rcParams["figure.figsize"] = (10, 10)
+
+
+# In[2]:
+
+
+count, plt_in_row = 3, 3
+DATAPATHS = []
+rootdir = './bachelor_project/Data/Study Recordings'
+
+for subdir, dirs, files in os.walk(rootdir):
+    for file in files:
+        path = os.path.join(subdir, file)
+        DATAPATHS.append(path)
+
+
+# In[3]:
+
+
+"""
+Bisher noch keine bessere Möglichkeit gefunden, um alle Daten abzugreifen als manuel
+in Cunks von 18 die Dateipfade von jeder Session eines Probanden in ein temp_Array einzulesen
+"""
+for d in range(0+(10*samples_per_session), 12 * samples_per_session):
+    TEMP_DATA.append(DATAPATHS[d])
+
+def pplot(dd):
+    x = len(dd)
+
+    fig, axs = plt.subplots(fix, fiy, figsize = (3*fiy, 3*fix))
+    for i in range(x):
+        try:
+          samplerate, data = wavfile.read(dd[i])
+        except:
+            continue
+        length = data.shape[0] / samplerate
+        time = np.linspace(0., length, data.shape[0])
+        axs[int(i/3)][i%3].title.set_text(dd[i].split(f'_u')[-1].replace('.wav', ''))
+        axs[int(i/3)][i%3].plot(time, data)
+
+    return fig
+
+#pplot(TEMP_DATA).savefig(f'p2_s1.png')
+
+
+# In[4]:
+
+
+DATASET = []
+
+"""
+Liest alle wav-files ein und speichert samplerate und daten als tupel in eine extra liste ab.
+Der Inhalt von data wird dabei in ein numpy-array konvertiert.
+"""
+for i in range(len(DATAPATHS)):
+    samplerate, data = wavfile.read(DATAPATHS[i])
+    _tuple = (samplerate, np.asarray(data))
+    DATASET.append(_tuple)
+
+print(DATASET[35][1])
+
+
+# In[5]:
+
+
+"""
+Führt fft für übergebenes Dataarray aus und gibt dieses wieder aus
+"""
+def fourier_transform(data):
+    transformed_data = fft(data)
+    return np.abs(transformed_data[:int((len(transformed_data)/2)-1)])
+
+
+# In[8]:
+
+
+"""
+Erstellt Plot mit fourier transformierten Daten für eine Session eines Probanden
+--> Auch hier: Herausfinden, wie man das gelooped für alle hinbekommt und jeweils nen Plot erstellt
+--> Warum fehlt der fft Plot für po_s1_mel3 (rechts)
+"""
+fix = math.floor(18/3)
+fiy = 3
+
+fig, axs = plt.subplots(fix, fiy, figsize = (3*fiy, 3*fix))
+for i, j in zip(range(0, 18), range(91, 108)):
+    print(i, j)
+    try:
+        temp = fourier_transform(DATASET[j][1])
+        axs[int(i/3)][i%3].plot(temp)
+    except Exception as e:
+        print(str(e))
+        continue
+
+plt.savefig('p2_s1_fft.png')
+
+
+# In[12]:
+
+
+print(fourier_transform(DATASET[j][1]))
+
+print(fourier_transform(DATASET[107][1]))
+
