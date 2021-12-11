@@ -14,3 +14,7 @@ As speaker any mylar speaker can be used.
 # Wiring of the Components #
 How the different components are wired can be taken from the following schematic:
 ![Component wireing](https://raw.githubusercontent.com/webbasedToast/bachelor_project/master/Ausarbeitung/Media/Hardware_Pinout.png)
+
+# Acknowledgements #
+Credit for the MelodyPlayer package goes to Fabiano Riccardi.
+The repository for the library can be reached [here](https://github.com/fabiuz7/melody-player-arduino)
