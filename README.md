@@ -1,5 +1,5 @@
 # Bachelor Project #
-## University project functioning as dircet predecessor to the bachelor thesis ##
+## University project functioning as direct predecessor to the bachelor thesis ##
 
 An [ESP](https://en.wikipedia.org/wiki/ESP32) based project to generate and record audio as a stimulus towards functional biometric authentication.
 
